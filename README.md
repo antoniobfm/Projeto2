@@ -1,7 +1,7 @@
 # Dendem :herb:
 
 <p align="center">
-  O “Dendem” é uma aplicação web que funciona como ferramenta facilitadora da colaboração entre pesquisadores da Natura e agricultores associados a fim de pesquisas para o desenvolvimento de produtos da empresa.
+  O “Dendem” é uma aplicação web que funciona como ferramenta facilitadora da colaboração entre pesquisadores da Natura e agricultores associados a fim de pesquisas para o desenvolvimento de produtos da empresa. <br>
 
   <img width="200" alt="Logo_Dendem" src="https://user-images.githubusercontent.com/123978295/236903975-0e3df2ca-eb04-4b65-aebe-7d994487f483.png">
 </p>
