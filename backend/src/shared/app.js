@@ -11,7 +11,6 @@ app.use(express.static("../frontend/"));
 /* Definição dos endpoints */
 /******** CRUD ************/
 app.use(express.json());
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /* Aplica as rotas */
