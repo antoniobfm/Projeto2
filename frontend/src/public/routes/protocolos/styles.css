@@ -8,4 +8,6 @@
     grid-template-columns: auto 280px 1fr 280px;
 
     gap: 24px;
+
+    padding-right: 24px;
 }

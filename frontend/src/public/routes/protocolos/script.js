@@ -19,3 +19,10 @@ const scriptProtocolos = document.createElement('script');
 scriptProtocolos.src = '/routes/protocolos/Protocolo/index.js';
 scriptProtocolos.type = 'module';
 document.body.appendChild(scriptProtocolos);
+
+
+// Append Lista script to the page as module
+const scriptLista = document.createElement('script');
+scriptLista.src = '/routes/protocolos/Lista/index.js';
+scriptLista.type = 'module';
+document.body.appendChild(scriptLista);

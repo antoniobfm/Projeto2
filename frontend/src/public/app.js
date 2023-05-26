@@ -8,7 +8,7 @@ const routes = [
     path: "/protocolos",
     page: "/routes/protocolos/index.html",
     script: "/routes/protocolos/script.js", 
-    styles: ["/routes/protocolos/styles.css", "/components/Menu/styles.css", "/components/Menu/Button/styles.css"]
+    styles: ["/routes/protocolos/styles.css", "/components/Menu/styles.css", "/components/Menu/Button/styles.css", "/components/Menu/styles.css", "/routes/protocolos/Protocolo/styles.css"]
   },
   {
     path: "/coletores",
