@@ -13,7 +13,26 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(PUBLIC_DIR));
+app.use(express.static(PUBLIC_DIR, {
+  extensions: ['html', 'css', 'js'],
+  setHeaders: (res, path) => {
+    const extname = path.split('.').pop();
+    console.log(getContentType('.' + extname))
+    res.setHeader('Content-Type', getContentType('.' + extname));
+  }
+}));
+
+app.get('*.js', function(req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  res.set('Content-Type', 'text/javascript');
+  next();
+});
+
+app.get('*.css', function(req, res, next) {
+  res.set('Content-Type', 'text/css');
+  next();
+});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(PUBLIC_DIR, 'index.html'));
