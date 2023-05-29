@@ -4,6 +4,7 @@
 class ExportSamples extends HTMLElement {
   constructor() {
     super();
+    
 
     // Get the component's attributes
     // The attributes are defined in the HTML tag where the component is used
@@ -54,6 +55,9 @@ class ExportSamples extends HTMLElement {
       divBotao.textContent = botao;
       divBotoes.appendChild(divBotao);
     });
+  }
+}
+  
 
     // Load the component's CSS file
     const styles = document.createElement('link');
