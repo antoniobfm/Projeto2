@@ -26,3 +26,7 @@ const scriptLista = document.createElement('script');
 scriptLista.src = '/routes/protocolos/Lista/index.js';
 scriptLista.type = 'module';
 document.body.appendChild(scriptLista);
+
+function ExportSamples(type, data) {
+    // TO DO
+}
