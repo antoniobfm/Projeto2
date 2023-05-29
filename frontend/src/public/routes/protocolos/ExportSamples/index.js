@@ -6,16 +6,24 @@ class ExportSamples extends HTMLElement {
     super();
 
     // Get the component's attributes
+    // The attributes are defined in the HTML tag where the component is used
+    // For example: 
+    // <export-samples title="Exportar Amostras"></export-samples>
     const title = this.getAttribute('title');
 
     // Create a shadow root for the component
+    // The shadow root encapsulates the component
+    // Explanation of the shadow root: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
     const shadow = this.attachShadow({ mode: 'open' });
 
     // Create a container for the component
+    // The container is a <section> element
     const section = document.createElement('section');
     section.className = 'container';
 
     // Create the title
+    // The title is a <h1> element
+    // The title is defined in the component's attributes
     const h1 = document.createElement('h1');
     h1.textContent = title;
     h1.classList.add('text-3xl');
@@ -38,6 +46,8 @@ class ExportSamples extends HTMLElement {
 
     // Create the buttons
     const botoes = ['.XML', '.CSV', '.SQL'];
+    
+    // For each button, create a div
     botoes.forEach((botao) => {
       const divBotao = document.createElement('div');
       divBotao.className = 'botao';
