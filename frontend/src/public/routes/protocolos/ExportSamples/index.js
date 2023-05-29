@@ -19,6 +19,7 @@ class ExportSamples extends HTMLElement {
 
     // Create a container for the component
     // The container is a <section> element
+    // <section class="container"></section>
     const section = document.createElement('section');
     section.className = 'container';
 
@@ -51,13 +52,26 @@ class ExportSamples extends HTMLElement {
     // For each button, create a div
     botoes.forEach((botao) => {
       const divBotao = document.createElement('div');
+      divBotao.onclick = () => {
+        console.log('Clicou no botão', botao);
+      };
       divBotao.className = 'botao';
       divBotao.textContent = botao;
       divBotoes.appendChild(divBotao);
     });
-  }
-}
-  
 
+    
     // Load the component's CSS file
     const styles = document.createElement('link');
+    styles.rel = 'stylesheet';
+    styles.href = './routes/protocolos/ExportSamples/styles.css';
+    section.appendChild(styles);
+
+    // Add the label and input elements to the container
+    shadow.appendChild(section);
+  }
+}
+
+// Define the custom element
+customElements.define('export-samples', ExportSamples);
+  
