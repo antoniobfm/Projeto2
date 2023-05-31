@@ -1,3 +1,10 @@
+// Load Form component
+// Append Lista script to the page as module
+const scriptForm = document.createElement('script');
+scriptForm.src = '/routes/home/Form/script.js';
+scriptForm.type = 'module';
+document.body.appendChild(scriptForm);
+
 // Get data from /formacoes/:usuario_id and load it to ul id #formacoes
 async function loadFormacoes() {
   const response = await fetch("http://localhost:3334/protocolos/1");
