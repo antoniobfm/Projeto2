@@ -4,41 +4,7 @@
 
 <h2>Criar formação</h2>
 <!-- Dont redirect user affter sending form -->
-<form
-  action="/formacoes/1"
-  method="POST"
-  onsubmit="event.preventDefault(); createFormacao(this)"
->
-  <label for="nome">Nome</label>
-  <br />
-  <input type="text" name="nome" id="nome" required />
-
-  <br />
-  <br />
-
-  <label for="descricao">Descrição</label>
-  <br />
-  <input type="text" name="descricao" id="descricao" required />
-
-  <br />
-  <br />
-
-  <label for="inicio">Inicio</label>
-  <br />
-  <input type="date" name="inicio" id="inicio" required />
-
-  <br />
-  <br />
-
-  <label for="fim">Fim</label>
-  <br />
-  <input type="date" name="fim" id="fim" />
-
-  <br />
-  <br />
-
-  <button type="submit">Criar</button>
-</form>
+<my-form></my-form>
 
 <h1>Formações</h1>
 <ul id="formacoes"></ul>
