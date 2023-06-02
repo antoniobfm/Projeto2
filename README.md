@@ -10,13 +10,13 @@ Essas funcionalidades são favorecidas, ainda, pela opção de preenchimento de 
 
 ## Integrantes :busts_in_silhouette:
 
-- Antônio Bahia Fonseca Moraes: https://www.linkedin.com/in/antoniobfm/
-- Cecília Gio Alonso Gonçalves: https://www.linkedin.com/in/cec%C3%ADlia-alonso-gon%C3%A7alves-3aa4bb271/
-- Felipe Morita de Almeida Braga: https://www.linkedin.com/in/felipe-braga-69607126a/
-- João Pedro Brandão de Moura: https://www.linkedin.com/in/jo%C3%A3o-pedro-brand%C3%A3o-de-moura-338636215/
-- Laura Padilha Bueno: https://www.linkedin.com/in/laura-padilha-bueno-b358419a/
-- Luigi Otávio Neves Macedo: https://www.linkedin.com/in/luigi-ot%C3%A1vio-904475234/
-- Raí de Oliveira Cajé: https://www.linkedin.com/in/raideoliveira/
+- <a href="https://www.linkedin.com/in/antoniobfm/">Antônio Bahia Fonseca Moraes</a>
+- <a href="https://www.linkedin.com/in/cec%C3%ADlia-alonso-gon%C3%A7alves-3aa4bb271/">Cecília Gio Alonso Gonçalves</a>
+- <a href="https://www.linkedin.com/in/felipe-braga-69607126a/">Felipe Morita de Almeida Braga</a>
+- <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-brand%C3%A3o-de-moura-338636215/">João Pedro Brandão de Moura</a>
+- <a href="https://www.linkedin.com/in/laura-padilha-bueno-b358419a/">Laura Padilha Bueno</a>
+- <a href="https://www.linkedin.com/in/luigi-ot%C3%A1vio-904475234/">Luigi Otávio Neves Macedo</a>
+- <a href="https://www.linkedin.com/in/raideoliveira/">Raí de Oliveira Cajé</a>
 
 ## Histórico de lançamentos :calendar:
 
