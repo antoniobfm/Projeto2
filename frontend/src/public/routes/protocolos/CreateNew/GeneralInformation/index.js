@@ -18,7 +18,7 @@ class ListaItem extends HTMLElement {
         title.textContent = 'Informações Gerais';
 
         // Create a dendem input element
-        const dendemInput = `<dendem-input name="nome" label="Nome" placeholder="" type="text"></dendem-input>`
+        const dendemInput = `<dendem-input name="nome" label="Nome do protocolo" placeholder="" type="text"></dendem-input>`
 
         // Create a button to add a create the protocol
         const createProtocol = `<dendem-button id="createProtocol" shadow-id="create-protocol-button" label="Criar protocolo"></dendem-button>`

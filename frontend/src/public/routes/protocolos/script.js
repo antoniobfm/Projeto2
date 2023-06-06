@@ -5,7 +5,6 @@ class MyPage extends HTMLElement {
         this.shadow = this.attachShadow({ mode: 'open' });
         this.render();
 
-        
         // Listen to protocolo-clicked event
         this.addEventListener('protocolo-clicked', (e) => {
             console.log('protocolo-clicked event received');

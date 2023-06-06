@@ -1,7 +1,7 @@
 class MySection extends HTMLElement {
     constructor() {
       super();
-
+      
       this.protocol = {
         generalInformation: {
           nome: "",
