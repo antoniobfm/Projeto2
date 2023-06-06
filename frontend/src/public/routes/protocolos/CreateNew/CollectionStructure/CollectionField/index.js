@@ -38,12 +38,14 @@ class CollectionField extends HTMLElement {
         const option = document.createElement('option');
         option.classList.add('collection-field__option');
         option.value = 'text';
+        // this.field.type === 'text' && option.setAttribute('selected');
         option.innerText = 'Texto';
 
         // Create a option element
         const optionDescription = document.createElement('option');
         optionDescription.classList.add('collection-field__option');
         optionDescription.value = 'long-text';
+        // Select the option if the field's type is 'long-text'
         optionDescription.innerText = 'Texto longo';
 
         // Create a container for the actions that can be performed on the field
@@ -68,7 +70,7 @@ class CollectionField extends HTMLElement {
 
         // Add the actions to the actions container
         actionsContainer.appendChild(deleteButton);
-        actionsContainer.appendChild(requiredButton);
+        // actionsContainer.appendChild(requiredButton);
 
 
         // Add the title element to the shadow DOM
@@ -91,7 +93,7 @@ class CollectionField extends HTMLElement {
             const fieldChangedEvent = new CustomEvent('field-name-changed', {
                 detail: {
                     fieldIndex: this.getAttribute('field-index'),
-                    fieldName: event.target.value,
+                    fieldValue: event.target.value,
                 },
                 bubbles: true,
                 composed: true,
@@ -110,7 +112,7 @@ class CollectionField extends HTMLElement {
             const fieldChangedEvent = new CustomEvent('field-type-changed', {
                 detail: {
                     fieldIndex: this.getAttribute('field-index'),
-                    fieldType: event.target.value,
+                    fieldValue: event.target.value,
                 },
                 bubbles: true,
                 composed: true,
@@ -135,11 +137,6 @@ class CollectionField extends HTMLElement {
         });
 
         this.loadStyles();
-    }
-
-    // Define the attributes to observe
-    static get observedAttributes() {
-        return ['name', 'field-name'];
     }
 
     // Dispatch an event when the field-name value changes

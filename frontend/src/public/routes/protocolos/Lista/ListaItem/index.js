@@ -6,10 +6,11 @@ class ListaItem extends HTMLElement {
 
         // Get nome from attributes
         const name = this.getAttribute('name');
+        const protocolo_id = this.getAttribute('protocolo-id');
         console.log(name)
         
         // Create a shadow DOM for the element
-        const shadow = this.attachShadow({ mode: 'open' });
+        this.shadow = this.attachShadow({ mode: 'open' });
 
         // Create a button element
         const button = document.createElement('button');
@@ -17,18 +18,40 @@ class ListaItem extends HTMLElement {
         button.innerHTML = name;
 
         // Add the button element to the shadow DOM
-        shadow.appendChild(button);
+        this.shadow.appendChild(button);
 
         // Load the ListaItem component's CSS file
         const stylesListaItem = document.createElement('link');
         stylesListaItem.rel = 'stylesheet';
         stylesListaItem.href = "./routes/protocolos/Lista/ListaItem/styles.css";
         this.shadowRoot.appendChild(stylesListaItem);
+
+        this.addEventListenerToListaItem()
     }
 
     // Define the attributes to observe
     static get observedAttributes() {
         return ['name'];
+    }
+
+    addEventListenerToListaItem() {
+        const listaItem = this.shadowRoot.querySelector('button');
+
+        if (!!listaItem && !listaItem.onclick) {
+        // Dispatch an event to the host when the ListaItem is clicked
+        listaItem.addEventListener("click", (e) => {
+            console.log('clicked lista item', this.getAttribute("protocolo-id"))
+            this.dispatchEvent(
+            new CustomEvent("protocolo-clicked", {
+                detail: {
+                    protocolo: this.getAttribute("protocolo-id"),
+                },
+                bubbles: true,
+                composed: true,
+            })
+            );
+        });
+        };
     }
 
     // Handle changes to an attribute

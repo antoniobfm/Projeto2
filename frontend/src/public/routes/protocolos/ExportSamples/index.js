@@ -5,7 +5,6 @@ class ExportSamples extends HTMLElement {
   constructor() {
     super();
     
-
     // Get the component's attributes
     // The attributes are defined in the HTML tag where the component is used
     // For example: 
@@ -73,5 +72,4 @@ class ExportSamples extends HTMLElement {
 }
 
 // Define the custom element
-customElements.define('export-samples', ExportSamples);
-  
+customElements.define('dendem-export-samples', ExportSamples);

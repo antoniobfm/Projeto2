@@ -78,23 +78,6 @@ class MySection extends HTMLElement {
       previousContent.remove();
     };
 
-    // If ListaItem script is not loaded, load it
-    if (!this.shadowRoot.querySelector("script")) {
-      const script = document.createElement("script");
-      script.src = "./routes/protocolos/Lista/ListaItem/index.js";
-      script.type = "module";
-      this.shadowRoot.appendChild(script);
-    };
-
-    // If there isn't a style tag in the shadow root, create one and append the template content to it
-    if (!this.shadowRoot.querySelector("link")) {
-      // Load the component's CSS file by creating a link element with the href attribute set to the CSS file path and appending it to the shadow root
-      const styles = document.createElement("link");
-      styles.rel = "stylesheet";
-      styles.href = "./routes/protocolos/Lista/styles.css";
-      this.shadowRoot.appendChild(styles);
-    };
-
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
     // Select by shadow-id the ativos div and add an event listener to it
@@ -125,6 +108,9 @@ class MySection extends HTMLElement {
       );
     }
 
+    this.loadScripts();
+    this.loadStyles();
+
     // Populate the ul element with the class "lista" with the protocolos
     const listaUlShadow = this.shadowRoot.querySelector(".lista");
     
@@ -138,21 +124,23 @@ class MySection extends HTMLElement {
 
       // Send attribute to ListaItem component
       listaItem.setAttribute("name", protocolo.nome);
+      listaItem.setAttribute("protocolo-id", protocolo.protocolo_id);
 
       listaUlShadow.appendChild(listaItem);
     }
     );
-  } else {
-    this.protocolosFinalizados.forEach((protocolo) => {
-      const listaItem = document.createElement("dendem-lista-item");
+    } else {
+      this.protocolosFinalizados.forEach((protocolo) => {
+        const listaItem = document.createElement("dendem-lista-item");
 
-      // Send attribute to ListaItem component
-      listaItem.setAttribute("name", protocolo.nome)
+        // Send attribute to ListaItem component
+        listaItem.setAttribute("name", protocolo.nome)
+        listaItem.setAttribute("protocolo-id", protocolo.protocolo_id);
 
-      listaUlShadow.appendChild(listaItem);
+        listaUlShadow.appendChild(listaItem);
+      }
+      );
     }
-    );
-  }
   }
 
   async loadProtocolos() {
@@ -173,6 +161,27 @@ class MySection extends HTMLElement {
       });
 
       this.render();
+  }
+
+  loadScripts() {
+    // If ListaItem script is not loaded, load it
+    if (!this.shadowRoot.querySelector("script")) {
+      const script = document.createElement("script");
+      script.src = "./routes/protocolos/Lista/ListaItem/index.js";
+      script.type = "module";
+      this.shadowRoot.appendChild(script);
+    };
+  }
+
+  loadStyles() {
+    // If there isn't a style tag in the shadow root, create one and append the template content to it
+    if (!this.shadowRoot.querySelector("link")) {
+      // Load the component's CSS file by creating a link element with the href attribute set to the CSS file path and appending it to the shadow root
+      const styles = document.createElement("link");
+      styles.rel = "stylesheet";
+      styles.href = "./routes/protocolos/Lista/styles.css";
+      this.shadowRoot.appendChild(styles);
+    };
   }
 
   // Call the loadProtocolos function when the component is connected to the DOM
