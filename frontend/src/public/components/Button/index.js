@@ -10,6 +10,16 @@ class Button extends HTMLElement {
         // Create a button element
         const button = document.createElement('button');
         button.classList.add('button');
+        const navigateToRoute = this.getAttribute("navigate-to")
+        button.addEventListener('click', (e) => {
+            console.log("sssssssssssss")
+
+            document.querySelector('body').dispatchEvent(new CustomEvent("navigate-to", {
+                detail: navigateToRoute,
+                bubbles: true,
+                composed: true
+              }))
+        })
 
         // Create a label element and set its text content to the "label" attribute
         const label = document.createElement('span');

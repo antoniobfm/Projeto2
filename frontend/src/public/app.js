@@ -49,6 +49,10 @@ function navigateTo(url) {
   router();
 }
 
+document.addEventListener("navigate-to", (e) => {
+  navigateTo(e.detail)
+})
+
 async function loadPage(path) {
   const response = await fetch(path);
 
