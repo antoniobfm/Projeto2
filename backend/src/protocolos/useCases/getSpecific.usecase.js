@@ -6,7 +6,7 @@ const getSpecificProtocolo = async (protocolo_id) => {
   const response = await queryToDb(sql);
 
   if (response) {
-    return response;
+    return response[0];
   }
 
   return null;

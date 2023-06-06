@@ -19,11 +19,10 @@ class CollectionStructure extends HTMLElement {
         this.collectionFieldsContainer = document.createElement('div');
         this.collectionFieldsContainer.id = 'collectionFieldsContainer';
         this.collectionFieldsContainer.classList.add('collection-fields-container');
-
+        
         // Create a button to add a new collection field
         const addNewCollectionFieldButton = `<dendem-button id="addCollectionFieldButton" shadow-id="add-collection-field" label="Adicionar novo campo"></dendem-button>`
         
-
         // Add the title element to the shadow DOM
         this.shadow.appendChild(title);
         this.shadow.appendChild(this.collectionFieldsContainer);
@@ -43,19 +42,16 @@ class CollectionStructure extends HTMLElement {
 
         // Receive an event from dendem-collection-field this.dispatchEvent(new Event('field-name-changed'));
         this.addEventListener('field-name-changed', (e) => {
-            console.log('asdofkasodkf')
-            this.updateFieldName(e);
+            this.updateField(e, 'name');
         });
 
         // Receive an event from dendem-collection-field this.dispatchEvent(new Event('field-type-changed'));
         this.addEventListener('field-type-changed', (e) => {
-            console.log('asdofkasodkf')
-            this.updateFieldType(e);
+            this.updateField(e, 'type');
         });
 
         // Receive an event from dendem-collection-field this.dispatchEvent(new Event('field-deleted'));
         this.addEventListener('field-deleted', (e) => {
-            console.log('asdofkasodkf')
             this.deleteField(e);
         });
     }
@@ -73,20 +69,20 @@ class CollectionStructure extends HTMLElement {
         }
     }
 
-    updateFieldName(e) {
-        console.log('okokoko')
+    updateField(e, property) {
         const fieldIndex = e.detail.fieldIndex;
-        const fieldName = e.detail.fieldName;
+        const fieldValue = e.detail.fieldValue;
 
-        this.fields[fieldIndex].name = fieldName;
-    }
+        this.fields[fieldIndex][property] = fieldValue;
 
-    updateFieldType(e) {
-        console.log('okokoko')
-        const fieldIndex = e.detail.fieldIndex;
-        const fieldType = e.detail.fieldType;
-
-        this.fields[fieldIndex].type = fieldType;
+        const fieldsUpdated = new CustomEvent('fields-updated', {
+            detail: {
+                fields: this.fields,
+            },
+            bubbles: true,
+            composed: true,
+        });
+        this.dispatchEvent(fieldsUpdated);
     }
 
     deleteField(e) {

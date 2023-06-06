@@ -2,6 +2,10 @@ dendem-collection-structure {
     width: 100%;
 }
 
+dendem-general-information {
+    width: 100%;
+}
+
 #container {
     /* Auto layout */
     display: flex;

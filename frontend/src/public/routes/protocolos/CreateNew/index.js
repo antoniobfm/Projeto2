@@ -1,6 +1,13 @@
 class MySection extends HTMLElement {
     constructor() {
       super();
+
+      this.protocol = {
+        generalInformation: {
+          nome: "",
+        },
+        collectionStructure: [],
+      }
   
       const container = document.createElement("section");
       container.id = "container";
@@ -49,21 +56,73 @@ class MySection extends HTMLElement {
       
 
       this.loadScripts();
-
-      // If there isn't a style tag in the shadow root, create one and append the template content to it
-      if (!this.shadowRoot.querySelector("link")) {
-        // Load the component's CSS file by creating a link element with the href attribute set to the CSS file path and appending it to the shadow root
-        const styles = document.createElement("link");
-        styles.rel = "stylesheet";
-        styles.href = "./routes/protocolos/CreateNew/styles.css";
-        this.shadowRoot.appendChild(styles);
-      };
+      this.loadStyles();
 
       // Append generalInformation to the container
       container.appendChild(generalInformation);
       container.appendChild(collectionStructure);
 
       this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+      // Receive an event from dendem-collection-structure this.dispatchEvent(new Event('fields-updated'));
+      this.addEventListener('fields-updated', (e) => {
+        this.fieldsUpdated(e);
+      });
+
+      // Receive an event from dendem-general-information this.dispatchEvent(new Event('protocol-name-changed'));
+      this.addEventListener('protocol-name-changed', (e) => {
+        this.generalInformationUpdated(e);
+      });
+
+      // Receive an event from dendem-general-information this.dispatchEvent(new Event('create-protocol-button-clicked'));
+      this.addEventListener('create-protocol-button-clicked', (e) => {
+        this.createProtocol(e);
+      });
+    }
+
+    createProtocol(e) {
+      console.log('create-protocol-button-clicked');
+      console.log(this.protocol);
+
+      fetch('http://localhost:3334/protocolos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.protocol),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        alert('Protocolo criado com sucesso!');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
+
+    fieldsUpdated(e) {
+      this.protocol.collectionStructure = e.detail.fields;
+
+      console.log('fields-updated');
+      console.log(this.protocol);
+    }
+
+    generalInformationUpdated(e) {
+      this.protocol.generalInformation = e.detail.generalInformation;
+
+      console.log('general-information-updated');
+      console.log(this.protocol);
+    }
+
+    loadStyles() {
+      if (!this.shadowRoot.querySelector("link")) {
+        // Load the root app component's CSS file
+        const styles = document.createElement('link');
+        styles.rel = 'stylesheet';
+        styles.href = "./routes/protocolos/CreateNew/styles.css";
+        this.shadowRoot.appendChild(styles);
+      };
     }
 
     loadScripts() {

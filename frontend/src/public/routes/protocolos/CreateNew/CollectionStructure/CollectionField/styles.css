@@ -20,6 +20,8 @@
 }
 
 .collection-field__input-container {
+    width: 100%;
+
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -34,7 +36,7 @@ input[type="text"] {
     padding: 16px;
     gap: 16px;
     
-    width: 287.5px;
+    width: 100%;
     height: 56px;
     
     background: #FFFFFF;
@@ -62,7 +64,7 @@ select {
     padding: 16px;
     gap: 16px;
     
-    width: 287.5px;
+    width: 100%;
     height: 56px;
     
     background: #FFFFFF;
