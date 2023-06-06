@@ -1,17 +1,13 @@
-dendem-collection-structure {
-    width: 100%;
-}
-
 #container {
     /* Auto layout */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 40px;
-    padding: 24px 24px 80px;
+    padding: 24px;
 
-    min-height: calc(100vh - 40px);
-    max-height: calc(100vh - 40px);
+
+    height: 100vh;
 
     background: #FFFFFF;
     border-radius: 5px;
@@ -23,8 +19,6 @@ dendem-collection-structure {
     flex-grow: 0;
 
     margin-top: 24px;
-
-    overflow-y: auto;
 }
 
 .superior {
@@ -78,6 +72,20 @@ h1 {
     /* padding: 16px; */
 
     border-radius: 16px;
+}
+
+h2 {
+    /* 4xl/bold */
+
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: auto;
+    /* identical to box height, or 54px */
+
+
+    color: #FFFFFF;
 }
 
 span {

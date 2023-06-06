@@ -3,6 +3,7 @@ const routes = [
     path: "/",
     page: "/routes/home/index.html",
     script: "/routes/home/script.js",
+    styles: ["/routes/home/styles.css", "/components/Menu/styles.css", "/components/Menu/Button/styles.css", "/components/Menu/styles.css", "/routes/protocolos/Protocolo/styles.css"]
   },
   {
     path: "/protocolos",

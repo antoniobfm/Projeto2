@@ -2,11 +2,18 @@ class InputComponent extends HTMLElement {
   constructor() {
     super();
 
-    // Get the component's attributes
+    // Get the whole component
+    console.log('eoq')
+    console.log(this)
+    console.log(this.hasAttributes());
+
+    // Get the component's attributes from the DOM
     const name = this.getAttribute('name');
     const type = this.getAttribute('type');
     const placeholder = this.getAttribute('placeholder');
     const label = this.getAttribute('label');
+
+    console.log(name, type, placeholder, label)
 
     // Create a shadow root for the component
     const shadow = this.attachShadow({ mode: 'open' });
