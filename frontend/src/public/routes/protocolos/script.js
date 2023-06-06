@@ -15,10 +15,10 @@ document.body.appendChild(scriptMenu);
 console.log('Menu script loaded')
 
 // Append Protocolos script to the page as module
-// const scriptProtocolos = document.createElement('script');
-// scriptProtocolos.src = '/routes/protocolos/Protocolo/index.js';
-// scriptProtocolos.type = 'module';
-// document.body.appendChild(scriptProtocolos);
+ const scriptProtocolos = document.createElement('script');
+ scriptProtocolos.src = '/routes/protocolos/Protocolo/index.js';
+ scriptProtocolos.type = 'module';
+ document.body.appendChild(scriptProtocolos);
 
 // Append Create New script to the page as module
 const scriptCreateNew = document.createElement('script');

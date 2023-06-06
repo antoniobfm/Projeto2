@@ -31,6 +31,9 @@ class CustomNav extends HTMLElement {
         const logo = document.createElement('div');
         logo.classList.add('logo');
         logo.innerHTML = '<span>DENDEM</span>';
+        logo.addEventListener('click', () => {
+            navigateTo('/');
+        });
 
         const logoSpan = logo.querySelector('span');
         logoSpan.classList.add('text-xl', 'font-bold', 'text-gray-900');
@@ -40,7 +43,6 @@ class CustomNav extends HTMLElement {
         menu.classList.add('menu');
         menu.innerHTML = `<dendem-menu-button onclick="navigateTo('protocolos')" label="Protocolos" icon="/assets/retangulo.svg" page="protocolos" active-page="${activePage}"></dendem-menu-button>`;
         menu.innerHTML += `<dendem-menu-button onclick="navigateTo('coletores')" label="Coletores" icon="/assets/retangulo.svg" page="coletores" active-page="${activePage}"></dendem-menu-button>`;
-
 
         // Create a footer element
         const footer = document.createElement('div');

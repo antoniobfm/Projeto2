@@ -21,6 +21,13 @@ class Button extends HTMLElement {
         icon.classList.add('icon');
         icon.textContent = this.getAttribute('icon');
 
+        const onClick = this.getAttribute('onClick');
+
+        // On click, dispatch a "click" event
+        onClick && button.addEventListener('click', () => {
+            this.dispatchEvent(new Event('click'));
+        });
+
         // Load the component's CSS file
         const link = document.createElement('link');
         link.rel = 'stylesheet';
@@ -37,4 +44,4 @@ class Button extends HTMLElement {
 }
 
 // Register the custom element with the browser
-customElements.define('my-button', Button);
+customElements.define('dendem-button', Button);
