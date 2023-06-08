@@ -3,32 +3,79 @@ class MySection extends HTMLElement {
     super();
     this.currentProtocolo = "ativos";
     this.protocolosAtivos = [];
-    this.protocolosFinalizados = []
-    
+    this.protocolosFinalizados = [];
+
+    // Attach the shadow root to the custom element and append the template content to it
+    // If host does not have shadow root, create one and append the template content to it
+    this.attachShadow({ mode: "open" });
+
     // Render component
-    this.loadProtocolos();
+    this.render();
   }
 
   render() {
-    // Get from url query string the protocolo id
-    const urlParams = new URLSearchParams(window.location.search);
-    const protocoloId = urlParams.get("protocoloId");
+    // Create a container div element with the class "protocolos"
+    this.container = document.createElement("div");
+    this.container.classList.add("protocolos");
 
-    // Create a div element with the class "protocolos"
-    const div = document.createElement("div");
-    div.classList.add("protocolos");
+    // Create a div for the header, including h2 and buttonsDiv
+    this.header = document.createElement("div");
+    this.header.classList.add("header");
+    this.container.appendChild(this.header);
 
     // Create an h2 element with the class "text-3xl" and text content "Protocolos"
     const h2 = document.createElement("h2");
     h2.classList.add("text-3xl");
     h2.textContent = "Protocolos";
-    div.appendChild(h2);
+    this.header.appendChild(h2);
 
     // Create a div element with the class "botoes"
-    const botoesDiv = document.createElement("div");
-    botoesDiv.classList.add("botoes");
-    div.appendChild(botoesDiv);
+    this.botoesDiv = document.createElement("div");
+    this.botoesDiv.classList.add("botoes");
+    this.header.appendChild(this.botoesDiv);
+    
 
+    // Create a ul element with the class "lista"
+    this.listaUl = document.createElement("ul");
+    this.listaUl.classList.add("lista");
+    this.container.innerHTML += this.listaUl.outerHTML;
+
+    // Create a template element and append the div element to its content
+    const template = document.createElement("template");
+    template.content.appendChild(this.container);
+
+    // Remove previous rendered content
+    const previousContent = this.shadowRoot.querySelector("div");
+
+    if (!!previousContent) {
+      previousContent.remove();
+    }
+
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+    this.renderMenu();
+    this.loadProtocolos();
+    this.loadScripts();
+    this.loadStyles();
+
+    this.addEventListenerForProtocolCreated();
+    this.addEventListenerForBotoes();
+  }
+
+  renderMenu() {
+    const botoesDiv = this.shadowRoot.querySelector(".botoes");
+
+    if (!!botoesDiv) {
+      botoesDiv.remove();
+    }
+
+    if (this.botoesDiv) {
+      this.botoesDiv.remove();
+    }
+
+    const newBotoesDiv = document.createElement("div");
+    newBotoesDiv.classList.add("botoes");
+    this.botoesDiv = newBotoesDiv;
     // Create a div element with the class "link" and "active", and text content "Ativos"
     const ativosDiv = document.createElement("div");
 
@@ -36,7 +83,12 @@ class MySection extends HTMLElement {
     // Give ativosDiv an shadow-id
     ativosDiv.setAttribute("shadow-id", "ativos");
     ativosDiv.textContent = "Ativos";
-    botoesDiv.appendChild(ativosDiv);
+    ativosDiv.onclick = () => {
+      console.log("ativosDiv");
+      this.currentProtocolo = "ativos";
+      this.renderMenu();
+    };
+    newBotoesDiv.appendChild(ativosDiv);
 
     // Create a div element with the class "link", and text content "Finalizados"
     const finalizadosDiv = document.createElement("div");
@@ -44,12 +96,12 @@ class MySection extends HTMLElement {
     // Give ativosDiv an shadow-id
     finalizadosDiv.setAttribute("shadow-id", "finalizados");
     finalizadosDiv.textContent = "Finalizados";
-    botoesDiv.appendChild(finalizadosDiv);
-
-    // Create a ul element with the class "lista"
-    const listaUl = document.createElement("ul");
-    listaUl.classList.add("lista");
-    div.appendChild(listaUl);
+    finalizadosDiv.onclick = () => {
+      console.log("finalizadosDiv");
+      this.currentProtocolo = "finalizados";
+      this.renderMenu();
+    };
+    newBotoesDiv.appendChild(finalizadosDiv);
 
     switch (this.currentProtocolo) {
       case "ativos":
@@ -59,108 +111,98 @@ class MySection extends HTMLElement {
       case "finalizados":
         finalizadosDiv.classList.add("active");
         break;
-    };
-
-    // Create a template element and append the div element to its content
-    const template = document.createElement("template");
-    template.content.appendChild(div);
-
-    // Attach the shadow root to the custom element and append the template content to it
-    // If host does not have shadow root, create one and append the template content to it
-    if (!this.shadowRoot) {
-      this.attachShadow({ mode: "open" });
-    };
-
-    // Remove previous rendered content
-    const previousContent = this.shadowRoot.querySelector("div");
-
-    if (!!previousContent) {
-      previousContent.remove();
-    };
-
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
-
-    // Select by shadow-id the ativos div and add an event listener to it
-    const ativosShadow = this.shadowRoot.querySelector('[shadow-id="ativos"]');
-
-    // If ativosShadow is not null and there is no event listener attached to it, add one
-    if (!!ativosShadow && !ativosShadow.onclick) {
-      ativosShadow.addEventListener("click", () => {
-        this.currentProtocolo = "ativos";
-
-        // Reload component with the new currentProtocolo
-        this.connectedCallback();
-      });
-    };
-
-    // Select by shadow-id the finalizados div and add an event listener to it
-    const finalizadosShadow = this.shadowRoot.querySelector(
-      '[shadow-id="finalizados"]'
-    );
-
-    if (!!finalizadosShadow && !finalizadosShadow.onclick) {
-      finalizadosShadow.addEventListener("click", () => {
-        this.currentProtocolo = "finalizados";
-        
-        // Reload component with the new currentProtocolo
-        this.connectedCallback();
-      }
-      );
     }
 
-    this.loadScripts();
-    this.loadStyles();
+    this.shadowRoot.querySelector(".header").appendChild(newBotoesDiv);
+    this.changeTab();
+  }
 
+  changeTab() {
     // Populate the ul element with the class "lista" with the protocolos
-    const listaUlShadow = this.shadowRoot.querySelector(".lista");
-    
+    const listaUlShadow = this.shadowRoot.querySelector(".lista")
+
     if (!!listaUlShadow) {
       listaUlShadow.innerHTML = "";
     }
 
-    if (this.currentProtocolo === "ativos") {
-    this.protocolosAtivos.forEach((protocolo) => {
-      const listaItem = document.createElement("dendem-lista-item");
-
-      // Send attribute to ListaItem component
-      listaItem.setAttribute("name", protocolo.nome);
-      listaItem.setAttribute("protocolo-id", protocolo.protocolo_id);
-
-      listaUlShadow.appendChild(listaItem);
+    if (!!this.listaUl) {
+      this.listaUl.remove();
     }
-    );
+
+    const newListaUl = document.createElement("ul");
+
+    if (this.currentProtocolo === "ativos") {
+      this.protocolosAtivos.forEach((protocolo) => {
+        const listaItem = document.createElement("dendem-lista-item");
+
+        // Send attribute to ListaItem component
+        listaItem.setAttribute("name", protocolo.nome);
+        listaItem.setAttribute("protocolo-id", protocolo.protocolo_id);
+
+        newListaUl.appendChild(listaItem);
+      });
     } else {
       this.protocolosFinalizados.forEach((protocolo) => {
         const listaItem = document.createElement("dendem-lista-item");
 
         // Send attribute to ListaItem component
-        listaItem.setAttribute("name", protocolo.nome)
+        listaItem.setAttribute("name", protocolo.nome);
         listaItem.setAttribute("protocolo-id", protocolo.protocolo_id);
 
-        listaUlShadow.appendChild(listaItem);
-      }
-      );
+        newListaUl.appendChild(listaItem);
+      });
     }
+
+    this.shadowRoot.querySelector(".lista").innerHTML = newListaUl.innerHTML;
   }
 
   async loadProtocolos() {
-    const response = await fetch("http://localhost:3334/protocolos")
-      .then((response) => {
+    const response = await fetch("http://localhost:3334/protocolos").then(
+      (response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         return response.json();
-      })
+      }
+    );
 
-      response.forEach((protocolo) => {
-        if (!!protocolo.ativo) {
-          this.protocolosAtivos.push(protocolo);
-        } else {
-          this.protocolosFinalizados.push(protocolo);
-        }
+    response.forEach((protocolo) => {
+      if (!!protocolo.ativo) {
+        this.protocolosAtivos.push(protocolo);
+      } else {
+        this.protocolosFinalizados.push(protocolo);
+      }
+    });
+
+    this.changeTab();
+  }
+
+  addEventListenerForBotoes() {
+    const ativosShadow = this.shadowRoot.querySelector('[shadow-id="ativos"]');
+    ativosShadow && ativosShadow.addEventListener("click", () => {
+      console.log("ativosDiv");
+      this.currentProtocolo = "ativos";
+      this.renderMenu();
+    });
+    const finalizadosShadow = this.shadowRoot.querySelector('[shadow-id="finalizados"]');
+    finalizadosShadow && finalizadosShadow.addEventListener("click", () => {
+      console.log("finalizadosDiv");
+      this.currentProtocolo = "finalizados";
+      this.renderMenu();
+    });
+  }
+
+  // Add event listener for 'protocol-created' event
+  addEventListenerForProtocolCreated() {
+    console.log("addEventListenerForProtocolCreated");
+    const listaUlShadow = this.shadowRoot.querySelector(".lista");
+
+    if (!!listaUlShadow) {
+      this.getRootNode().addEventListener("protocol-created", async () => {
+        console.log("OAIKSMOIASDMFOISDAMKO");
+        await this.loadProtocolos();
       });
-
-      this.render();
+    }
   }
 
   loadScripts() {
@@ -170,7 +212,7 @@ class MySection extends HTMLElement {
       script.src = "./routes/protocolos/Lista/ListaItem/index.js";
       script.type = "module";
       this.shadowRoot.appendChild(script);
-    };
+    }
   }
 
   loadStyles() {
@@ -181,7 +223,7 @@ class MySection extends HTMLElement {
       styles.rel = "stylesheet";
       styles.href = "./routes/protocolos/Lista/styles.css";
       this.shadowRoot.appendChild(styles);
-    };
+    }
   }
 
   // Call the loadProtocolos function when the component is connected to the DOM

@@ -2,6 +2,7 @@ class MyPage extends HTMLElement {
     constructor() {
         super();
         this.selectedProtocol = null;
+        this.sidebar = null;
         this.shadow = this.attachShadow({ mode: 'open' });
         this.render();
 
@@ -12,6 +13,12 @@ class MyPage extends HTMLElement {
 
             // Substitute
             this.render();
+        });
+
+        this.addEventListener('export-clicked', (e) => {
+            this.sidebar = 'export';
+
+            this.render()
         });
     }
 
@@ -36,7 +43,13 @@ class MyPage extends HTMLElement {
         const exportSamples = '<dendem-export-samples title="Export Samples"></dendem-export-samples>';
     
         if (this.selectedProtocol) {
-            dashboard.innerHTML = navbar + lista + protocolo + exportSamples;
+            dashboard.innerHTML = navbar + lista + protocolo;
+
+            if (this.sidebar) {
+                if (this.sidebar === 'export') {
+                    dashboard.innerHTML += exportSamples;
+                }
+            }
         } else {
             dashboard.innerHTML = navbar + lista + createNew;
         }

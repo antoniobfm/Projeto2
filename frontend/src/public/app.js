@@ -28,6 +28,11 @@ const routes = [
 const loadedStylesheets = [];
 
 function preloadStylesheets() {
+  // Check if styles were already preloaded
+  if (document.head.querySelector("link[rel=preload]")) {
+    return;
+  }
+
   // Preload the stylesheets for each route
   routes.forEach((route) => {
     if (route.styles) {
@@ -35,7 +40,7 @@ function preloadStylesheets() {
         const link = document.createElement("link");
         link.rel = "preload";
         link.href = style;
-        link.as = "stylesheet";
+        link.as = "style";
         document.head.appendChild(link);
       });
     }
@@ -66,14 +71,21 @@ async function loadPage(path) {
 async function router() {
   const main = document.getElementById("main");
 
-
   const currentPath = location.pathname;
 
   const route = routes.find((r) => r.path === currentPath) || {
     page: "404.html",
   };
 
+  const content = await loadPage(route.page);
+
   if (route.script) {
+    // Clean up previously loaded scripts
+    // const oldScript = document.body.querySelector("script[type=module]");
+    // if (oldScript) {
+    //   document.body.removeChild(oldScript);
+    // }
+
     const script = document.createElement("script");
     script.src = route.script;
     script.type = "module";
@@ -83,10 +95,19 @@ async function router() {
     });
     document.body.appendChild(script);
   } else {
+    // Clean up previously loaded scripts
+    const oldScript = document.body.querySelector("script[type=module]");
+    if (oldScript) {
+      document.body.removeChild(oldScript);
+    }
+
+    // Clean up previously loaded stylesheets
+    const oldStylesheets = document.head.querySelectorAll("link[rel=stylesheet]");
+    oldStylesheets.forEach((stylesheet) => {
+      document.head.removeChild(stylesheet);
+    });
     main.innerHTML = content;
   }
-
-  const content = await loadPage(route.page);
 
   // Add the stylesheets for the new route
   route.styles.forEach((style) => {
