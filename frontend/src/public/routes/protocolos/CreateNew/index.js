@@ -94,6 +94,9 @@ class MySection extends HTMLElement {
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
+
+        this.getRootNode().dispatchEvent(new CustomEvent('protocol-created', { bubbles: true, composed: true }));
+
         alert('Protocolo criado com sucesso!');
       })
       .catch((error) => {

@@ -4,6 +4,9 @@ import DBPATH from "../shared/dbConnection.js";
 import getSpecificAmostra from "./useCases/getSpecific.usecase.js";
 import createAmostra from "./useCases/create.usecase.js";
 import updateAmostra from "./useCases/update.usecase.js";
+import getAmostrasAsCSV from "./useCases/getAmostrasAsCSV.usecase.js";
+import getAmostrasAsXLSX from "./useCases/getAmostrasAsXLSX.usecase.js";
+import getAmostrasAsSQL from "./useCases/getAmostrasAsSQL.usecase.js";
 
 const amostrasRouter = Router();
 
@@ -29,6 +32,43 @@ amostrasRouter.get("/:amostra_id", async (req, res) => {
   res.json(result);
   res.end();
 });
+
+// Retorna todos as amostras de um determinado protocolo em
+// formato CSV
+amostrasRouter.get("/csv/:protocolo_id", async (req, res) => {
+  res.statusCode = 200;
+  res.setHeader("Access-Control-Allow-Origin", "*");
+
+  const result = await getAmostrasAsCSV(req.params.protocolo_id);
+
+  res.json(result);
+  res.end();
+});
+
+// Retorna todos as amostras de um determinado protocolo em
+// formato XLSX
+amostrasRouter.get("/xlsx/:protocolo_id", async (req, res) => {
+  res.statusCode = 200;
+  res.setHeader("Access-Control-Allow-Origin", "*");
+
+  const result = await getAmostrasAsXLSX(req.params.protocolo_id);
+
+  res.json(result);
+  res.end();
+});
+
+// Retorna todos as amostras de um determinado protocolo em
+// formato SQL
+amostrasRouter.get("/sql/:protocolo_id", async (req, res) => {
+  res.statusCode = 200;
+  res.setHeader("Access-Control-Allow-Origin", "*");
+
+  const result = await getAmostrasAsSQL(req.params.protocolo_id);
+
+  res.json(result);
+  res.end();
+});
+
 
 // Atualiza um registro (é o U do CRUD - Update)
 amostrasRouter.put("/:amostra_id", async (req, res) => {

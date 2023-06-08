@@ -8,6 +8,10 @@ body {
     background: gainsboro;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 /* Colors */
 :root {
     --color-primary: #FFA45D;

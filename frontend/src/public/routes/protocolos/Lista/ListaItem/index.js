@@ -7,7 +7,6 @@ class ListaItem extends HTMLElement {
         // Get nome from attributes
         const name = this.getAttribute('name');
         const protocolo_id = this.getAttribute('protocolo-id');
-        console.log(name)
         
         // Create a shadow DOM for the element
         this.shadow = this.attachShadow({ mode: 'open' });

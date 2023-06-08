@@ -2,25 +2,26 @@ class CustomNav extends HTMLElement {
     constructor() {
         super();
 
-        // Create a shadow root for the component
-        const shadow = this.attachShadow({ mode: 'open' });
-
         // Get the active page from the 'active-page' attribute
-        const activePage = this.getAttribute('active-page');
+        this.activePage = this.getAttribute('active-page');
 
-        // Include the main CSS file
-        const linkMain = document.createElement('link');
-        linkMain.rel = 'stylesheet';
-        linkMain.href = './styles.css';
-        shadow.appendChild(linkMain);
+        // Create a shadow root for the component
+        this.attachShadow({ mode: 'open' });
 
+        this.render();
+
+        this.loadScripts();
+
+        this.loadStyles();
+    }
+
+    render() {
         // Create a nav element
         const nav = document.createElement('nav');
-
+        
         // Copy the attributes from the original element
-        const attributes = this.attributes;
-        for (let i = 0; i < attributes.length; i++) {
-            nav.setAttribute(attributes[i].name, attributes[i].value);
+        for (let i = 0; i < this.attributes.length; i++) {
+            nav.setAttribute(this.attributes[i].name, this.attributes[i].value);
         }
 
         // Create a container for the logo and menu
@@ -41,8 +42,8 @@ class CustomNav extends HTMLElement {
         // Create a menu element
         const menu = document.createElement('div');
         menu.classList.add('menu');
-        menu.innerHTML = `<dendem-menu-button onclick="navigateTo('protocolos')" label="Protocolos" icon="/assets/retangulo.svg" page="protocolos" active-page="${activePage}"></dendem-menu-button>`;
-        menu.innerHTML += `<dendem-menu-button onclick="navigateTo('coletores')" label="Coletores" icon="/assets/retangulo.svg" page="coletores" active-page="${activePage}"></dendem-menu-button>`;
+        menu.innerHTML = `<dendem-menu-button onclick="navigateTo('protocolos')" label="Protocolos" icon="/assets/retangulo.svg" page="protocolos" active-page="${this.activePage}"></dendem-menu-button>`;
+        menu.innerHTML += `<dendem-menu-button onclick="navigateTo('coletores')" label="Coletores" icon="/assets/retangulo.svg" page="coletores" active-page="${this.activePage}"></dendem-menu-button>`;
 
         // Create a footer element
         const footer = document.createElement('div');
@@ -59,26 +60,42 @@ class CustomNav extends HTMLElement {
         nav.appendChild(container);
         nav.appendChild(footer);
 
-        // Load dendem-menu-button component
-        const scriptMenuButton = document.createElement('script');
-        scriptMenuButton.src = '/components/Menu/Button/index.js';
-        scriptMenuButton.type = 'module';
-        document.body.appendChild(scriptMenuButton);
-
-        // Load dendem-menu-button component styles
-        const linkMenuButton = document.createElement('link');
-        linkMenuButton.rel = 'stylesheet';
-        linkMenuButton.href = './components/Menu/Button/styles.css';
-        document.body.appendChild(linkMenuButton);
-
-        // Load the component's CSS file
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = './components/Menu/styles.css';
-        shadow.appendChild(link);
-
         // Add the nav element to the shadow root
-        shadow.appendChild(nav);
+        this.shadowRoot.appendChild(nav);
+    }
+
+    loadScripts() {
+        // If ListaItem script is not loaded, load it
+        if (!this.shadowRoot.querySelector("script")) {
+            // Load dendem-menu-button component
+            const scriptMenuButton = document.createElement('script');
+            scriptMenuButton.src = '/components/Menu/Button/index.js';
+            scriptMenuButton.type = 'module';
+            document.body.appendChild(scriptMenuButton);
+        }
+    }
+
+    loadStyles() {
+        // If there isn't a style tag in the shadow root, create one and append the template content to it
+        if (!this.shadowRoot.querySelector("link")) {
+            // Load the component's CSS file
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = './components/Menu/styles.css';
+            this.shadowRoot.appendChild(link);
+
+            // Include the main CSS file
+            const linkMain = document.createElement('link');
+            linkMain.rel = 'stylesheet';
+            linkMain.href = './styles.css';
+            this.shadowRoot.appendChild(linkMain);
+
+            // Load dendem-menu-button component styles
+            const linkMenuButton = document.createElement('link');
+            linkMenuButton.rel = 'stylesheet';
+            linkMenuButton.href = './components/Menu/Button/styles.css';
+            document.body.appendChild(linkMenuButton);
+        }
     }
 
     // Define the 'activePage' property

@@ -4,9 +4,15 @@ class Button extends HTMLElement {
         // Call the parent constructor
         super();
 
-        // Create a shadow DOM for the element
-        const shadow = this.attachShadow({ mode: 'open' });
+        this.attachShadow({ mode: 'open' });
 
+        this.render();
+
+        // Load the component's CSS file
+        this.loadStyles()
+    }
+
+    render() {
         // Create a button element
         const button = document.createElement('button');
         button.classList.add('button');
@@ -34,22 +40,28 @@ class Button extends HTMLElement {
         const onClick = this.getAttribute('onClick');
 
         // On click, dispatch a "click" event
-        onClick && button.addEventListener('click', () => {
+        onClick && button.addEventListener('click', (e) => {
+            e.preventDefault();
             this.dispatchEvent(new Event('click'));
         });
-
-        // Load the component's CSS file
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = './components/Button/styles.css';
-        shadow.appendChild(link);
 
         // Add the label and icon elements to the button element
         button.appendChild(label);
         button.appendChild(icon);
 
         // Add the button element to the shadow DOM
-        shadow.appendChild(button);
+        this.shadowRoot.appendChild(button);
+    }
+
+    loadStyles() {
+        // If the component's CSS file is already loaded, do nothing
+        if (this.shadowRoot && this.shadowRoot.querySelector('link')) return;
+
+        // Load the component's CSS file
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = './components/Button/styles.css';
+        this.shadowRoot.appendChild(link);
     }
 }
 
