@@ -51,19 +51,19 @@ Faça o mesmo para a documentação em formato DOCX.
  
 |--> backend</br>
  | --> src</br>
-|--> documentacao
- | WAD - Documento Aplicação Web - ECOmigo.pdf
-|--> frontend
- | --> frontend
- | --> src
- | --> public
-|--> modelosrelacionais
-  | mfisico.db
-  | mfisico;sqbpro
-| .gitignore
-| LICENSE
-| Projeto2 - Shortcut.lnk
-| README.md
+|--> documentacao</br>
+ | WAD - Documento Aplicação Web - ECOmigo.pdf</br>
+|--> frontend</br>
+ | --> frontend</br>
+ | --> src</br>
+ | --> public</br>
+|--> modelosrelacionais</br>
+  | mfisico.db</br>
+  | mfisico;sqbpro</br>
+| .gitignore</br>
+| LICENSE</br>
+| Projeto2 - Shortcut.lnk</br>
+| README.md</br>
 
 Dentre os arquivos presentes na raiz do projeto, definem-se:
 <ul>
