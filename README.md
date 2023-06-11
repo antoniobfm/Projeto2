@@ -5,7 +5,7 @@
 <h1>Nome do projeto: Dendem</h1>
 
 <h1>Nome do grupo: ECOmigo</h1>
-<h1>Integrantes :busts_in_silhouette:</h1>
+<h1>Integrantes: :busts_in_silhouette:</h1>
 <ul>
   <li> <a href="https://www.linkedin.com/in/antoniobfm/">Antônio Bahia Fonseca Moraes</a></li>
   <li> <a href="https://www.linkedin.com/in/cec%C3%ADlia-alonso-gon%C3%A7alves-3aa4bb271/">Cecília Gio Alonso Gonçalves</a></li>
@@ -15,9 +15,11 @@
   <li> <a href="https://www.linkedin.com/in/luigi-ot%C3%A1vio-904475234/">Luigi Otávio Neves Macedo</a></li>
   <li> <a href="https://www.linkedin.com/in/raideoliveira/">Raí de Oliveira Cajé</a></li>
  </ul>
-<h1>Professores :busts_in_silhouette:</h1>
+<h1>Professores: :busts_in_silhouette:</h1>
 <h2>Orientador(a)</h2>
-- <a href="https://www.linkedin.com/in/juliastateri/">Julia Stateri</a>
+<ul>
+  <li><a href="https://www.linkedin.com/in/juliastateri/">Julia Stateri</a></li>
+ </ul>
 <h2>Instrutores</h2>
 <ul>
 <li> <a href="#">Instrutor</a></li>
@@ -35,7 +37,41 @@ O “Dendem” é uma aplicação web que funciona como ferramenta facilitadora 
 </p>
 <h1>Link</h1>
 <p>Link do projeto funcionando AQUI.</p>
+<h1>Estrutura de pastas</h1>
+Alunos inteli (remover essa observação do readme.md após leitura e execução):
 
+Supondo que você é da Turma 4 e Projeto 5, substitua:
+
+T(NUMERO_DA_TURMA)_G(NUMERO_DO_GRUPO)_V(VERSÃO)_Web_application_document.pdf
+por
+T4_G5_V01_Web_application_document.pdf
+
+Faça o mesmo para a documentação em formato DOCX.
+<p>
+|--> backend
+ | --> src
+|--> documentacao
+ | WAD - Documento Aplicação Web - ECOmigo.pdf
+|--> frontend
+ | --> frontend
+ | --> src
+ | --> public
+|--> modelosrelacionais
+  | mfisico.db
+  | mfisico;sqbpro
+| .gitignore
+| LICENSE
+| Projeto2 - Shortcut.lnk
+| README.md
+  
+Dentre os arquivos presentes na raiz do projeto, definem-se:
+<ul>
+<li><strong>readme.md:</strong> arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).</li>
+  <li><strong>documentos:</strong> aqui estarão todos os documentos do projeto. Há também uma pasta denominada outros onde estão presentes aqueles documentos complementares ao web application document.</li>
+  <li><strong>imagens:</strong> imagens relacionadas ao projeto como um todo (por exemplo imagens do sistema, do grupo, logotipos e afins).</li>
+  <li><strong>src:</strong> nesta pasta encontra-se todo o código fonte do sistema (existem duas subpastas backend e frontend que contêm, respectivamente, o código do servidor e o código da página web).</li>
+</ul>
+ </p>
 
 ## Histórico de lançamentos :calendar:
 
