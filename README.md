@@ -6,7 +6,7 @@
 
 <h1>Nome do grupo: ECOmigo</h1>
 <h1>Integrantes :busts_in_silhouette:</h1>
-<p>
+<ul>
 - <a href="https://www.linkedin.com/in/antoniobfm/">Antônio Bahia Fonseca Moraes</a>
 - <a href="https://www.linkedin.com/in/cec%C3%ADlia-alonso-gon%C3%A7alves-3aa4bb271/">Cecília Gio Alonso Gonçalves</a>
 - <a href="https://www.linkedin.com/in/felipe-braga-69607126a/">Felipe Morita de Almeida Braga</a>
@@ -14,7 +14,7 @@
 - <a href="https://www.linkedin.com/in/laura-padilha-bueno-b358419a/">Laura Padilha Bueno</a>
 - <a href="https://www.linkedin.com/in/luigi-ot%C3%A1vio-904475234/">Luigi Otávio Neves Macedo</a>
 - <a href="https://www.linkedin.com/in/raideoliveira/">Raí de Oliveira Cajé</a>
-  </p>
+  <ul>
 <h1>Professores :busts_in_silhouette:</h1>
 <h2>Orientador(a)</h2>
 - <a href="https://www.linkedin.com/in/juliastateri/">Julia Stateri</a>
