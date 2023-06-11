@@ -50,8 +50,10 @@ Faça o mesmo para a documentação em formato DOCX.
 <p>
  
 |--> backend</br>
-&nbsp;| --> src</br>
+ | --> src</br>
 |--> documentacao</br>
+ | inteli.png</br>
+|--> documentos</br>
  | WAD - Documento Aplicação Web - ECOmigo.pdf</br>
 |--> frontend</br>
  | --> frontend</br>
