@@ -7,13 +7,13 @@
 <h1>Nome do grupo: ECOmigo</h1>
 <h1>Integrantes :busts_in_silhouette:</h1>
 <ul>
-  <li>- <a href="https://www.linkedin.com/in/antoniobfm/">Antônio Bahia Fonseca Moraes</a></li>
-  <li>- <a href="https://www.linkedin.com/in/cec%C3%ADlia-alonso-gon%C3%A7alves-3aa4bb271/">Cecília Gio Alonso Gonçalves</a></li>
-- <a href="https://www.linkedin.com/in/felipe-braga-69607126a/">Felipe Morita de Almeida Braga</a>
-- <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-brand%C3%A3o-de-moura-338636215/">João Pedro Brandão de Moura</a>
-- <a href="https://www.linkedin.com/in/laura-padilha-bueno-b358419a/">Laura Padilha Bueno</a>
-- <a href="https://www.linkedin.com/in/luigi-ot%C3%A1vio-904475234/">Luigi Otávio Neves Macedo</a>
-- <a href="https://www.linkedin.com/in/raideoliveira/">Raí de Oliveira Cajé</a>
+  <li> <a href="https://www.linkedin.com/in/antoniobfm/">Antônio Bahia Fonseca Moraes</a></li>
+  <li> <a href="https://www.linkedin.com/in/cec%C3%ADlia-alonso-gon%C3%A7alves-3aa4bb271/">Cecília Gio Alonso Gonçalves</a></li>
+  <li> <a href="https://www.linkedin.com/in/felipe-braga-69607126a/">Felipe Morita de Almeida Braga</a></li>
+  <li> <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-brand%C3%A3o-de-moura-338636215/">João Pedro Brandão de Moura</a></li>
+  <li> <a href="https://www.linkedin.com/in/laura-padilha-bueno-b358419a/">Laura Padilha Bueno</a></li>
+  <li> <a href="https://www.linkedin.com/in/luigi-ot%C3%A1vio-904475234/">Luigi Otávio Neves Macedo</a></li>
+  <li> <a href="https://www.linkedin.com/in/raideoliveira/">Raí de Oliveira Cajé</a></li>
  </ul>
 <h1>Professores :busts_in_silhouette:</h1>
 <h2>Orientador(a)</h2>
