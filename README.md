@@ -1,82 +1,107 @@
-# Inteli - Instituto de Tecnologia e Liderança
+# Inteli - Instituto de Tecnologia e Liderança 
 
-<img width="200" alt="Logo_Dendem" src="inteli.png">
-
-<h1>Nome do projeto: Dendem</h1>
-
-<h1>Nome do grupo: ECOmigo</h1>
-<h1>Integrantes: :busts_in_silhouette:</h1>
-<ul>
-  <li> <a href="https://www.linkedin.com/in/antoniobfm/">Antônio Bahia Fonseca Moraes</a></li>
-  <li> <a href="https://www.linkedin.com/in/cec%C3%ADlia-alonso-gon%C3%A7alves-3aa4bb271/">Cecília Gio Alonso Gonçalves</a></li>
-  <li> <a href="https://www.linkedin.com/in/felipe-braga-69607126a/">Felipe Morita de Almeida Braga</a></li>
-  <li> <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-brand%C3%A3o-de-moura-338636215/">João Pedro Brandão de Moura</a></li>
-  <li> <a href="https://www.linkedin.com/in/laura-padilha-bueno-b358419a/">Laura Padilha Bueno</a></li>
-  <li> <a href="https://www.linkedin.com/in/luigi-ot%C3%A1vio-904475234/">Luigi Otávio Neves Macedo</a></li>
-  <li> <a href="https://www.linkedin.com/in/raideoliveira/">Raí de Oliveira Cajé</a></li>
- </ul>
-<h1>Professores: :busts_in_silhouette:</h1>
-<h2>Orientador(a)</h2>
-<ul>
-  <li><a href="https://www.linkedin.com/in/juliastateri/">Julia Stateri</a></li>
- </ul>
-<h2>Instrutores</h2>
-<ul>
-<li> <a href="#">Instrutor</a></li>
-<li> <a href="#">Instrutor</a></li>
-<li> <a href="#">Instrutor</a></li>
-<li> <a href="#">Instrutor</a></li>
-<li> <a href="#">Instrutor</a></li>
-<li> <a href="#">Instrutor</a></li>
-<li> <a href="#">Instrutor</a></li>
-</ul>
-
-<h1>Descrição</h1>
-<p>
-O “Dendem” é uma aplicação web que funciona como ferramenta facilitadora da colaboração entre pesquisadores da Natura e agricultores associados a fim de pesquisas para o desenvolvimento de produtos da empresa. Com o Dendem, pesquisadores podem criar protocolos, os quais guiam os agricultores no processo de coleta de imagens e dados das espécies vegetais solicitadas. Os agricultores, então, atuam como coletores utilizando a aplicação através de seu próprio smartphone, podendo capturar fotos e inserir informações demandadas da própria palma da mão. Essas funcionalidades são favorecidas, ainda, pela opção de preenchimento de protocolos de modo offline, com a possibilidade de sincronização online quando houver rede disponível. Além disso, o Dendem também conta com a possibilidade de acesso coletivo a protocolos por pesquisadores, o que favorece o compartilhamento de conhecimento dentro do setor de pesquisa da Natura.
+<p align="center">
+<a href= "https://www.inteli.edu.br/"><img src="/imagens/inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
 </p>
-<h1>Link</h1>
-<p>Link do projeto funcionando AQUI.</p>
-<h1>Estrutura de pastas</h1>
-Alunos inteli (remover essa observação do readme.md após leitura e execução):
 
-Supondo que você é da Turma 4 e Projeto 5, substitua:
+# Nome do projeto: Dendem
 
-T(NUMERO_DA_TURMA)_G(NUMERO_DO_GRUPO)_V(VERSÃO)_Web_application_document.pdf
-por
-T4_G5_V01_Web_application_document.pdf
+## Nome do grupo: ECOmigo
 
-Faça o mesmo para a documentação em formato DOCX.
-<p>
- 
-|--> backend</br>
- | --> src</br>
-|--> documentacao</br>
- | inteli.png</br>
-|--> documentos</br>
- | WAD - Documento Aplicação Web - ECOmigo.pdf</br>
-|--> frontend</br>
- | --> frontend</br>
- | --> src</br>
- | --> public</br>
+## :student: Integrantes: 
+- <a href="https://www.linkedin.com/in/antoniobfm/">Antônio Bahia Fonseca Moraes</a>
+- <a href="https://www.linkedin.com/in/cec%C3%ADlia-alonso-gon%C3%A7alves-3aa4bb271/">Cecília Gio Alonso Gonçalves</a>
+- <a href="https://www.linkedin.com/in/felipe-braga-69607126a/">Felipe Morita de Almeida Braga</a>
+- <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-brand%C3%A3o-de-moura-338636215/">João Pedro Brandão de Moura</a> 
+- <a href="https://www.linkedin.com/in/laura-padilha-bueno-b358419a/">Laura Padilha Bueno</a>
+- <a href="https://www.linkedin.com/in/luigi-ot%C3%A1vio-904475234/">Luigi Otávio Neves Macedo</a> 
+- <a href="https://www.linkedin.com/in/raideoliveira/">Raí de Oliveira Cajé</a>
+
+## :teacher: Professores:
+### Orientador(a) 
+- <a href="https://www.linkedin.com/in/juliastateri/">Julia Stateri</a>
+### Instrutores
+- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 2</a>
+- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 3</a> 
+- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 4</a> 
+- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 5</a>
+- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 6</a> 
+- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 7</a>
+
+## 📝 Descrição
+
+O “Dendem” é uma aplicação web que funciona como ferramenta facilitadora da colaboração entre pesquisadores da Natura e agricultores associados a fim de pesquisas para o desenvolvimento de produtos da empresa. Com o Dendem, pesquisadores podem criar protocolos, os quais guiam os agricultores no processo de coleta de imagens e dados das espécies vegetais solicitadas. Os agricultores, então, atuam como coletores utilizando a aplicação através de seu próprio smartphone, podendo capturar fotos e inserir informações demandadas da própria palma da mão. Essas funcionalidades são favorecidas, ainda, pela opção de preenchimento de protocolos de modo offline, com a possibilidade de sincronização online quando houver rede disponível. Além disso, o Dendem também conta com a possibilidade de acesso coletivo a protocolos por pesquisadores, o que favorece o compartilhamento de conhecimento dentro do setor de pesquisa da Natura.
+
+## 📝 LINK
+
+Clique <a href="https://www.linkedin.com/in/victorbarq/">AQUI</a> para ver o projeto funcionando.
+
+## 📁 Estrutura de pastas
+
+|--> backend<br>
+  &emsp;| --> src <br>
+|--> documentacao<br>
+  &emsp;| --> inteli.png <br>
+|--> documentos<br>
+  &emsp;|--> WAD - Documento Aplicação Web - ECOmigo.pdf<br>
+|--> frontend<br>
+  &emsp;| --> frontend<br>
+  &emsp;| --> src</br>
+  &emsp;| --> public</br>
 |--> modelosrelacionais</br>
-  | mfisico.db</br>
-  | mfisico;sqbpro</br>
-| .gitignore</br>
-| LICENSE</br>
+  &emsp;| --> mfisico.db</br>
+  &emsp;| --> mfisico;sqbpro</br>
+|--> .gitignore</br>
+|--> LICENSE</br>
 | Projeto2 - Shortcut.lnk</br>
 | README.md</br>
 
 Dentre os arquivos presentes na raiz do projeto, definem-se:
-<ul>
-<li><strong>readme.md:</strong> arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).</li>
-  <li><strong>documentos:</strong> aqui estarão todos os documentos do projeto. Há também uma pasta denominada outros onde estão presentes aqueles documentos complementares ao web application document.</li>
-  <li><strong>imagens:</strong> imagens relacionadas ao projeto como um todo (por exemplo imagens do sistema, do grupo, logotipos e afins).</li>
-  <li><strong>src:</strong> nesta pasta encontra-se todo o código fonte do sistema (existem duas subpastas backend e frontend que contêm, respectivamente, o código do servidor e o código da página web).</li>
-</ul>
- </p>
 
-## Histórico de lançamentos :calendar:
+- <b>readme.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
+
+- <b>documentos</b>: aqui estarão todos os documentos do projeto. Há também uma pasta denominada <b>outros</b> onde estão presentes aqueles documentos complementares ao <b>web application document</b>.
+
+- <b>imagens</b>: imagens relacionadas ao projeto como um todo (por exemplo imagens do sistema, do grupo, logotipos e afins).
+
+- <b>src</b>: nesta pasta encontra-se todo o código fonte do sistema (existem duas subpastas <b>backend</b> e <b>frontend</b> que contêm, respectivamente, o código do servidor e o código da página web).
+
+## 💻 Configuração para desenvolvimento
+
+Aqui encontram-se todas as instruções necessárias para a instalação de todos os programas, bibliotecas e ferramentas imprescindíveis para a configuração do ambiente de desenvolvimento.
+
+1.  Baixar e instalar o node.js:  [https://nodejs.org/pt-br/](https://nodejs.org/pt-br/) (versão 16.15.1 LTS)
+2. Clone o repositório em questão.
+3.  No modo administrador, abra o "prompt de comando" ou o "terminal" e, após,  abra a pasta "src/backend" no diretório raiz do repositório clonado e digite o segundo comando:
+
+```sh
+npm install
+```
+
+Isso instalará todas as dependências definidas no arquivo <b>package.json</b> que são necessárias para rodar o projeto. Agora o projeto já está pronto para ser modificado. Caso ainda deseje iniciar a aplicação, digite o comando abaixo no terminal:
+
+```sh
+npm start
+```
+5. Agora você pode acessar a aplicação através do link http://localhost:1234/
+6. O servidor está online.
+
+
+```
+Alunos inteli (remover essa observação do readme.md após leitura e execução):
+
+1. Certifique-se que há um arquivo "package.json" na pasta backend do projeto.
+
+2. Dentro deste arquivo, encontre a propriedade "scripts", e adicione um atributo de nome "start"
+com o valor "node <CAMINHO_DO_ARQUIVO_DO_SERVIDOR>." Atenção: "<CAMINHO_DO_ARQUIVO_DO_SERVIDOR>" 
+deve ser substituído pelo caminho para o arquivo principal da aplicação, utilizado para subir o
+servidor. Por exemplo, se o arquivo utilizado para subir o servidor é "app.js", o atributo start
+deve possuir o valor "node app.js".
+
+3. No arquivo utilizado para subir a aplicação, defina a porta padrão de execução para "1234".
+````
+
+## 🗃 Histórico de lançamentos
 
 ### Commits on 15/05/2023 by RaiDeOliveira
 - Updated README.md, da05d82ce9f4eca8651ce7752107497de73f31b2
@@ -107,3 +132,15 @@ Dentre os arquivos presentes na raiz do projeto, definem-se:
 - att nome arquivo WAD, da0047107e719f02f4ab17972406e67aad1c64b1
 - Updated README.md (multiple times), aba478fcbfa167aeba504589c2fb7afbab50a1a2
 - Upload WAD, 7a61bfcdb392af2ecb62569cebceea15b4af4d58
+
+## 📋 Licença/License
+```
+Alunos inteli (remover essa observação do readme.md após leitura e execução, junto com o link para o tutorial):
+
+1. Siga o tutorial para criação da licença: 
+```
+
+<a href="https://drive.google.com/file/d/1hXWLHUhjBkPVuGqeE2LZKozFntnJZzlx/view">Tutorial</a>
+
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/Intelihub/Template_M2/">MODELO GIT INTELI</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.yggbrasil.com.br/vr">Inteli, Nome do integrante 1, Nome do integrante 2, Nome do integrante 3, Nome do integrante 4, Nome do integrante 5, Nome do integrante 6, Nome do integrante 7</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
+
