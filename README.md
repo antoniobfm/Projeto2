@@ -1,18 +1,12 @@
 # Inteli - Instituto de Tecnologia e Liderança
 
-<img width="200" alt="Logo_Dendem" src="..\documentacao\inteli.png">
+<img width="200" alt="Logo_Dendem" src="inteli.png">
 
 <h1>Nome do projeto: Dendem</h1>
-:herb:
-<p>
-  O “Dendem” é uma aplicação web que funciona como ferramenta facilitadora da colaboração entre pesquisadores da Natura e agricultores associados a fim de pesquisas para o desenvolvimento de produtos da empresa.
-Com o Dendem, pesquisadores podem criar protocolos, os quais guiam os agricultores no processo de coleta de imagens e dados das espécies vegetais solicitadas. Os agricultores, então, atuam como coletores utilizando a aplicação através de seu próprio smartphone, podendo capturar fotos e inserir informações demandadas da própria palma da mão.
-Essas funcionalidades são favorecidas, ainda, pela opção de preenchimento de protocolos de modo offline, com a possibilidade de sincronização online quando houver rede disponível. Além disso, o Dendem também conta com a possibilidade de acesso coletivo a protocolos por pesquisadores, o que favorece o compartilhamento de conhecimento dentro do setor de pesquisa da Natura.
-</p>
 
 <h1>Nome do grupo: ECOmigo</h1>
-## Integrantes :busts_in_silhouette:
-
+<h1>Integrantes :busts_in_silhouette:</h1>
+<hr>
 - <a href="https://www.linkedin.com/in/antoniobfm/">Antônio Bahia Fonseca Moraes</a>
 - <a href="https://www.linkedin.com/in/cec%C3%ADlia-alonso-gon%C3%A7alves-3aa4bb271/">Cecília Gio Alonso Gonçalves</a>
 - <a href="https://www.linkedin.com/in/felipe-braga-69607126a/">Felipe Morita de Almeida Braga</a>
@@ -20,6 +14,28 @@ Essas funcionalidades são favorecidas, ainda, pela opção de preenchimento de 
 - <a href="https://www.linkedin.com/in/laura-padilha-bueno-b358419a/">Laura Padilha Bueno</a>
 - <a href="https://www.linkedin.com/in/luigi-ot%C3%A1vio-904475234/">Luigi Otávio Neves Macedo</a>
 - <a href="https://www.linkedin.com/in/raideoliveira/">Raí de Oliveira Cajé</a>
+<h1>Professores :busts_in_silhouette:</h1>
+<hr>
+<h2>Orientador(a)</h2>
+- <a href="https://www.linkedin.com/in/juliastateri/">Julia Stateri</a>
+<h2>Instrutores</h2>
+- <a href="#">Instrutor</a>
+- <a href="#">Instrutor</a>
+- <a href="#">Instrutor</a>
+- <a href="#">Instrutor</a>
+- <a href="#">Instrutor</a>
+- <a href="#">Instrutor</a>
+- <a href="#">Instrutor</a>
+
+<h1>Descrição</h1>
+<hr>
+<p>
+O “Dendem” é uma aplicação web que funciona como ferramenta facilitadora da colaboração entre pesquisadores da Natura e agricultores associados a fim de pesquisas para o desenvolvimento de produtos da empresa. Com o Dendem, pesquisadores podem criar protocolos, os quais guiam os agricultores no processo de coleta de imagens e dados das espécies vegetais solicitadas. Os agricultores, então, atuam como coletores utilizando a aplicação através de seu próprio smartphone, podendo capturar fotos e inserir informações demandadas da própria palma da mão. Essas funcionalidades são favorecidas, ainda, pela opção de preenchimento de protocolos de modo offline, com a possibilidade de sincronização online quando houver rede disponível. Além disso, o Dendem também conta com a possibilidade de acesso coletivo a protocolos por pesquisadores, o que favorece o compartilhamento de conhecimento dentro do setor de pesquisa da Natura.
+</p>
+<h1>Link</h1>
+<hr>
+<p>Link do projeto funcionando AQUI.</p>
+
 
 ## Histórico de lançamentos :calendar:
 
