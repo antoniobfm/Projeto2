@@ -52,7 +52,7 @@ Faça o mesmo para a documentação em formato DOCX.
 |--> backend</br>
  | --> src</br>
 |--> documentacao</br>
-    | WAD - Documento Aplicação Web - ECOmigo.pdf</br>
+ | WAD - Documento Aplicação Web - ECOmigo.pdf</br>
 |--> frontend</br>
  | --> frontend</br>
  | --> src</br>
