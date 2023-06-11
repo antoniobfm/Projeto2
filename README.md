@@ -48,6 +48,7 @@ T4_G5_V01_Web_application_document.pdf
 
 Faça o mesmo para a documentação em formato DOCX.
 <p>
+ <ol>
 |--> backend
  | --> src
 |--> documentacao
@@ -63,7 +64,7 @@ Faça o mesmo para a documentação em formato DOCX.
 | LICENSE
 | Projeto2 - Shortcut.lnk
 | README.md
-  
+  </ol>
 Dentre os arquivos presentes na raiz do projeto, definem-se:
 <ul>
 <li><strong>readme.md:</strong> arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).</li>
