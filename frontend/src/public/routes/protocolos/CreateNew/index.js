@@ -1,149 +1,165 @@
-class MySection extends HTMLElement {
-    constructor() {
-      super();
-      
-      this.protocol = {
-        generalInformation: {
-          nome: "",
-        },
-        collectionStructure: [],
-      }
-  
-      const container = document.createElement("section");
-      container.id = "container";
+import CreateNewProtocoloStyles from "./styles.js";
+import AppStyles from "../../../styles.js";
 
-      const superior = document.createElement("div");
-      superior.id = "superior";
+class CreateNewProtocolo extends HTMLElement {
+  constructor() {
+    super();
 
-      const caixaTitulo = document.createElement("div");
-      caixaTitulo.id = "caixa_titulo";
+    if (!this.shadowRoot) this.shadow = this.attachShadow({ mode: "open" });
 
-      const titulo = document.createElement("h1");
-      titulo.id = "titulo";
-      titulo.classList.add("text-4xl");
-      titulo.textContent = "Criar novo";
+    this.protocol = {
+      generalInformation: {
+        nome: "",
+      },
+      collectionStructure: [],
+    };
 
-      caixaTitulo.appendChild(titulo);
-      superior.appendChild(caixaTitulo);
+    // Receive an event from dendem-collection-structure this.dispatchEvent(new Event('fields-updated'));
+    this.addEventListener("fields-updated", (e) => {
+      this.fieldsUpdated(e);
+    });
 
-      const infor = document.createElement("div");
-      infor.id = "infor";
-      superior.appendChild(infor);
+    // Receive an event from dendem-general-information this.dispatchEvent(new Event('protocol-name-changed'));
+    this.addEventListener("protocol-name-changed", (e) => {
+      this.generalInformationUpdated(e);
+    });
 
-      container.appendChild(superior);
+    // Receive an event from dendem-general-information this.dispatchEvent(new Event('create-protocol-button-clicked'));
+    this.addEventListener("create-protocol-button-clicked", (e) => {
+      this.createProtocol(e);
+    });
+  }
 
-      // Load GeneralInformation component
-      const generalInformation = document.createElement("dendem-general-information");
-      const collectionStructure = document.createElement("dendem-collection-structure");
+  render() {
+    console.log("render create-new-protocolo")
+    const container = document.createElement("section");
+    container.id = "container";
 
-      // Import 
-      // Create a template element and append the div element to its content
-      const template = document.createElement("template");
-      template.content.appendChild(container);
+    const superior = document.createElement("div");
+    superior.id = "superior";
 
-      // Attach the shadow root to the custom element and append the template content to it
-      // If host does not have shadow root, create one and append the template content to it
-      if (!this.shadowRoot) {
-        this.attachShadow({ mode: "open" });
-      };
+    const caixaTitulo = document.createElement("div");
+    caixaTitulo.id = "caixa_titulo";
 
-      // Remove previous rendered content
-      const previousContent = this.shadowRoot.querySelector("div");
+    const titulo = document.createElement("h1");
+    titulo.id = "titulo";
+    titulo.classList.add("text-3xl");
+    titulo.classList.add("font-bold");
+    titulo.textContent = "Criar novo protocolo";
 
-      if (!!previousContent) {
-        previousContent.remove();
-      };
-      
+    caixaTitulo.appendChild(titulo);
+    superior.appendChild(caixaTitulo);
 
-      this.loadScripts();
-      this.loadStyles();
+    const infor = document.createElement("div");
+    infor.id = "infor";
+    superior.appendChild(infor);
 
-      // Append generalInformation to the container
-      container.appendChild(generalInformation);
-      container.appendChild(collectionStructure);
+    container.appendChild(superior);
 
-      this.shadowRoot.appendChild(template.content.cloneNode(true));
+    // Load GeneralInformation component
+    const generalInformation = document.createElement(
+      "dendem-general-information"
+    );
+    const collectionStructure = document.createElement(
+      "dendem-collection-structure"
+    );
 
-      // Receive an event from dendem-collection-structure this.dispatchEvent(new Event('fields-updated'));
-      this.addEventListener('fields-updated', (e) => {
-        this.fieldsUpdated(e);
-      });
+    // Create a button to add a create the protocol
+    const createProtocol = `
+      <div class="create-protocol-button-container">
+        <dendem-button id="createProtocol" shadow-id="create-protocol-button" label="Criar protocolo"></dendem-button>
+      </div>
+    `;
 
-      // Receive an event from dendem-general-information this.dispatchEvent(new Event('protocol-name-changed'));
-      this.addEventListener('protocol-name-changed', (e) => {
-        this.generalInformationUpdated(e);
-      });
 
-      // Receive an event from dendem-general-information this.dispatchEvent(new Event('create-protocol-button-clicked'));
-      this.addEventListener('create-protocol-button-clicked', (e) => {
-        this.createProtocol(e);
-      });
+    // Import
+    // Create a template element and append the div element to its content
+    const template = document.createElement("template");
+    template.content.appendChild(container);
+
+    // Remove previous rendered content
+    const previousContent = this.shadow.querySelector("div");
+
+    if (!!previousContent) {
+      previousContent.remove();
     }
 
-    createProtocol(e) {
-      console.log('create-protocol-button-clicked');
-      console.log(this.protocol);
+    // Append generalInformation to the container
+    container.appendChild(generalInformation);
+    container.appendChild(collectionStructure);
+    container.innerHTML += createProtocol;
 
-      fetch('http://localhost:3334/protocolos', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(this.protocol),
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
+    this.shadowRoot.innerHTML = template.innerHTML;
 
-        this.getRootNode().dispatchEvent(new CustomEvent('protocol-created', { bubbles: true, composed: true }));
+    this.loadScripts();
+  }
 
-        alert('Protocolo criado com sucesso!');
+  createProtocol(e) {
+    console.log("create-protocol-button-clicked");
+    console.log(this.protocol);
+
+    fetch("http://localhost:3334/protocolos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(this.protocol),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+
+        this.getRootNode().dispatchEvent(
+          new CustomEvent("protocol-created", { bubbles: true, composed: true })
+        );
+
+        alert("Protocolo criado com sucesso!");
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error("Error:", error);
       });
-    }
+  }
 
-    fieldsUpdated(e) {
-      this.protocol.collectionStructure = e.detail.fields;
+  fieldsUpdated(e) {
+    this.protocol.collectionStructure = e.detail.fields;
 
-      console.log('fields-updated');
-      console.log(this.protocol);
-    }
+    console.log("fields-updated");
+    console.log(this.protocol);
+  }
 
-    generalInformationUpdated(e) {
-      this.protocol.generalInformation = e.detail.generalInformation;
+  generalInformationUpdated(e) {
+    this.protocol.generalInformation = e.detail.generalInformation;
 
-      console.log('general-information-updated');
-      console.log(this.protocol);
-    }
+    console.log("general-information-updated");
+    console.log(this.protocol);
+  }
 
-    loadStyles() {
-      if (!this.shadowRoot.querySelector("link")) {
-        // Load the root app component's CSS file
-        const styles = document.createElement('link');
-        styles.rel = 'stylesheet';
-        styles.href = "./routes/protocolos/CreateNew/styles.css";
-        this.shadowRoot.appendChild(styles);
-      };
-    }
+  // Handle changes to the element's attributes
+  connectedCallback() {
+    this.render();
 
-    loadScripts() {
-      // If GeneralInformation script is not loaded, load it
-      if (!this.shadowRoot.querySelector("script")) {
-        const script = document.createElement("script");
-        script.src = "./routes/protocolos/CreateNew/GeneralInformation/index.js";
-        script.type = "module";
-        this.shadowRoot.appendChild(script);
-
-        const collectionStructureScript = document.createElement("script");
-        collectionStructureScript.src = "./routes/protocolos/CreateNew/CollectionStructure/index.js";
-        collectionStructureScript.type = "module";
-        
-        this.shadowRoot.appendChild(collectionStructureScript);
-        this.shadowRoot.appendChild(script);
-      };
+    if (!this.shadow.adoptedStyleSheets.length) {
+      this.shadow.adoptedStyleSheets = [AppStyles, CreateNewProtocoloStyles];
     }
   }
-  
-  customElements.define("dendem-create-new-protocolo", MySection);
+
+  loadScripts() {
+    // If GeneralInformation script is not loaded, load it
+    if (!this.shadow.querySelector("script")) {
+      const script = document.createElement("script");
+      script.src = "./routes/protocolos/CreateNew/GeneralInformation/index.js";
+      script.type = "module";
+      this.shadow.appendChild(script);
+
+      const collectionStructureScript = document.createElement("script");
+      collectionStructureScript.src =
+        "./routes/protocolos/CreateNew/CollectionStructure/index.js";
+      collectionStructureScript.type = "module";
+
+      this.shadow.appendChild(collectionStructureScript);
+      this.shadow.appendChild(script);
+    }
+  }
+}
+
+customElements.define("dendem-create-new-protocolo", CreateNewProtocolo);

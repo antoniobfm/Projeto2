@@ -1,10 +1,11 @@
+const style = new CSSStyleSheet();
+
+style.replaceSync(/*css*/`
 :host {
     width: 100%;
 }
 
 .collection-field {
-    width: 100%;
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -15,8 +16,14 @@
     background: rgba(0, 0, 0, 0.05);
     /* Green 900 */
 
-    border-left: 4px solid #14532D;
+    border-left: 4px solid transparent;
     border-radius: 4px;
+
+    transition: 0.3s all ease-in-out;
+}
+
+.collection-field:hover {
+    border-left: 4px solid #14532D;
 }
 
 .collection-field__input-container {
@@ -33,7 +40,7 @@ input[type="text"] {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 16px;
+    padding: 0 16px;
     gap: 16px;
     
     width: 100%;
@@ -143,3 +150,6 @@ button {
 button:hover {
     cursor: pointer;
 }
+`);
+
+export default style;

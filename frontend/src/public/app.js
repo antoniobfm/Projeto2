@@ -3,60 +3,43 @@ const routes = [
     path: "/",
     page: "/routes/home/index.html",
     script: "/routes/home/script.js",
-    styles: ["/routes/home/styles.css", "/components/Menu/styles.css", "/components/Menu/Button/styles.css", "/components/Menu/styles.css", "/routes/protocolos/Protocolo/styles.css"]
+    styles: [
+      "/routes/home/styles.css",
+      "/components/Menu/styles.css",
+      "/components/Menu/Button/styles.css",
+      "/components/Menu/styles.css",
+      "/routes/protocolos/Protocolo/styles.css",
+    ],
   },
   {
     path: "/protocolos",
     page: "/routes/protocolos/index.html",
-    script: "/routes/protocolos/script.js", 
-    styles: ["/routes/protocolos/styles.css", "/components/Menu/styles.css", "/components/Menu/Button/styles.css", "/components/Menu/styles.css", "/routes/protocolos/Protocolo/styles.css"]
+    script: "/routes/protocolos/script.js",
   },
   {
     path: "/coletores",
     page: "/routes/coletores/index.html",
-    script: "/routes/coletores/script.js", 
-    styles: ["/routes/coletores/styles.css"]
+    script: "/routes/coletores/script.js",
+    styles: ["/routes/coletores/styles.css"],
   },
   {
-    path: "/login", 
-    page: "/routes/login/index.html", 
-    script: "/routes/login/script.js", 
-    styles: ["/routes/login/styles.css"]
+    path: "/login",
+    page: "/routes/login/index.html",
+    script: "/routes/login/script.js",
+    styles: ["/routes/login/styles.css"],
   },
 ];
 
-const loadedStylesheets = [];
-
-function preloadStylesheets() {
-  // Check if styles were already preloaded
-  if (document.head.querySelector("link[rel=preload]")) {
-    return;
-  }
-
-  // Preload the stylesheets for each route
-  routes.forEach((route) => {
-    if (route.styles) {
-      route.styles.forEach((style) => {
-        const link = document.createElement("link");
-        link.rel = "preload";
-        link.href = style;
-        link.as = "style";
-        document.head.appendChild(link);
-      });
-    }
-  });
-}
-
 function navigateTo(url) {
-  console.log('ok')
+  console.log("ok");
   history.pushState(null, null, url);
 
   router();
 }
 
 document.addEventListener("navigate-to", (e) => {
-  navigateTo(e.detail)
-})
+  navigateTo(e.detail);
+});
 
 async function loadPage(path) {
   const response = await fetch(path);
@@ -79,64 +62,43 @@ async function router() {
 
   const content = await loadPage(route.page);
 
-  if (route.script) {
-    // Clean up previously loaded scripts
-    // const oldScript = document.body.querySelector("script[type=module]");
-    // if (oldScript) {
-    //   document.body.removeChild(oldScript);
-    // }
+  // if (route.script) {
+  //   // Clean up previously loaded scripts
+  //   const oldScript =
+  //     document.body && document.body.querySelector("script[type=module]");
+  //   if (oldScript) {
+  //     document.body.remove(oldScript);
+  //   }
 
-    const script = document.createElement("script");
-    script.src = route.script;
-    script.type = "module";
-    script.addEventListener("load", () => {
-      // Wait for the script to finish loading before displaying the content
-      main.innerHTML = content;
-    });
-    document.body.appendChild(script);
-  } else {
-    // Clean up previously loaded scripts
-    const oldScript = document.body.querySelector("script[type=module]");
-    if (oldScript) {
-      document.body.removeChild(oldScript);
-    }
+  //   const script = document.createElement("script");
+  //   script.src = route.script;
+  //   script.type = "module";
+  //   script.addEventListener("load", () => {
+  //     // Wait for the script to finish loading before displaying the content
+  //     main.innerHTML = content;
+  //   });
+  //   document.body.appendChild(script);
+  // } else {
+  //   // Clean up previously loaded scripts
+  //   const oldScript = document.body.querySelector("script[type=module]");
+  //   if (oldScript) {
+  //     document.body.removeChild(oldScript);
+  //   }
 
-    // Clean up previously loaded stylesheets
-    const oldStylesheets = document.head.querySelectorAll("link[rel=stylesheet]");
-    oldStylesheets.forEach((stylesheet) => {
-      document.head.removeChild(stylesheet);
-    });
-    main.innerHTML = content;
-  }
+  //   // Clean up previously loaded stylesheets
+  //   const oldStylesheets = document.head.querySelectorAll(
+  //     "link[rel=stylesheet]"
+  //   );
+  //   oldStylesheets.forEach((stylesheet) => {
+  //     document.head.removeChild(stylesheet);
+  //   });
+  //   main.innerHTML = content;
+  // }
 
   // Add the stylesheets for the new route
-  route.styles.forEach((style) => {
-    if (!loadedStylesheets.includes(style)) {
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = style;
-      document.head.appendChild(link);
-      loadedStylesheets.push(style);
 
-      // Wait for the stylesheet to finish loading before displaying the content
-      link.addEventListener("load", () => {
-        main.innerHTML = content;
-      });
-    }
-  });
+  main.innerHTML = content;
 
-  // Remove the stylesheets for the old route
-  const oldRoute = routes.find((r) => r.path === window.oldLocationPathname);
-  if (oldRoute) {
-    oldRoute.styles.forEach((style) => {
-      if (loadedStylesheets.includes(style)) {
-        const link = document.head.querySelector(`link[href="${style}"]`);
-        document.head.removeChild(link);
-        loadedStylesheets.splice(loadedStylesheets.indexOf(style), 1);
-      }
-    });
-  }
-  
   window.oldLocationPathname = currentPath;
 }
 
@@ -149,6 +111,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   window.addEventListener("popstate", router);
-  preloadStylesheets();
   router();
 });

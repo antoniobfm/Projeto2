@@ -1,3 +1,6 @@
+const style = new CSSStyleSheet();
+
+style.replaceSync(`
 .input-container {
     width: 100%;
 
@@ -30,3 +33,6 @@
     
     color: var(--color-gray-800);
 }
+`);
+
+export default style;

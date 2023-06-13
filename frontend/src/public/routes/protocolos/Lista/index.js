@@ -1,3 +1,6 @@
+import ListaStyles from "./styles.js";
+import AppStyles from "../../../styles.js";
+
 class MySection extends HTMLElement {
   constructor() {
     super();
@@ -33,7 +36,6 @@ class MySection extends HTMLElement {
     this.botoesDiv = document.createElement("div");
     this.botoesDiv.classList.add("botoes");
     this.header.appendChild(this.botoesDiv);
-    
 
     // Create a ul element with the class "lista"
     this.listaUl = document.createElement("ul");
@@ -56,7 +58,6 @@ class MySection extends HTMLElement {
     this.renderMenu();
     this.loadProtocolos();
     this.loadScripts();
-    this.loadStyles();
 
     this.addEventListenerForProtocolCreated();
     this.addEventListenerForBotoes();
@@ -119,7 +120,7 @@ class MySection extends HTMLElement {
 
   changeTab() {
     // Populate the ul element with the class "lista" with the protocolos
-    const listaUlShadow = this.shadowRoot.querySelector(".lista")
+    const listaUlShadow = this.shadowRoot.querySelector(".lista");
 
     if (!!listaUlShadow) {
       listaUlShadow.innerHTML = "";
@@ -166,6 +167,9 @@ class MySection extends HTMLElement {
       }
     );
 
+    this.protocolosAtivos = [];
+    this.protocolosFinalizados = [];
+
     response.forEach((protocolo) => {
       if (!!protocolo.ativo) {
         this.protocolosAtivos.push(protocolo);
@@ -179,17 +183,21 @@ class MySection extends HTMLElement {
 
   addEventListenerForBotoes() {
     const ativosShadow = this.shadowRoot.querySelector('[shadow-id="ativos"]');
-    ativosShadow && ativosShadow.addEventListener("click", () => {
-      console.log("ativosDiv");
-      this.currentProtocolo = "ativos";
-      this.renderMenu();
-    });
-    const finalizadosShadow = this.shadowRoot.querySelector('[shadow-id="finalizados"]');
-    finalizadosShadow && finalizadosShadow.addEventListener("click", () => {
-      console.log("finalizadosDiv");
-      this.currentProtocolo = "finalizados";
-      this.renderMenu();
-    });
+    ativosShadow &&
+      ativosShadow.addEventListener("click", () => {
+        console.log("ativosDiv");
+        this.currentProtocolo = "ativos";
+        this.renderMenu();
+      });
+    const finalizadosShadow = this.shadowRoot.querySelector(
+      '[shadow-id="finalizados"]'
+    );
+    finalizadosShadow &&
+      finalizadosShadow.addEventListener("click", () => {
+        console.log("finalizadosDiv");
+        this.currentProtocolo = "finalizados";
+        this.renderMenu();
+      });
   }
 
   // Add event listener for 'protocol-created' event
@@ -215,20 +223,12 @@ class MySection extends HTMLElement {
     }
   }
 
-  loadStyles() {
-    // If there isn't a style tag in the shadow root, create one and append the template content to it
-    if (!this.shadowRoot.querySelector("link")) {
-      // Load the component's CSS file by creating a link element with the href attribute set to the CSS file path and appending it to the shadow root
-      const styles = document.createElement("link");
-      styles.rel = "stylesheet";
-      styles.href = "./routes/protocolos/Lista/styles.css";
-      this.shadowRoot.appendChild(styles);
-    }
-  }
-
   // Call the loadProtocolos function when the component is connected to the DOM
   connectedCallback() {
     this.render();
+    if (!this.shadowRoot.adoptedStyleSheets.length) {
+      this.shadowRoot.adoptedStyleSheets = [ListaStyles, AppStyles];
+    }
   }
 }
 

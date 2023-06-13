@@ -1,5 +1,11 @@
+const style = new CSSStyleSheet();
+
+style.replaceSync(/*css*/`
+:host {
+    width: 100%;
+}
 section {
-    max-width: 364px;
+    width: 100%;
     height: 100vh;
     background: white;
 
@@ -78,17 +84,6 @@ section {
     line-height: 100%;
     color: #FFFFFF;
 }
+`);
 
-h1 {
-    margin: 0;
-
-    color: var(--color-gray-900);
-}
-
-h2 {
-    color: var(--color-gray-900);
-
-    margin: 0;
-
-    font-size: 1.125rem;
-}
+export default style;
