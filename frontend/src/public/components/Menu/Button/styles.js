@@ -1,3 +1,5 @@
+const style = new CSSStyleSheet();
+style.replaceSync(`
 :host {
     width: 100%;
 }
@@ -43,3 +45,6 @@ span {
 
     transition: 0.2s;
 }
+`);
+
+export default style;

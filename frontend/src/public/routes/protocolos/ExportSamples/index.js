@@ -1,4 +1,5 @@
-// import styles from './styles.css';
+import ExportSamplesStyles from "./styles.js";
+import AppStyles from "../../../styles.js";
 
 // Define a new custom element called "ExportSamples"
 class ExportSamples extends HTMLElement {
@@ -7,7 +8,8 @@ class ExportSamples extends HTMLElement {
 
     const title = this.getAttribute("title");
 
-    const shadow = this.attachShadow({ mode: "open" });
+    // Create a shadow root for the component
+    if (!this.shadowRoot) this.shadow = this.attachShadow({ mode: "open" });
 
     const section = document.createElement("section");
     section.className = "container";
@@ -46,28 +48,22 @@ class ExportSamples extends HTMLElement {
       divBotoes.appendChild(divBotao);
     });
 
-    // Load the component's CSS file
-    const styles = document.createElement("link");
-    styles.rel = "stylesheet";
-    styles.href = "./routes/protocolos/ExportSamples/styles.css";
-    section.appendChild(styles);
-
     // Add the label and input elements to the container
-    shadow.appendChild(section);
+    this.shadowRoot.appendChild(section);
   }
 
   async download(type) {
     if (type === ".CSV") {
-          var encodedUri = "data:text/csv;charset=utf-8," + encodeURIComponent('');
-          var link = document.createElement("a");
-          link.href = encodedUri;
-          link.download = "data.csv";
-          link.innerHTML = "Download CSV";
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
+      var encodedUri = "data:text/csv;charset=utf-8," + encodeURIComponent("");
+      var link = document.createElement("a");
+      link.href = encodedUri;
+      link.download = "data.csv";
+      link.innerHTML = "Download CSV";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
-          return;
+      return;
       await fetch("http://localhost:3334/amostras/csv", {
         headers: {
           "Content-Type": "application/json",
@@ -79,7 +75,8 @@ class ExportSamples extends HTMLElement {
           return json;
         })
         .then((data) => {
-          var encodedUri = "data:text/csv;charset=utf-8," + encodeURIComponent(csvContent);
+          var encodedUri =
+            "data:text/csv;charset=utf-8," + encodeURIComponent(csvContent);
           var link = document.createElement("a");
           link.href = encodedUri;
           link.download = "data.csv";
@@ -91,12 +88,14 @@ class ExportSamples extends HTMLElement {
     }
 
     if (type === ".XML") {
-      const blob = new Blob(['a'], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const blob = new Blob(["a"], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
       const url = URL.createObjectURL(blob);
-      const linkEx = document.createElement('a');
+      const linkEx = document.createElement("a");
       linkEx.href = url;
       linkEx.download = "excel.xlsx";
-      linkEx.innerHTML = "Download XLSX"
+      linkEx.innerHTML = "Download XLSX";
       linkEx.click();
       URL.revokeObjectURL(url);
       return;
@@ -118,15 +117,15 @@ class ExportSamples extends HTMLElement {
     }
 
     if (type === ".SQL") {
-      const blob = new Blob(['a'], { type: 'text/plain' });
+      const blob = new Blob(["a"], { type: "text/plain" });
       const url = URL.createObjectURL(blob);
-      const linksq = document.createElement('a');
+      const linksq = document.createElement("a");
       linksq.href = url;
       linksq.download = "data.sql";
-      linksq.style.display = 'none';
+      linksq.style.display = "none";
       document.body.appendChild(linksq);
       linksq.click();
-      setTimeout(function() {
+      setTimeout(function () {
         URL.revokeObjectURL(url);
         document.body.removeChild(linksq);
       }, 100);
@@ -156,6 +155,13 @@ class ExportSamples extends HTMLElement {
     divBotao.className = "botao";
     divBotao.textContent = botao;
     return divBotao;
+  }
+
+  // Handle changes to the element's attributes
+  connectedCallback() {
+    if (!this.shadowRoot.adoptedStyleSheets.length) {
+      this.shadowRoot.adoptedStyleSheets = [ExportSamplesStyles, AppStyles];
+    }
   }
 }
 

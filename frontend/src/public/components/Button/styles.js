@@ -1,4 +1,7 @@
-.button {
+const style = new CSSStyleSheet();
+
+style.replaceSync(`
+  .button {
     width: 100%;
     height: 40px;
 
@@ -8,7 +11,7 @@
     border: none;
     outline: none;
 
-    font-family: 'DM Sans';
+    font-family: "DM Sans";
     font-style: normal;
     font-weight: 700;
     font-size: 12px;
@@ -16,13 +19,16 @@
 
     /* White */
 
-    color: #FFFFFF;
+    color: #ffffff;
 
     text-transform: uppercase;
-}
+  }
 
-.button:hover {
+  .button:hover {
     filter: brightness(0.9);
     transition: 0.2s;
     cursor: pointer;
-}
+  }
+`);
+
+export default style;

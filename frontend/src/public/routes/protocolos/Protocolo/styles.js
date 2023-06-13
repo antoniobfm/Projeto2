@@ -1,3 +1,8 @@
+const style = new CSSStyleSheet();
+style.replaceSync(/*css*/`
+:host {
+    height: 100vh;
+}
 #container {
     /* Auto layout */
     display: flex;
@@ -40,7 +45,6 @@ h1 {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    flex-wrap: wrap;
     padding: 0px;
     gap: 24px;
 
@@ -58,8 +62,6 @@ h1 {
 .bloco {
     flex: 1;
     width: calc(100%);
-    min-width: 150px;
-    aspect-ratio: 1/1;
 
     background: black;
 
@@ -69,7 +71,7 @@ h1 {
     align-items: center;
     gap: 24px;
 
-    /* padding: 16px; */
+    padding: 32px;
 
     border-radius: 16px;
 }
@@ -81,7 +83,7 @@ h2 {
     font-style: normal;
     font-weight: 700;
     font-size: 36px;
-    line-height: auto;
+    line-height: 27px;
     /* identical to box height, or 54px */
 
 
@@ -201,3 +203,6 @@ h4 {
 
     color: #111827;
 }
+`);
+
+export default style;

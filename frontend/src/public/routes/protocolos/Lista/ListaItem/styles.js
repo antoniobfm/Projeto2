@@ -1,36 +1,32 @@
-.lista-item {
-    width: 100%;
+const style = new CSSStyleSheet();
 
+style.replaceSync(/*css*/`
+  .lista-item {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 16px 24px;
     gap: 10px;
-    
-    /* Gray 100 */
-    
     background: #F3F4F6;
     border: none;
     outline: none;
     border-radius: 4px;
-
     font-family: 'DM Sans';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
-    /* identical to box height, or 24px */
-
     display: flex;
     align-items: center;
-
-    /* Gray 900 */
-
     color: #111827;
-}
-
-.lista-item:hover {
+  }
+  
+  .lista-item:hover {
     filter: brightness(0.9);
     transition: 0.2s;
     cursor: pointer;
-}
+  }
+`);
+
+export default style;
