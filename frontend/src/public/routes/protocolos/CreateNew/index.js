@@ -26,6 +26,7 @@ class CreateNewProtocolo extends HTMLElement {
 
     // Receive an event from dendem-general-information this.dispatchEvent(new Event('create-protocol-button-clicked'));
     this.addEventListener("create-protocol-button-clicked", (e) => {
+      console.log(675756)
       this.createProtocol(e);
     });
   }
@@ -71,7 +72,6 @@ class CreateNewProtocolo extends HTMLElement {
       </div>
     `;
 
-
     // Import
     // Create a template element and append the div element to its content
     const template = document.createElement("template");
@@ -91,10 +91,21 @@ class CreateNewProtocolo extends HTMLElement {
 
     this.shadowRoot.innerHTML = template.innerHTML;
 
+    const createProtocolAddStuff = this.shadowRoot.getElementById("createProtocol")
+    console.log(createProtocolAddStuff)
+    createProtocolAddStuff && createProtocolAddStuff.addEventListener('click', (e) => {
+      const fieldChangedEvent = new CustomEvent("create-protocol-button-clicked", {
+        bubbles: true,
+        composed: true,
+      });
+      this.dispatchEvent(fieldChangedEvent);
+
+    })
+
     this.loadScripts();
   }
 
-  createProtocol(e) {
+  async createProtocol(e) {
     console.log("create-protocol-button-clicked");
     console.log(this.protocol);
 

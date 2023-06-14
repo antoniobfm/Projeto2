@@ -42,14 +42,14 @@ class CollectionField extends HTMLElement {
     option.classList.add("collection-field__option");
     option.value = "text";
     // this.field.type === 'text' && option.setAttribute('selected');
-    option.innerText = "Texto";
+    option.innerText = "Resposta curta";
 
     // Create a option element
     const optionDescription = document.createElement("option");
     optionDescription.classList.add("collection-field__option");
     optionDescription.value = "long-text";
     // Select the option if the field's type is 'long-text'
-    optionDescription.innerText = "Texto longo";
+    optionDescription.innerText = "Resposta longa";
 
     // Create a container for the actions that can be performed on the field
     const actionsContainer = document.createElement("div");
