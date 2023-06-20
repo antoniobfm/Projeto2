@@ -20,13 +20,13 @@
 ## :teacher: Professores:
 ### Orientador(a) 
 - <a href="https://www.linkedin.com/in/juliastateri/">Julia Stateri</a>
+
 ### Instrutores
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 2</a>
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 3</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 4</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 5</a>
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 6</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 7</a>
+- <a href="https://www.linkedin.com/in/andreluizbraga/">André Souto Mayor Braga</a>
+- <a href="https://www.linkedin.com/in/egondaxbacher/">Egon Daxbacher</a> 
+- <a href="https://www.linkedin.com/in/filipe-gon%C3%A7alves-08a55015b/">Filipe Gonçalves</a>
+- <a href="https://www.linkedin.com/in/francisco-escobar/">Francisco Escobar</a> 
+- <a href="https://www.linkedin.com/in/geraldo-magela-severino-vasconcelos-22b1b220/">Geraldo Magela Vasconcelos</a>
 
 ## 📝 Descrição
 
