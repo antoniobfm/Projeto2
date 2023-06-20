@@ -63,13 +63,8 @@ class Protocolo extends HTMLElement {
   
             <div class="blocos">
               <div class="bloco">
-                <h2>350</h2>
-                <span>Amostras</span>
-              </div>
-  
-              <div class="bloco">
-                <h2>150</h2>
-                <span>Coletas Incompletas</span>
+                <h2>150<small>/500</small></h2>
+                <span>Coletas</span>
               </div>
   
               <div class="bloco">

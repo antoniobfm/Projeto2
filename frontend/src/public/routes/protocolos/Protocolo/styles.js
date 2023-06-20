@@ -1,4 +1,5 @@
 const style = new CSSStyleSheet();
+
 style.replaceSync(/*css*/`
 :host {
     height: 100vh;
@@ -62,6 +63,7 @@ h1 {
 .bloco {
     flex: 1;
     width: calc(100%);
+    height: 100%;
 
     background: black;
 
@@ -88,6 +90,10 @@ h2 {
 
 
     color: #FFFFFF;
+}
+
+small {
+    font-size: 14px;
 }
 
 span {
