@@ -101,6 +101,98 @@ deve possuir o valor "node app.js".
 
 ## 🗃 Histórico de lançamentos
 
+## Commits on June 21, 2023
+- cecigonca: comentarios, 8397c15912662582cd58f6590fb80f98aeecaa6c
+
+## Commits on June 20, 2023
+- cecigonca: Instrutores_README.md, 5acfb4d8e989e926ae8454b9ecd24f9aeff66b91
+
+## Commits on June 14, 2023
+- cecigonca: alterações_criaçãoprotocolo, 721b3ee9e87de3ca02d17b62b74c1b280b5408f8
+
+## Commits on June 13, 2023
+- antoniobfm: Merge pull request #22 from antoniobfm/main, 2e195a48ef17cc3986172673566c249f1ccd9b51
+- antoniobfm: Fixed flickering & other updates, 4aa0a16385d54e57e8d582752cf0cf41eab4673c
+
+## Commits on June 11, 2023
+- otavioluigi07: Multiple updates to README.md, 43fbf6af44ff72afbd93a69341e51044d83e9251
+
+## Commits on June 8, 2023
+- RaiDeOliveira: Update WAD - Documento Aplicação Web - ECOmigo.pdf, 44121f0e26844af1691707610599c262bbe0a95b
+- antoniobfm: Merge pull request #21 from antoniobfm/main, 15ba08c7fe55a930ce93a1c7103834a453f0a270
+- antoniobfm: Merge remote-tracking branch 'upstream/main', 1271c717a1e3ba7bcfc9ddebcb8a3761923708c7
+- antoniobfm: Bug fixes and implemented export, af959ba6994ebc0e56b000289dc5bf7f550ae442
+
+## Commits on June 7, 2023
+- RaiDeOliveira: Update WAD - Artefato 11, bfa5911d64d3cf795ca279095eb26a4adcdfbeb4
+
+## Commits on June 6, 2023
+- cecigonca: ajuste_nomeprotocolo, d764c7c86276d3684b45efbf7365dca42707b882
+- cecigonca: login-protocolo, 354b8ad0d28edea1697a2099d37f6b2f491c2c99
+- cecigonca: atualizacao_login, d35c833ec2bb34a13a4e11422c5823b3715174bb
+- antoniobfm: Merge pull request #20 from antoniobfm/main, eaf8c9c5be4d95fab9a57c6ceaeec55636758a0b
+- antoniobfm: Merge remote-tracking branch 'upstream/main', 0fa25f14fe8b4a976ece204f03f2a3f7cb6f3181
+- antoniobfm: Updated List to be clickable, 95d50ae60276fdfb10a16c90575a12db3d1ce8ea
+
+## Commits em 6 de Junho, 2023
+- otavioluigi07: Merge da solicitação pull #19 de otavioluigi07/main, e6a868cd9fc822895407859715f666b2783bc7b7
+- otavioluigi07: exportarcoletas_Projeto, 3f5a14ff2f4425811d3c68ea9432001a12f0ed70
+
+## Commits em 5 de Junho, 2023
+- antoniobfm: Merge da solicitação pull #18 de antoniobfm/main, 8ddfa224b0635fb61f8d6021a5aefddaeb548b2a
+- antoniobfm: Merge da branch 'upstream/main' para Antonio, e04e28825737c4baac2b98ed8605afd6a91dc8fe
+- antoniobfm: Implementação de CreateNew Protocolo, f7140e15a023a170491946187e8f81c7c0d84c49
+
+## Commits em 2 de Junho, 2023
+- cecigonca: Linkedin Integrantes README.md, 896c4b36e79718993ca793fafb1b2506411b9489
+
+## Commits em 1 de Junho, 2023
+- RaiDeOliveira: Deletar GDD - Grupo 1.docx, 29da4e93c2703611f3a936def266c1511d81bc07
+- RaiDeOliveira: upload docx, dce05020f44e0ede883f644f9d400f60888cd260
+
+## Commits em 31 de Maio, 2023
+- antoniobfm: Merge da solicitação pull #16 de antoniobfm/Antonio, ffb2db24c72f4593bf18465dd9b26edcecbedd03
+- antoniobfm: Implementado Lista Protocolos, 6f06b601d7cb4067adb4adc5d95ddaebc6263fec
+- antoniobfm: Merge da solicitação pull #15 de antoniobfm/Antonio, 6f9b826bd48326e7c1cc93d1c96b35069b929949
+- antoniobfm: Comentado Botão, 69980d61ede998fce26f93123d8da062451c6e9d
+- antoniobfm: Merge da solicitação pull #14 de antoniobfm/main, 132903997a77370f97da4fd6c7941571bdd16d4c
+
+## Commits em 29 de Maio, 2023
+- antoniobfm: Implementado lista de protocolos e solicitação ao endpoint, 08a4a88300908e3de43da2bd07faa0e2b227fc79
+- antoniobfm: Atualização index.js, 46a3107f0edf02cc17dc5db02f1de8bc40e09a69
+- antoniobfm: Adicionado mais comentários, e4216c11e5263e1fd790d02248aa0dc9443f12af
+- antoniobfm: Merge da solicitação pull #13 de antoniobfm/main, c6790d62c911453402494aa30bb6db36f577ef0f
+- antoniobfm: Deletado Create Account e Comentado ExportSamples, b99b7146d25407cff3b6ea5778f0496c6cdbb271
+- joaopedrobrandao: Atualizacao_Sem7, 0faad02e5387ff8d46cb2bb21a6705788f4cb85d
+- joaopedrobrandao: Merge da solicitação pull #12 de antoniobfm/main, 753976ab76b04c858a7c943986cb9fb56c0eb933
+
+## Commits em 28 de Maio, 2023
+- RaiDeOliveira: att WAD, eef9d7240c9e14c1ddc3a2a7aa6b2c8325ebe8a7
+
+## Commits em 26 de Maio, 2023
+- antoniobfm: Implementado Lista Protocolos, 6bcd784ad44ee347303e95910b6e0c827df7a594
+- antoniobfm: Implementado Front, ed1cc4c02c0d6700b81ca3573eba5adbf185c161
+
+## Commits em 24 de Maio, 2023
+- antoniobfm: Implementação inicial do nosso frontend, 5d26bc189e7c2f6f8ae8fc0a81cfad2270be0011
+
+## Commits em 23 de Maio, 2023
+- antoniobfm: Merge da solicitação pull #11 de 2023M2T7-Inteli/revert-8-revert-7-LuigiOt..., f328b6817c05a39a1828e60edbd214c475eb419b
+- antoniobfm: Revert "Revert "menususpenso_projetoDendem"", d071bb4896cef49aa38012acdf9c48adbce245f4
+- antoniobfm: Merge da solicitação pull #10 de otavioluigi07/LuigiOtavio, 6ba2eeb2c6907c9685b88cea176254f2ccc99d72
+- otavioluigi07: menususpenso_projetoDendem, 0378c5b43fc9dd2840a89f69255261ff4c3a9391
+- antoniobfm: Merge da solicitação pull #8 de 2023M2T7-Inteli/revert-7-LuigiOtavio, 86687c0fbedf4e9d6903cd15c512f4c12b1cce45
+- antoniobfm: Revert "menususpenso_projetoDendem", b957f6dd322a0ee8425db692c0e27f7e8255cb79
+- antoniobfm: Merge da solicitação pull #7 de otavioluigi07/LuigiOtavio, beca89063d90134fbc697361cc7792bcfa4869a6
+- otavioluigi07: menususpenso_projetoDendem, b1cee4f556f509c639bb23692ae94f6b25b68dcc
+
+## Commits em 19 de Maio, 2023 por antoniobfm
+- Merge da solicitação pull #6 de antoniobfm/main, aeebfa524751075e3496983cf96979b8d24032f7
+- Deletado duplicado, 53b1c3ea56c6d56e146de8bc12e1d31372d56c0f
+
+## Commits em 15 de Maio, 2023 por RaiDeOliveira
+- Merge da solicitação pull #5 de FelipeBragaInteli/patch-2, 411f999a69030b5397acf2c72631ae1c5666c0ac
+
 ### Commits on 15/05/2023 by RaiDeOliveira
 - Updated README.md, da05d82ce9f4eca8651ce7752107497de73f31b2
 - Updated README.md, 5cb3889062352941259fbd04bff34f6965dccd12
