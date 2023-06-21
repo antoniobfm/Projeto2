@@ -8,6 +8,7 @@ class Protocolo extends HTMLElement {
     this.protocolo = {
       id: "",
       nome: "Carregando...",
+      descricao: "",
       foto_url: "",
       ativo: 1,
     };
@@ -43,6 +44,7 @@ class Protocolo extends HTMLElement {
     this.protocolo = {
       id: protocolo.protocolo_id,
       nome: protocolo.nome,
+      descricao: protocolo.descricao || "",
       foto_url: protocolo.foto_url,
       ativo: protocolo.ativo,
     };
@@ -59,7 +61,10 @@ class Protocolo extends HTMLElement {
     template.innerHTML = `
         <section id="container">
           <div class="superior">
-            <h1 class="text-3xl">${this.protocolo.nome}</h1>
+            <div class="superior__header">
+              <h1 class="text-3xl">${this.protocolo.nome}</h1>
+              <h5 class="text-base font-regular">${this.protocolo.descricao}</h5>
+            </div>
   
             <div class="blocos">
               <div class="bloco">

@@ -10,6 +10,7 @@ class CreateNewProtocolo extends HTMLElement {
     this.protocol = {
       generalInformation: {
         nome: "",
+        descricao: "",
       },
       collectionStructure: [],
     };
@@ -24,9 +25,13 @@ class CreateNewProtocolo extends HTMLElement {
       this.generalInformationUpdated(e);
     });
 
+    // Receive an event from dendem-general-information this.dispatchEvent(new Event('protocol-name-changed'));
+    this.addEventListener("protocol-descricao-changed", (e) => {
+      this.generalInformationUpdated(e);
+    });
+
     // Receive an event from dendem-general-information this.dispatchEvent(new Event('create-protocol-button-clicked'));
     this.addEventListener("create-protocol-button-clicked", (e) => {
-      console.log(675756)
       this.createProtocol(e);
     });
   }

@@ -35,6 +35,12 @@ style.replaceSync(/*css*/`
     gap: 40px;
 }
 
+.superior__header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 h1 {
     margin: 0;
 
@@ -90,6 +96,10 @@ h2 {
 
 
     color: #FFFFFF;
+}
+
+h5 {
+    color: var(--color-gray-500);
 }
 
 small {
@@ -148,21 +158,6 @@ h3 {
     margin: 0;
 }
 
-
-h5 {
-    font-family: 'DM Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 150%;
-
-    display: flex;
-    align-items: center;
-
-    color: var(--color-gray-900);
-
-    margin: 0;
-}
 
 .content {
     display: flex;
