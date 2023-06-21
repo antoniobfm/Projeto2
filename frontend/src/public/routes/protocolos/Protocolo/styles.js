@@ -3,7 +3,13 @@ const style = new CSSStyleSheet();
 style.replaceSync(/*css*/`
 :host {
     height: 100vh;
+    overflow: hidden;
 }
+
+dendem-protocolo {
+    width: 100%;
+}
+
 #container {
     /* Auto layout */
     display: flex;
@@ -25,6 +31,8 @@ style.replaceSync(/*css*/`
     flex-grow: 0;
 
     margin-top: 24px;
+
+    position: relative;
 }
 
 .superior {
@@ -71,7 +79,7 @@ h1 {
     width: calc(100%);
     height: 100%;
 
-    background: black;
+    background: var(--color-gray-900);
 
     display: flex;
     flex-direction: column;
@@ -81,7 +89,41 @@ h1 {
 
     padding: 32px;
 
+    border-radius: 4px;
+}
+
+#collection-structure {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+#collection-structure-blocks {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+
+    overflow-x: scroll;
+}
+
+#collection-structure-blocks::-webkit-scrollbar {
+    height: 6px;
+}
+
+#collection-structure-blocks::-webkit-scrollbar-track {
+    background: rgb(250, 250, 250);
+}
+
+#collection-structure-blocks::-webkit-scrollbar-thumb {
+    background-color: #aaa;
     border-radius: 16px;
+    border: 2px solid #aaa;
 }
 
 h2 {
