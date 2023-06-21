@@ -1,3 +1,8 @@
+// Defines an array named ""routes", which contains information about the application's routes
+// path: Caminho da rota
+// page: Caminho para a página HTML correspondente à rota
+// script: Caminho para o script JavaScript correspondente à rota
+// styles: Caminhos para os arquivos de estilo CSS relacionados à rota
 const routes = [
   {
     path: "/",
@@ -51,6 +56,7 @@ async function loadPage(path) {
   return content;
 }
 
+// Load and display the content of the page corresponding to the current route in the HTML element with the id "main"
 async function router() {
   const main = document.getElementById("main");
 
@@ -102,6 +108,7 @@ async function router() {
   window.oldLocationPathname = currentPath;
 }
 
+// Configures the application's internal link browsing
 document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("click", (event) => {
     if (event.target.matches("[data-link]")) {
@@ -109,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
       navigateTo(event.target.href);
     }
   });
-
+// Handles the browser history change event
   window.addEventListener("popstate", router);
   router();
 });

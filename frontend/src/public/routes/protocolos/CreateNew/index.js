@@ -31,6 +31,7 @@ class CreateNewProtocolo extends HTMLElement {
     });
   }
 
+  // Create the basic structure of HTML elements to display a "Create New Protocol" heading in a section of the page
   render() {
     console.log("render create-new-protocolo")
     const container = document.createElement("section");
@@ -105,6 +106,7 @@ class CreateNewProtocolo extends HTMLElement {
     this.loadScripts();
   }
 
+  // Send an HTTP POST request to create a new protocol on the server
   async createProtocol(e) {
     console.log("create-protocol-button-clicked");
     console.log(this.protocol);

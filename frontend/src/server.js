@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import express from 'express';
 
+// Configures an Express server to handle HTTP requests and serve static files from the public directory
 const __dirname = path.resolve();
 
 const PORT = 3000;
@@ -22,6 +23,7 @@ app.use(express.static(PUBLIC_DIR, {
   }
 }));
 
+// Adds GZIP compression to JavaScript files served by the Express server
 app.get('*.js', function(req, res, next) {
   req.url = req.url + '.gz';
   res.set('Content-Encoding', 'gzip');
@@ -29,6 +31,7 @@ app.get('*.js', function(req, res, next) {
   next();
 });
 
+// Sets the "Content-Type" header of responses to CSS files to "text/css"
 app.get('*.css', function(req, res, next) {
   res.set('Content-Type', 'text/css');
   next();
@@ -42,6 +45,8 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
+// The "getContentType"" function maps a file's extension to the content type (MIME type), 
+// used to configure the 'Content-Type' header in server responses
 function getContentType(extname) {
   switch (extname) {
     case '.html':
