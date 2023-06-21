@@ -5,6 +5,7 @@ import getSpecificProtocolo from "./useCases/getSpecific.usecase.js";
 import updateProtocolo from "./useCases/update.usecase.js";
 import deleteProtocolo from "./useCases/delete.usecase.js";
 import getAllEtapasFromProtocolo from "./useCases/getAllEtapasFromProtocolo.usecase.js";
+import getAllCamposFromProtocolo from "./useCases/getAllCamposFromProtocolo.usecase.js";
 
 const protocolosRouter = Router();
 
@@ -37,8 +38,9 @@ protocolosRouter.get("/:protocolo_id", async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   const result = await getSpecificProtocolo(req.params.protocolo_id);
+  const etapas = await getAllEtapasFromProtocolo(result.protocolo_id);
 
-  res.json(result);
+  res.json({...result, etapas: etapas});
   res.end();
 });
 
@@ -48,6 +50,17 @@ protocolosRouter.get("/:protocolo_id/etapas", async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   const result = await getAllEtapasFromProtocolo(req.params.protocolo_id);
+
+  res.json(result);
+  res.end();
+});
+
+// Retorna protocolo especifico e suas etapas (é o R do CRUD - Read)
+protocolosRouter.get("/:protocolo_id/campos", async (req, res) => {
+  res.statusCode = 200;
+  res.setHeader("Access-Control-Allow-Origin", "*");
+
+  const result = await getAllCamposFromProtocolo(req.params.protocolo_id);
 
   res.json(result);
   res.end();

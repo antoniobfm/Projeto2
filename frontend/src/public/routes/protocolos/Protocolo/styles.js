@@ -1,8 +1,15 @@
 const style = new CSSStyleSheet();
+
 style.replaceSync(/*css*/`
 :host {
     height: 100vh;
+    overflow: hidden;
 }
+
+dendem-protocolo {
+    width: 100%;
+}
+
 #container {
     /* Auto layout */
     display: flex;
@@ -24,6 +31,8 @@ style.replaceSync(/*css*/`
     flex-grow: 0;
 
     margin-top: 24px;
+
+    position: relative;
 }
 
 .superior {
@@ -32,6 +41,12 @@ style.replaceSync(/*css*/`
     display: flex;
     flex-direction: column;
     gap: 40px;
+}
+
+.superior__header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 h1 {
@@ -62,8 +77,9 @@ h1 {
 .bloco {
     flex: 1;
     width: calc(100%);
+    height: 100%;
 
-    background: black;
+    background: var(--color-gray-900);
 
     display: flex;
     flex-direction: column;
@@ -73,7 +89,41 @@ h1 {
 
     padding: 32px;
 
+    border-radius: 4px;
+}
+
+#collection-structure {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+#collection-structure-blocks {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+
+    overflow-x: scroll;
+}
+
+#collection-structure-blocks::-webkit-scrollbar {
+    height: 6px;
+}
+
+#collection-structure-blocks::-webkit-scrollbar-track {
+    background: rgb(250, 250, 250);
+}
+
+#collection-structure-blocks::-webkit-scrollbar-thumb {
+    background-color: #aaa;
     border-radius: 16px;
+    border: 2px solid #aaa;
 }
 
 h2 {
@@ -88,6 +138,14 @@ h2 {
 
 
     color: #FFFFFF;
+}
+
+h5 {
+    color: var(--color-gray-500);
+}
+
+small {
+    font-size: 14px;
 }
 
 span {
@@ -142,21 +200,6 @@ h3 {
     margin: 0;
 }
 
-
-h5 {
-    font-family: 'DM Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 150%;
-
-    display: flex;
-    align-items: center;
-
-    color: var(--color-gray-900);
-
-    margin: 0;
-}
 
 .content {
     display: flex;

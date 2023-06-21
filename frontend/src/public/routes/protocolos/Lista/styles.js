@@ -1,4 +1,5 @@
 const style = new CSSStyleSheet();
+
 style.replaceSync(/*css*/`
     .protocolos {
         max-width: 352px;

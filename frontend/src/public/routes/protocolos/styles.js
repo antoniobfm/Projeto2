@@ -11,6 +11,7 @@ style.replaceSync(/*css*/`
 
     display: grid;
     grid-template-columns: auto 280px 1fr 320px;
+    
 
     gap: 24px;
 

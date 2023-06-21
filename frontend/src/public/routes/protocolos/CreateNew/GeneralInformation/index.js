@@ -9,6 +9,7 @@ class GeneralInformation extends HTMLElement {
 
     this.generalInformation = {
       name: this.getAttribute("protocol-name") || "",
+      descricao: this.getAttribute("protocol-descricao") || "",
     };
 
     // Create a shadow root for the component
@@ -20,12 +21,16 @@ class GeneralInformation extends HTMLElement {
     title.classList.add("font-bold");
     title.textContent = "Informações Gerais";
 
-    // Create a dendem input element
-    const dendemInput = `<dendem-input name="nome" label="Nome do protocolo" placeholder="" type="text"></dendem-input>`;
+    // Create a dendem input element for the protocol's name
+    const nameDendemInput = `<dendem-input id="input-nome" name="nome" label="Nome do protocolo" placeholder="" type="text"></dendem-input>`;
+
+    // Create a dendem input element for the protocol's description
+    const descriptionDendemInput = `<dendem-input id="input-descricao" name="description" label="Descrição" placeholder="" type="text"></dendem-input>`;
 
     // Add the title element to the shadow DOM
     this.shadowRoot.appendChild(title);
-    this.shadowRoot.innerHTML += dendemInput;
+    this.shadowRoot.innerHTML += nameDendemInput;
+    this.shadowRoot.innerHTML += descriptionDendemInput;
 
     this.addEventListenerToDendemInput();
   }
@@ -33,12 +38,12 @@ class GeneralInformation extends HTMLElement {
   // Event listener for dendem-input
   addEventListenerToDendemInput() {
     // Get input inside dendem-input
-    const dendemInputInput = this.shadowRoot
-      .querySelector("dendem-input")
+    const dendemInputNameInput = this.shadowRoot
+      .getElementById("input-nome")
       .shadowRoot.querySelector("input");
 
     // Add event listener to changes in the input protocol-name
-    dendemInputInput.addEventListener("change", (event) => {
+    dendemInputNameInput.addEventListener("change", (event) => {
       console.log("protocol-name-changed");
       this.generalInformation.name = event.target.value;
       this.setAttribute("protocol-name", event.target.value);
@@ -53,6 +58,28 @@ class GeneralInformation extends HTMLElement {
         composed: true,
       });
       this.dispatchEvent(nameChangedEvent);
+    });
+    // Get input inside dendem-input
+    const dendemInputdescricaoInput = this.shadowRoot
+      .getElementById("input-descricao")
+      .shadowRoot.querySelector("input");
+
+    // Add event listener to changes in the input protocol-descricao
+    dendemInputdescricaoInput.addEventListener("change", (event) => {
+      console.log("protocol-descricao-changed");
+      this.generalInformation.descricao = event.target.value;
+      this.setAttribute("protocol-descricao", event.target.value);
+
+      // Dispatch an event to notify the parent component that the field's descricao has changed
+      // The parent component is another custom element called CollectionStructure
+      const descricaoChangedEvent = new CustomEvent("protocol-descricao-changed", {
+        detail: {
+          generalInformation: this.generalInformation,
+        },
+        bubbles: true,
+        composed: true,
+      });
+      this.dispatchEvent(descricaoChangedEvent);
     });
   }
 

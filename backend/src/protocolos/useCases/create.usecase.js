@@ -18,8 +18,10 @@ const createProtocolo = async (data) => {
 
   // Create a new protocolo
   let sql =
-    "INSERT INTO PROTOCOLO (nome, foto_url, ativo) VALUES ('" +
+    "INSERT INTO PROTOCOLO (nome, descricao, foto_url, ativo) VALUES ('" +
     data.generalInformation.name +
+    "', '" +
+    data.generalInformation.descricao +
     "', '" +
     'teste' +
     "', " +
