@@ -5,6 +5,10 @@
 </p>
 
 # Nome do projeto: Dendem
+<p align="center">
+<img src="documentos\outros\dendem_logo.png" alt="Imagem do logo do Dendem" border="0">
+</p>
+
 
 ## Nome do grupo: ECOmigo
 
