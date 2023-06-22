@@ -1,12 +1,12 @@
 # Inteli - Instituto de Tecnologia e Liderança 
 
 <p align="center">
-<a href= "https://www.inteli.edu.br/"><img src="documentos/outros/inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
+<a href= "https://www.inteli.edu.br/"><img src="imagens\inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
 </p>
 
 # Nome do projeto: Dendem
 <p align="center">
-<img src="documentos\outros\dendem_logo.png" alt="Imagem do logo do Dendem" border="0">
+<img src="imagens\dendem_logo.png" alt="Imagem do logo do Dendem" border="0">
 </p>
 
 
