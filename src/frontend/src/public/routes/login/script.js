@@ -25,32 +25,32 @@ class Login extends HTMLElement {
   render() {
     // O HTML abaixo é o que será renderizado dentro do elemento dendem-login
     const html = `
-        <div class="container">
-            <main>
-                <img src="/assets/capa.png" />
+      <div class="container">
+        <main>
+          <img id="logo1" src="/assets/capa.png">
 
-                <div id="teladireita">
-                    <h1 class="text-3xl">Seja bem-vindo!</h1>
+          <div id="teladireita">
+          <h1 class="text-3xl">Seja bem-vindo!</h1>
+          
+            <form onsubmit="login()">
+              <div>
+                <dendem-input id="nome" name="email" type="email" placeholder="" label="Email" ></dendem-input>
+                <dendem-input id="senha" type="password" name="senha" label="Senha" placeholder=""></dendem-input>
+              </div>
 
-                    <form onsubmit="login()">
-                        <div>
-                            <dendem-input id="nome" name="email" type="email" placeholder="" label="Email" ></dendem-input>
-                            <dendem-input id="senha" type="password" name="senha" label="Senha" placeholder=""></dendem-input>
-                        </div>
-
-                        <div class="senha-acoes">
-                            <div>
-                                <input type="checkbox" id="lembrar">
-                                <label for="lembrar">Lembrar-me</label>
-                            </div>
-                            <a href="#" id="esquecisenha">Esqueci a senha</a>
-                        </div>
-                        
-                        <dendem-button navigate-to="protocolos" name="botao" type="submit" placeholder="" label="Entrar" ></dendem-button>
-                    </form>
+              <div class="senha-acoes">
+                <div>
+                  <input type="checkbox" id="lembrar">
+                  <label for="lembrar">Lembrar-me</label>
                 </div>
-            </main>
-        </div>
+                <a href="#" id="esquecisenha">Esqueci a senha</a>
+              </div>
+                
+              <dendem-button navigate-to="protocolos" name="botao" type="submit" placeholder="" label="Entrar" ></dendem-button>
+            </form>
+          </div>
+        </main>
+      </div>
     `;
 
     // Inserimos o HTML acima dentro do shadow root do elemento dendem-login
