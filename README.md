@@ -38,7 +38,7 @@ O “Dendem” é uma aplicação web que funciona como ferramenta facilitadora 
 
 ## 📝 LINK
 
-Esta versão de entrega não incluirá link para o deploy em um servidor
+Esta versão de entrega não incluirá link para o deploy em um servidor.
 
 ## 📁 Estrutura de pastas
 
@@ -92,7 +92,20 @@ npm run dev
 
 ## 🗃 Histórico de lançamentos
 
+### Commits em 22/06/2023
+- RaiDeOliveira: Atualização do README.md e organização de pastas, 9416220b6346dd0774f9e0c8963a8267179a292e
+
 ### Commits em 21/06/2023
+- RaiDeOliveira: Responsividade mobile - Tela de login, ef385ccf65ef3e5b5ea62c0f31064536c5e278df
+- antoniobfm: Implemented CollectionStructure to Protocolo route, 1ce9be20ad1deecfc9718315e9a45a2ff8791314
+- antoniobfm: Merge, a574251d320f4f34b156bce211cb877011701298
+- antoniobfm: Update mfisico.db, 454efa5ec4c58187f383313355049f989188401b
+- cecigonca: telalogin_mobile, 998320c913d992416d73e3842b933a03e1520544
+- RaiDeOliveira: Inserção de imagens no README.md, 5f35e88a807e186bfd2e5938437e91d59aacf85b
+- RaiDeOliveira: Organização de pastas, b0b247013a92b9145bfe836b5d61fa2d6eeff547
+- cecigonca: codigos_telasfront, bf66cf46771acfee25e515b02cf1972ca4786102
+- FelipeBragaInteli: Update README.md, cf296c7717d3c4b7418c1be6a7a01dcf7e49a90b
+- antoniobfm: Implemented description into protocolos, 7a95e95c5b129231ab344f7b92dfaf7941d1f744
 - cecigonca: comentarios, 8397c15912662582cd58f6590fb80f98aeecaa6c
 
 ### Commits em 20/06/2023
