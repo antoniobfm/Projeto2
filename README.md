@@ -106,7 +106,7 @@ deve ser substituído pelo caminho para o arquivo principal da aplicação, util
 servidor. Por exemplo, se o arquivo utilizado para subir o servidor é "app.js", o atributo start
 deve possuir o valor "node app.js".
 
-3. No arquivo utilizado para subir a aplicação, defina a porta padrão de execução para "1234".
+3. No arquivo utilizado para subir a aplicação, defina a porta padrão de execução para "3000".
 ````
 
 
