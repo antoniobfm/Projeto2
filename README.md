@@ -67,9 +67,9 @@ Dentre os arquivos presentes na raiz do projeto, definem-se:
 
 Aqui encontram-se todas as instruções necessárias para a instalação de todos os programas, bibliotecas e ferramentas imprescindíveis para a configuração do ambiente de desenvolvimento.
 
-1.  Baixar e instalar o node.js:  [https://nodejs.org/pt-br/](https://nodejs.org/pt-br/) (versão 16.15.1 LTS)
+1. Baixar e instalar o node.js:  [https://nodejs.org/pt-br/](https://nodejs.org/pt-br/) (versão 16.15.1 LTS)
 2. Clone o repositório em questão.
-3.  No modo administrador, abra o "prompt de comando" ou o "terminal"; nele, abra a pasta "src/backend" no diretório raiz do repositório clonado e digite o segundo comando:
+3. No modo administrador, abra o "prompt de comando" ou o "terminal"; nele, abra a pasta "src/backend" no diretório raiz do repositório clonado e digite o segundo comando:
 
 ```sh
 npm install
@@ -127,7 +127,7 @@ npm run dev
 - antoniobfm: Merge remote-tracking branch 'upstream/main', 1271c717a1e3ba7bcfc9ddebcb8a3761923708c7
 - antoniobfm: Bug fixes and implemented export, af959ba6994ebc0e56b000289dc5bf7f550ae442
 
-### Commits on 07/06/2023
+### Commits em 07/06/2023
 - RaiDeOliveira: Update WAD - Artefato 11, bfa5911d64d3cf795ca279095eb26a4adcdfbeb4
 
 ### Commits em 06/06/2023
