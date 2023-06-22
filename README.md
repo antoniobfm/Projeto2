@@ -38,26 +38,21 @@ O “Dendem” é uma aplicação web que funciona como ferramenta facilitadora 
 
 ## 📝 LINK
 
-Clique <a href="https://www.linkedin.com/in/victorbarq/">AQUI</a> para ver o projeto funcionando.
+Esta versão de entrega não incluirá link para o deploy em um servidor
 
 ## 📁 Estrutura de pastas
 
 |--> backend<br>
   &emsp;| --> src <br>
-|--> documentacao<br>
-  &emsp;| --> inteli.png <br>
+  &emsp;| mfisico.db <br>
 |--> documentos<br>
-  &emsp;|--> WAD - Documento Aplicação Web - ECOmigo.pdf<br>
+  &emsp;| --> Outros <br>
+  &emsp;| WAD - Documento Aplicação Web - ECOmigo.docx<br>
+  &emsp;| WAD - Documento Aplicação Web - ECOmigo.pdf<br>
 |--> frontend<br>
-  &emsp;| --> frontend<br>
   &emsp;| --> src</br>
-  &emsp;| --> public</br>
-|--> modelosrelacionais</br>
-  &emsp;| --> mfisico.db</br>
-  &emsp;| --> mfisico;sqbpro</br>
-|--> .gitignore</br>
-|--> LICENSE</br>
-| Projeto2 - Shortcut.lnk</br>
+| .gitignore</br>
+| LICENSE</br>
 | README.md</br>
 
 Dentre os arquivos presentes na raiz do projeto, definem-se:
@@ -74,34 +69,26 @@ Aqui encontram-se todas as instruções necessárias para a instalação de todo
 
 1.  Baixar e instalar o node.js:  [https://nodejs.org/pt-br/](https://nodejs.org/pt-br/) (versão 16.15.1 LTS)
 2. Clone o repositório em questão.
-3.  No modo administrador, abra o "prompt de comando" ou o "terminal" e, após,  abra a pasta "src/backend" no diretório raiz do repositório clonado e digite o segundo comando:
+3.  No modo administrador, abra o "prompt de comando" ou o "terminal"; nele, abra a pasta "src/backend" no diretório raiz do repositório clonado e digite o segundo comando:
+
+```sh
+npm install
+```
+4. Depois, abra outra aba do "prompt de comando" ou "terminal"; nele, abra a pasta "src/frontend" no diretório raiz do repositório clonado e digite o mesmo comando:
 
 ```sh
 npm install
 ```
 
-Isso instalará todas as dependências definidas no arquivo <b>package.json</b> que são necessárias para rodar o projeto. Agora o projeto já está pronto para ser modificado. Caso ainda deseje iniciar a aplicação, digite o comando abaixo no terminal:
+Isso instalará todas as dependências definidas no arquivo <b>package.json</b> que são necessárias para rodar o projeto. Agora o projeto já está pronto para ser modificado.
+
+5. Após isso, em ambas as abas do "prompt de comando" ou "terminal", digite o seguinte comando:
 
 ```sh
-npm start
+npm run dev
 ```
-5. Agora você pode acessar a aplicação através do link http://localhost:1234/
-6. O servidor está online.
-
-
-```
-Alunos inteli (remover essa observação do readme.md após leitura e execução):
-
-1. Certifique-se que há um arquivo "package.json" na pasta backend do projeto.
-
-2. Dentro deste arquivo, encontre a propriedade "scripts", e adicione um atributo de nome "start"
-com o valor "node <CAMINHO_DO_ARQUIVO_DO_SERVIDOR>." Atenção: "<CAMINHO_DO_ARQUIVO_DO_SERVIDOR>" 
-deve ser substituído pelo caminho para o arquivo principal da aplicação, utilizado para subir o
-servidor. Por exemplo, se o arquivo utilizado para subir o servidor é "app.js", o atributo start
-deve possuir o valor "node app.js".
-
-3. No arquivo utilizado para subir a aplicação, defina a porta padrão de execução para "1234".
-````
+6. Agora você pode acessar a aplicação através do link http://localhost:3000/
+7. O servidor está online.
 
 ## 🗃 Histórico de lançamentos
 
