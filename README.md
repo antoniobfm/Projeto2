@@ -73,32 +73,44 @@ Dentre os arquivos presentes na raiz do projeto, definem-se:
 
 Aqui encontram-se todas as instruções necessárias para a instalação de todos os programas, bibliotecas e ferramentas imprescindíveis para a configuração do ambiente de desenvolvimento.
 
-1. Baixar e instalar o node.js:  [https://nodejs.org/pt-br/](https://nodejs.org/pt-br/) (versão 16.15.1 LTS)
-2. Clone o repositório em questão.
-3. No modo administrador, abra o "prompt de comando" ou o "terminal"; nele, abra a pasta "src/backend" no diretório raiz do repositório clonado e digite o segundo comando:
-
-```sh
-npm install
-```
-4. Depois, abra outra aba do "prompt de comando" ou "terminal"; nele, abra a pasta "src/frontend" no diretório raiz do repositório clonado e digite o mesmo comando:
+1.  Baixar e instalar o node.js:  [https://nodejs.org/pt-br/](https://nodejs.org/pt-br/) (versão 16.15.1 LTS)
+2.  Clone o repositório em questão.
+3.  No modo administrador, abra o "prompt de comando" ou o "terminal" e, após,  abra a pasta "src/backend" no diretório raiz do repositório clonado e digite o segundo comando:
 
 ```sh
 npm install
 ```
 
-Isso instalará todas as dependências definidas no arquivo <b>package.json</b> que são necessárias para rodar o projeto. Agora o projeto já está pronto para ser modificado.
-
-5. Após isso, em ambas as abas do "prompt de comando" ou "terminal", digite o seguinte comando:
+Isso instalará todas as dependências definidas no arquivo <b>package.json</b> que são necessárias para rodar o projeto. Agora o projeto já está pronto para ser modificado. Caso ainda deseje iniciar a aplicação, digite o comando abaixo no terminal:
 
 ```sh
-npm run dev
+npm start
 ```
-6. Agora você pode acessar a aplicação através do link http://localhost:3000/
-7. O servidor está online.
+5. Agora você pode acessar a aplicação através do link http://localhost:3000/
+6. O servidor está online.
+
+
+```
+Alunos inteli (remover essa observação do readme.md após leitura e execução):
+
+1. Certifique-se que há um arquivo "package.json" na pasta backend do projeto.
+
+2. Dentro deste arquivo, encontre a propriedade "scripts", e adicione um atributo de nome "start"
+com o valor "node <CAMINHO_DO_ARQUIVO_DO_SERVIDOR>." Atenção: "<CAMINHO_DO_ARQUIVO_DO_SERVIDOR>" 
+deve ser substituído pelo caminho para o arquivo principal da aplicação, utilizado para subir o
+servidor. Por exemplo, se o arquivo utilizado para subir o servidor é "app.js", o atributo start
+deve possuir o valor "node app.js".
+
+3. No arquivo utilizado para subir a aplicação, defina a porta padrão de execução para "1234".
+````
+
 
 ## 🗃 Histórico de lançamentos
 
 ### Commits em 22/06/2023
+- RaiDeOliveira: Organização de pastas e arquivos, eb90517bc5ea7ab692e6829f6d3eb9e53a4765af
+- CeciGonca: tela_selectcol, ca764f60813a16983c4e676afb273d10d7b1a318
+- RaiDeOliveira: Organização de pastas e arquivos, 85c4894d1901847c8ae01302ae5677edbd2bac6b
 - RaiDeOliveira: Atualização do README.md e organização de pastas, 9416220b6346dd0774f9e0c8963a8267179a292e
 
 ### Commits em 21/06/2023
@@ -230,4 +242,4 @@ npm run dev
 - Upload WAD, 7a61bfcdb392af2ecb62569cebceea15b4af4d58
 
 ## 📋 Licença/License
-<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="http://Antônio Bahia Fonseca Moraes Cecília Gio Alonso Gonçalves Felipe Morita de Almeida Braga João Pedro Brandão de Moura Laura Padilha Bueno Luigi Otávio Neves Macedo Raí de Oliveira Cajé">DEMDEM</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/2023M2T7-Inteli/Projeto2">Inteli, Antônio Bahia Fonseca Moraes, Cecília Gio Alonso Gonçalves, Felipe Morita de Almeida Braga, João Pedro Brandão de Moura, Laura Padilha Bueno, Luigi Otávio Neves Macedo, Raí de Oliveira Cajé</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"></a></p>
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/2023M2T7-Inteli/Projeto2">DEMDEM</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://adalove3.inteli.edu.br/home">Inteli</a>, <a href="https://www.linkedin.com/in/antoniobfm/">Antônio Bahia Fonseca Moraes</a>, <a href="https://www.linkedin.com/in/cec%C3%ADlia-alonso-gon%C3%A7alves-3aa4bb271/">Cecília Gio Alonso Gonçalves</a>, <a href="https://www.linkedin.com/in/felipe-braga-69607126a/">Felipe Morita de Almeida Braga</a>, <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-brand%C3%A3o-de-moura-338636215/">João Pedro Brandão de Moura</a>, <a href="https://www.linkedin.com/in/laura-padilha-bueno-b358419a/">Laura Padilha Bueno</a>, <a href="https://www.linkedin.com/in/luigi-ot%C3%A1vio-904475234/">Luigi Otávio Neves Macedo</a>, <a href="https://www.linkedin.com/in/raideoliveira/">Raí de Oliveira Cajé</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"></a></p>
