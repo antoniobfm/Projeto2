@@ -55,7 +55,10 @@ Esta versão de entrega não incluirá link para o deploy em um servidor.
     | inteli_logo.png
 |--> src
     | --> backend
+        | --> src
+        | mfisico.db
     | --> frontend
+        | --> src
 | .gitignore
 | LICENSE
 | README.md
@@ -63,9 +66,11 @@ Esta versão de entrega não incluirá link para o deploy em um servidor.
 
 Dentre os arquivos presentes na raiz do projeto, definem-se:
 
-- <b>readme.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
-
 - <b>documentos</b>: aqui estarão todos os documentos do projeto. Há também uma pasta denominada <b>outros</b> onde estão presentes aqueles documentos complementares ao <b>web application document</b>.
+
+- <b>imagens</b>: aqui estão contidas todas as imagens utilizadas dentro do arquivo <b>"readme.md"</b>.
+
+- <b>readme.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
 
 - <b>src</b>: nesta pasta encontra-se todo o código fonte do sistema (existem duas subpastas <b>backend</b> e <b>frontend</b> que contêm, respectivamente, o código do servidor e o código da página web).
 
@@ -242,4 +247,4 @@ deve possuir o valor "node app.js".
 - Upload WAD, 7a61bfcdb392af2ecb62569cebceea15b4af4d58
 
 ## 📋 Licença/License
-<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/2023M2T7-Inteli/Projeto2">DEMDEM</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://adalove3.inteli.edu.br/home">Inteli</a>, <a href="https://www.linkedin.com/in/antoniobfm/">Antônio Bahia Fonseca Moraes</a>, <a href="https://www.linkedin.com/in/cec%C3%ADlia-alonso-gon%C3%A7alves-3aa4bb271/">Cecília Gio Alonso Gonçalves</a>, <a href="https://www.linkedin.com/in/felipe-braga-69607126a/">Felipe Morita de Almeida Braga</a>, <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-brand%C3%A3o-de-moura-338636215/">João Pedro Brandão de Moura</a>, <a href="https://www.linkedin.com/in/laura-padilha-bueno-b358419a/">Laura Padilha Bueno</a>, <a href="https://www.linkedin.com/in/luigi-ot%C3%A1vio-904475234/">Luigi Otávio Neves Macedo</a>, <a href="https://www.linkedin.com/in/raideoliveira/">Raí de Oliveira Cajé</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"></a></p>
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/2023M2T7-Inteli/Projeto2">DEMDEM</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.inteli.edu.br/">Inteli</a>, <a href="https://www.linkedin.com/in/antoniobfm/">Antônio Bahia Fonseca Moraes</a>, <a href="https://www.linkedin.com/in/cec%C3%ADlia-alonso-gon%C3%A7alves-3aa4bb271/">Cecília Gio Alonso Gonçalves</a>, <a href="https://www.linkedin.com/in/felipe-braga-69607126a/">Felipe Morita de Almeida Braga</a>, <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-brand%C3%A3o-de-moura-338636215/">João Pedro Brandão de Moura</a>, <a href="https://www.linkedin.com/in/laura-padilha-bueno-b358419a/">Laura Padilha Bueno</a>, <a href="https://www.linkedin.com/in/luigi-ot%C3%A1vio-904475234/">Luigi Otávio Neves Macedo</a>, <a href="https://www.linkedin.com/in/raideoliveira/">Raí de Oliveira Cajé</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"></a></p>
