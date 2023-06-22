@@ -1,7 +1,7 @@
 # Inteli - Instituto de Tecnologia e Liderança 
 
 <p align="center">
-<a href= "https://www.inteli.edu.br/"><img src="imagens\inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
+<a href= "https://www.inteli.edu.br/"><img src="imagens\inteli_logo.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
 </p>
 
 # Nome do projeto: Dendem
@@ -34,7 +34,10 @@
 
 ## 📝 Descrição
 
-&emsp; &emsp; O “Dendem” é uma aplicação web que funciona como ferramenta facilitadora da colaboração entre pesquisadores da Natura e agricultores associados a fim de pesquisas para o desenvolvimento de produtos da empresa. Com o Dendem, pesquisadores podem criar protocolos, os quais guiam os agricultores no processo de coleta de imagens e dados das espécies vegetais solicitadas. Os agricultores, então, atuam como coletores utilizando a aplicação através de seu próprio smartphone, podendo capturar fotos e inserir informações demandadas da própria palma da mão. Essas funcionalidades são favorecidas, ainda, pela opção de preenchimento de protocolos de modo offline, com a possibilidade de sincronização online quando houver rede disponível. Além disso, o Dendem também conta com a possibilidade de acesso coletivo a protocolos por pesquisadores, o que favorece o compartilhamento de conhecimento dentro do setor de pesquisa da Natura.
+<p align="justify"> &emsp;&emsp;&emsp;O "Dendem" é uma aplicação web desenvolvida através de uma parceria entre o Inteli e a empresa de cosméticos Natura. Ela funciona como uma ferramenta facilitadora da colaboração entre pesquisadores da Natura e agricultores associados à empresa, uma vez que possibilita aos pesquisadores criar protocolos de coleta com formulários que solicitam informações relevantes sobre espécies vegetais aos agricultores. Os agricultores, então, atuam como coletores ao utilizar a aplicação através de seus smartphones e, nela, inserir as fotos e os dados coletados sobre as amostras de plantas solicitadas nos protocolos.
+
+&emsp;&emsp;&emsp;Dessa forma, o Dendem torna possível para os pesquisadores ter acesso a informações sobre espécies vegetais regionais de maneira remota, o que facilita e agiliza o processo de pesquisa e desenvolvimento de novos produtos pela empresa. </p>
+
 
 ## 📝 LINK
 
@@ -42,18 +45,21 @@ Esta versão de entrega não incluirá link para o deploy em um servidor.
 
 ## 📁 Estrutura de pastas
 
-|--> backend<br>
-  &emsp;| --> src <br>
-  &emsp;| mfisico.db <br>
-|--> documentos<br>
-  &emsp;| --> Outros <br>
-  &emsp;| WAD - Documento Aplicação Web - ECOmigo.docx<br>
-  &emsp;| WAD - Documento Aplicação Web - ECOmigo.pdf<br>
-|--> frontend<br>
-  &emsp;| --> src</br>
-| .gitignore</br>
-| LICENSE</br>
-| README.md</br>
+```sh
+|--> documentos
+    | --> Outros
+    | T7_G2_V04_Web_application_document.docx
+    | T7_G2_V04_Web_application_document.pdf
+|--> imagens
+    | dendem_logo.png
+    | inteli_logo.png
+|--> src
+    | --> backend
+    | --> frontend
+| .gitignore
+| LICENSE
+| README.md
+```
 
 Dentre os arquivos presentes na raiz do projeto, definem-se:
 
