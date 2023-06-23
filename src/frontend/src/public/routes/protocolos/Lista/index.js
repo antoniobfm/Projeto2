@@ -2,20 +2,25 @@ import ListaStyles from "./styles.js";
 import AppStyles from "../../../styles.js";
 
 class MySection extends HTMLElement {
+  // Variaveis
+  currentProtocolo = "ativos";
+  protocolosAtivos = [];
+  protocolosFinalizados = [];
+
   constructor() {
     super();
-    this.currentProtocolo = "ativos";
-    this.protocolosAtivos = [];
-    this.protocolosFinalizados = [];
 
-    // Attach the shadow root to the custom element and append the template content to it
-    // If host does not have shadow root, create one and append the template content to it
+    // Cria um shadow root para o componente
     this.attachShadow({ mode: "open" });
-
-    // Render component
-    this.render();
   }
 
+  // Executa assim que o elemento é inserido no DOM
+  connectedCallback() {
+    this.render();
+    this.loadStyles();
+  }
+
+  // Renderiza o componente
   render() {
     // Create a container div element with the class "protocolos"
     this.container = document.createElement("div");
@@ -63,47 +68,52 @@ class MySection extends HTMLElement {
     this.addEventListenerForBotoes();
   }
 
+  // Renderiza os botões finalizados e ativos
   renderMenu() {
+    // Busca o container dos botões
     const botoesDiv = this.shadowRoot.querySelector(".botoes");
 
+    // Remove os botões anteriores
     if (!!botoesDiv) {
       botoesDiv.remove();
     }
 
-    if (this.botoesDiv) {
-      this.botoesDiv.remove();
-    }
-
+    // Cria um novo container de botões e adiciona a classe "botoes"
     const newBotoesDiv = document.createElement("div");
     newBotoesDiv.classList.add("botoes");
-    this.botoesDiv = newBotoesDiv;
-    // Create a div element with the class "link" and "active", and text content "Ativos"
+
+    // Cria um div para ativos com a classe "link" e "active", e o texto "Ativos"
     const ativosDiv = document.createElement("div");
 
     ativosDiv.classList.add("link");
-    // Give ativosDiv an shadow-id
     ativosDiv.setAttribute("shadow-id", "ativos");
     ativosDiv.textContent = "Ativos";
+
+    // Adiciona um evento de click ao div de ativos
     ativosDiv.onclick = () => {
-      console.log("ativosDiv");
       this.currentProtocolo = "ativos";
       this.renderMenu();
     };
+
+    // Adiciona o div de ativos ao container de botões
     newBotoesDiv.appendChild(ativosDiv);
 
-    // Create a div element with the class "link", and text content "Finalizados"
+    // Cria um div para finalizados com a classe "link" e o texto "Finalizados"
     const finalizadosDiv = document.createElement("div");
+    
     finalizadosDiv.classList.add("link");
-    // Give ativosDiv an shadow-id
     finalizadosDiv.setAttribute("shadow-id", "finalizados");
     finalizadosDiv.textContent = "Finalizados";
+
+    // Adiciona um evento de click ao div de finalizados
     finalizadosDiv.onclick = () => {
-      console.log("finalizadosDiv");
       this.currentProtocolo = "finalizados";
       this.renderMenu();
     };
+
     newBotoesDiv.appendChild(finalizadosDiv);
 
+    // Adiciona a classe "active" ao div de acordo com a aba selecionada
     switch (this.currentProtocolo) {
       case "ativos":
         ativosDiv.classList.add("active");
@@ -114,24 +124,28 @@ class MySection extends HTMLElement {
         break;
     }
 
+    // Adiciona o container de botões ao header
     this.shadowRoot.querySelector(".header").appendChild(newBotoesDiv);
+
+    // Renderiza a lista de protocolos novamente para atualizar a lista de protocolos
     this.changeTab();
   }
 
+  // Muda a aba de ativos para finalizados e vice-versa
   changeTab() {
-    // Populate the ul element with the class "lista" with the protocolos
+    // Busca a lista de protocolos
     const listaUlShadow = this.shadowRoot.querySelector(".lista");
 
+    // Se a lista de protocolos existir
     if (!!listaUlShadow) {
+      // Limpa a lista para renderizar novamente e não duplicar os protocolos
       listaUlShadow.innerHTML = "";
     }
 
-    if (!!this.listaUl) {
-      this.listaUl.remove();
-    }
-
+    // Cria uma nova lista de protocolos
     const newListaUl = document.createElement("ul");
 
+    // Se o protocolo atual for ativos
     if (this.currentProtocolo === "ativos") {
       this.protocolosAtivos.forEach((protocolo) => {
         const listaItem = document.createElement("dendem-lista-item");
@@ -143,33 +157,41 @@ class MySection extends HTMLElement {
         newListaUl.appendChild(listaItem);
       });
     } else {
+      // Se o protocolo atual for finalizados
+      // Busca os protocolos finalizados
       this.protocolosFinalizados.forEach((protocolo) => {
+        // Cria um novo protocolo 
         const listaItem = document.createElement("dendem-lista-item");
 
-        // Send attribute to ListaItem component
+        // Adiciona os atributos ao protocolo
         listaItem.setAttribute("name", protocolo.nome);
         listaItem.setAttribute("protocolo-id", protocolo.protocolo_id);
 
+        // Adiciona o protocolo à lista de protocolos
         newListaUl.appendChild(listaItem);
       });
     }
 
+    // Renderiza a lista de protocolos 
     this.shadowRoot.querySelector(".lista").innerHTML = newListaUl.innerHTML;
   }
 
+  // Carrega os protocolos
   async loadProtocolos() {
+    // Faz a requisição para a API para buscar os protocolos
     const response = await fetch("http://localhost:3334/protocolos").then(
       (response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
         return response.json();
       }
-    );
+    ).catch((error) => {
+      console.log(error);
+    });
 
+    // Limpa os protocolos ativos e finalizados
     this.protocolosAtivos = [];
     this.protocolosFinalizados = [];
 
+    // Adiciona os protocolos ativos e finalizados
     response.forEach((protocolo) => {
       if (!!protocolo.ativo) {
         this.protocolosAtivos.push(protocolo);
@@ -178,43 +200,54 @@ class MySection extends HTMLElement {
       }
     });
 
+    // Renderiza o menu novamente
     this.changeTab();
   }
 
+  // Adiciona o event listener para os botões
   addEventListenerForBotoes() {
+    // Busca o botão referente aos protocolos ativos
     const ativosShadow = this.shadowRoot.querySelector('[shadow-id="ativos"]');
-    ativosShadow &&
+
+    // Se o botão existir
+    if (!!ativosShadow)
+      // Adiciona o event listener que muda o protocolo atual para "ativos"
       ativosShadow.addEventListener("click", () => {
-        console.log("ativosDiv");
         this.currentProtocolo = "ativos";
         this.renderMenu();
       });
+
+    // Busca o botão referente aos protocolos finalizados
     const finalizadosShadow = this.shadowRoot.querySelector(
       '[shadow-id="finalizados"]'
     );
-    finalizadosShadow &&
+
+    // Se o botão existir
+    if (!!finalizadosShadow)
+      // Adiciona o event listener que muda o protocolo atual para "finalizados"
       finalizadosShadow.addEventListener("click", () => {
-        console.log("finalizadosDiv");
         this.currentProtocolo = "finalizados";
         this.renderMenu();
       });
   }
 
-  // Add event listener for 'protocol-created' event
+  // Adiciona o event listener para o evento "protocol-created"
   addEventListenerForProtocolCreated() {
-    console.log("addEventListenerForProtocolCreated");
+    // Busca o elemento ul que contém os protocolos
     const listaUlShadow = this.shadowRoot.querySelector(".lista");
 
+    // Se a lista existir
     if (!!listaUlShadow) {
+      // Adiciona o event listener
       this.getRootNode().addEventListener("protocol-created", async () => {
-        console.log("OAIKSMOIASDMFOISDAMKO");
         await this.loadProtocolos();
       });
     }
   }
 
+  // Importa os scripts necessários para o componente
   loadScripts() {
-    // If ListaItem script is not loaded, load it
+    // Se eles ainda não foram importados, importa
     if (!this.shadowRoot.querySelector("script")) {
       const script = document.createElement("script");
       script.src = "./routes/protocolos/Lista/ListaItem/index.js";
@@ -223,13 +256,14 @@ class MySection extends HTMLElement {
     }
   }
 
-  // Call the loadProtocolos function when the component is connected to the DOM
-  connectedCallback() {
-    this.render();
+  // Carrega os estilos do componente
+  loadStyles() {
+    // Adiciona os estilos do componente ao shadow root, se não existirem
     if (!this.shadowRoot.adoptedStyleSheets.length) {
       this.shadowRoot.adoptedStyleSheets = [ListaStyles, AppStyles];
     }
   }
 }
 
+// Define o custom element na DOM
 customElements.define("dendem-lista", MySection);

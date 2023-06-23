@@ -2,33 +2,45 @@ import ProtocoloStructureStyles from "./styles.js";
 import AppStyles from "../../../../styles.js";
 
 class ProtocoloStructure extends HTMLElement {
+  // Define quais atributos serão monitorados para alteração
+  static get observedAttributes() {
+    return ["campo"];
+  }
+
+  // Variaveis
+  campo = {}
+
   constructor() {
     super();
 
-    this.protocolo = {
-      id: "",
-      nome: "Carregando...",
-      descricao: "",
-      foto_url: "",
-      ativo: 1,
-    };
-
+    // Cria um shadow root para o componente
     this.shadow = this.attachShadow({ mode: "open" });
-
-    console.log(this.getAttribute("campo"));
-
-    this.campo = JSON.parse(this.getAttribute("campo"));
-    console.log(this.getAttribute("campo"));
-
-    console.log('this.campo');
-    console.log(this.campo);
-
-    this.render();
   }
 
+  // Executa assim que o elemento é inserido no DOM
+  connectedCallback() {
+    this.render();
+    this.loadStyles();
+  }
+
+  // Lida com mudanças nos atributos do elemento
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === "campo") {
+      this.campo = JSON.parse(this.getAttribute("campo"));
+
+      this.render();
+    }
+  }
+
+  // Renderiza o componente
   render() {
+    // Cria um template para ser um container
     const template = document.createElement("template");
+
+    // Se o campo existir, renderiza o componente
     if (this.campo && this.campo.nome) {
+
+      // Define o conteúdo do template
       template.innerHTML = `
         <div class="structure-item">
             <h3>${this.campo.nome}</h3>
@@ -39,30 +51,19 @@ class ProtocoloStructure extends HTMLElement {
         </div>
       `;
     }
-    //<p>${this.campo.descricao}</p>
+
+    // Adiciona o template ao shadow root
     this.shadowRoot.innerHTML = template.innerHTML;
   }
 
-  // Handle changes to the element's attributes
-  connectedCallback() {
-    this.campo = JSON.parse(this.getAttribute("campo"));
-    console.log('this.campo')
-    console.log(this.campo)
-
+  // Carrega os estilos do componente
+  loadStyles() {
+    // Adiciona os estilos do componente ao shadow root, se não existirem
     if (!this.shadowRoot.adoptedStyleSheets.length) {
       this.shadowRoot.adoptedStyleSheets = [AppStyles, ProtocoloStructureStyles];
     }
   }
-
-  // Lida com mudanças nos atributos do elemento
-  attributeChangedCallback(name, oldValue, newValue) {
-    console.log("newValue, oldValue, name");
-    console.log(newValue, oldValue, name);
-    if (name === "protocolo") {
-      console.log(newValue, oldValue, name);
-      this.protocolo = newValue;
-    }
-  }
 }
 
+// Define o custom element na DOM
 customElements.define("dendem-protocolo-structure", ProtocoloStructure);

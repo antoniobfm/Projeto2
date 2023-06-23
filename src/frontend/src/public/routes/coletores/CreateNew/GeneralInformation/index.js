@@ -79,7 +79,6 @@ class GeneralInformation extends HTMLElement {
 
     // Adiciona um event listener para quando a tecla é solta no input de email
     dendemInputDescricaoInput.addEventListener("keyup", (event) => {
-      console.log("coletor-email-changed");
       this.generalInformation.email = event.target.value;
       this.setAttribute("coletor-email", event.target.value);
 
@@ -102,7 +101,6 @@ class GeneralInformation extends HTMLElement {
 
     // Adiciona um event listener para quando a tecla é solta no input de senha
     dendemInputPasswordInput.addEventListener("keyup", (event) => {
-      console.log("coletor-password-changed");
       this.generalInformation.password = event.target.value;
       this.setAttribute("coletor-password", event.target.value);
 

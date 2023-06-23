@@ -38,8 +38,6 @@ class ListaItem extends HTMLElement {
 
   // Executa quando o componente é adicionado ao DOM
   connectedCallback() {
-    console.log("ListaItemColetorProtocolos connected")
-
     this.render();
     this.loadStyles();
     this.addEventListenerToListaItem();
@@ -47,8 +45,6 @@ class ListaItem extends HTMLElement {
 
   // Executa quando o componente é removido do DOM
   disconnectedCallback() {
-    console.log("ListaItemColetorProtocolos disconnected");
-    
     // Busca o componente na DOM
     const listaItem = this.shadowRoot.querySelector("button");
 

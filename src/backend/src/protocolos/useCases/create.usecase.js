@@ -1,7 +1,6 @@
 import queryToDb from "../../shared/utils/queryToDb.js";
 
 const createProtocolo = async (data) => {
-  console.log(data)
   let protocolo = {
     id: null,
     nome: data.generalInformation.name,

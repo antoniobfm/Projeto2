@@ -10,8 +10,6 @@ class InputComponent extends HTMLElement {
     const placeholder = this.getAttribute("placeholder");
     const label = this.getAttribute("label");
 
-    console.log(name, type, placeholder, label);
-
     // Create a shadow root for the component
     if (!this.shadowRoot) this.shadow = this.attachShadow({ mode: "open" });
 

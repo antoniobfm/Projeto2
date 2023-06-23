@@ -9,19 +9,6 @@ const getAllCamposFromProtocolo = async (protocolo_id) => {
     return null;
   }
 
-  // Format the response to be more readable
-
-  // {
-  //   campo_id: 51,
-  //   etapa_id: 53,
-  //   categoria: 'text',
-  //   nome: 'Casca de João',
-  //   protocolo_id: 62,
-  //   foto_url: 'teste',
-  //   ativo: 1,
-  //   descricao: 'Tem gosto de LoL, Vox Machina e hotline miami'
-  // },
-  console.log(campos_response)
   const teste = campos_response.reduce((acc, campo) => {
     if (!acc[campo.etapa_id]) {
       acc[campo.etapa_id] = {
@@ -39,9 +26,6 @@ const getAllCamposFromProtocolo = async (protocolo_id) => {
 
     return acc;
   }, {});
-
-  console.log(teste[campos_response[0].etapa_id])
-
   
   return {
     protocolo_id: campos_response[0].protocolo_id,

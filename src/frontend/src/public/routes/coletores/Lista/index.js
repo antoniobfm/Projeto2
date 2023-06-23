@@ -7,11 +7,6 @@ function handleColetorCreated(e) {
 }
 
 class MySection extends HTMLElement {
-  // Define quais atributos serão monitorados para alteração
-  static get observedAttributes() {
-    return [];
-  }
-
   // Variaveis
   coletores = [];
 
@@ -32,8 +27,6 @@ class MySection extends HTMLElement {
 
   // Executado quando o elemento é removido do DOM
   disconnectedCallback() {
-    console.log("disconnected ListaColetorProtocolos");
-    console.log("removed addEventListenerForColetorCreated");
 
     // Busca o elemento ul com a classe "lista"
     const listaUlShadow = this.shadowRoot.querySelector(".lista");
@@ -142,8 +135,6 @@ class MySection extends HTMLElement {
 
   // Adiciona um event listener para o evento "coletor-created"
   addEventListenerForColetorCreated() {
-    console.log("added addEventListenerForColetorCreated");
-
     // Busca o elemento ul com a classe "lista"
     const listaUlShadow = this.shadowRoot.querySelector(".lista");
 

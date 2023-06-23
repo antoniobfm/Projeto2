@@ -1,9 +1,7 @@
 import queryToDb from "../../shared/utils/queryToDb.js";
 
 const createColetor = async (data) => {
-  console.log(data)
-
-  // Create a new coletor
+  // Cria um novo registro na tabela COLETOR
   let sql =
     "INSERT INTO COLETOR (nome, email, senha) VALUES (?, ?, ?) RETURNING *";
 

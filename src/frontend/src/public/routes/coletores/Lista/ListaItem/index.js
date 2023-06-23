@@ -2,7 +2,6 @@ import ListaItemStyle from "./styles.js";
 
 // Função para lidar com o evento de click em um coletor
 function handleOnClick(e) {
-  console.log("clicked lista item", this.getAttribute("coletor-id"));
   this.dispatchEvent(
     new CustomEvent("coletor-clicked", {
       detail: {
@@ -14,7 +13,6 @@ function handleOnClick(e) {
   );
 }
 
-// Define um custom element chamado "ListaItem"
 class ListaItem extends HTMLElement {
   // Define quais atributos serão monitorados para alteração
   static get observedAttributes() {
@@ -79,7 +77,7 @@ class ListaItem extends HTMLElement {
     this.shadowRoot.appendChild(button);
   }
 
-  // Carrega os scripts do componente
+  // Adiciona o event listener no item da lista de protocolos do coletor
   addEventListenerToListaItem() {
     // Busca a lista de protocolos
     const listaItem = this.shadowRoot.querySelector("button");
@@ -89,6 +87,7 @@ class ListaItem extends HTMLElement {
       listaItem.addEventListener("click", (e) => handleOnClick.bind(this)(e));
     }
   }
+
   // Carrega os estilos do componente
   loadStyles() {
     // Adiciona os estilos do componente ao shadow root, se não existirem
