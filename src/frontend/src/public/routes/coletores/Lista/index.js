@@ -145,13 +145,6 @@ class MySection extends HTMLElement {
     listaUlShadow.addEventListener("coletor-created", (e) => handleColetorCreated.bind(this)(e));
   }
 
-  // Carrega os estilos
-  loadStyles() {
-    if (!this.shadowRoot.adoptedStyleSheets.length) {
-      this.shadowRoot.adoptedStyleSheets = [ListaStyles, AppStyles];
-    }
-  }
-
   // Carrega os scripts
   loadScripts() {
     // Se ainda não tiver sido carregado, carrega os scripts dos componentes
@@ -163,6 +156,13 @@ class MySection extends HTMLElement {
       
       // Adiciona o script ao shadow root
       this.shadowRoot.appendChild(script);
+    }
+  }
+
+  // Carrega os estilos
+  loadStyles() {
+    if (!this.shadowRoot.adoptedStyleSheets.length) {
+      this.shadowRoot.adoptedStyleSheets = [ListaStyles, AppStyles];
     }
   }
 }
