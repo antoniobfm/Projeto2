@@ -36,7 +36,6 @@ const routes = [
 ];
 
 function navigateTo(url) {
-  console.log("ok");
   history.pushState(null, null, url);
 
   router();
@@ -50,8 +49,6 @@ async function loadPage(path) {
   const response = await fetch(path);
 
   // Also load the page's scripts
-  console.log(response);
-
   const content = await response.text();
   return content;
 }

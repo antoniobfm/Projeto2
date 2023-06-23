@@ -1,75 +1,65 @@
 import CollectionStructureStyles from "./styles.js";
 import AppStyles from "../../../../styles.js";
 
-// Define a custom element called "Button"
 class CollectionStructure extends HTMLElement {
+  // Variaveis
+  fields = [];
+
   constructor() {
-    // Call the parent constructor
     super();
 
-    this.fields = [];
-
-    // Create a shadow DOM for the element
+    // Cria um shadow root para o componente
     if (!this.shadowRoot) this.shadow = this.attachShadow({ mode: "open" });
+  }
 
-    // Create a tile element
+  // Executa assim que o elemento é inserido no DOM
+  connectedCallback() {
+    this.render();
+    this.addAllEventListeners();
+    this.loadScripts();
+    this.loadStyles();
+  }
+
+  // Renderiza o componente
+  render() {
+    // Cria um elemento h2 para o título do componente e adiciona suas classes e conteúdo
     const title = document.createElement("h2");
     title.classList.add("text-lg");
     title.classList.add("font-bold");
     title.textContent = "Estrutura da Coleta";
 
-    // Create a element to hold the collection fields
+    // Cria um container para os campos da coleção e adiciona uma classe e um id
     this.collectionFieldsContainer = document.createElement("div");
     this.collectionFieldsContainer.id = "collectionFieldsContainer";
     this.collectionFieldsContainer.classList.add("collection-fields-container");
 
-    // Create a button to add a new collection field
-    // const addNewCollectionFieldButton = `<dendem-button id="addCollectionFieldButton" shadow-id="add-collection-field" label="Adicionar novo campo"></dendem-button>`;
+    // Cria um botão para adicionar um novo campo à coleção
     const addNewCollectionFieldButton = `
       <div id="addCollectionFieldButton">
         <img src="http://localhost:3000/assets/icons/add.svg" alt="Adicionar novo campo" />
         <span class="text-sm font-bold">Adicionar novo campo</span>
       </div>
-    `
+    `;
 
-    // Add the title element to the shadow DOM
+    // Adiciona o elemento de título ao shadow DOM
     this.shadowRoot.appendChild(title);
     this.shadowRoot.appendChild(this.collectionFieldsContainer);
     this.shadowRoot.innerHTML += addNewCollectionFieldButton;
 
+    // Adiciona um campo inicial à coleção
     this.addNewCollectionField();
-
-    // Add event listener to dendem-button using shadow-id
-    const addCollectionFieldButton = this.shadowRoot.querySelector(
-      "#addCollectionFieldButton"
-    );
-
-    addCollectionFieldButton.addEventListener("click", () => {
-      this.addNewCollectionField();
-    });
-
-    this.loadScripts();
   }
 
-  // Define the attributes to observe
-  static get observedAttributes() {
-    return ["name"];
-  }
-
-  // Handle changes to an attribute
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (name === "name") {
-      const button = this.shadowRoot.querySelector("button");
-      button.innerHTML = newValue;
-    }
-  }
-
+  // Lida com a mudança de um campo
   updateField(e, property) {
+    // Pega os valores a partir do evento
     const fieldIndex = e.detail.fieldIndex;
     const fieldValue = e.detail.fieldValue;
 
+    // Atualiza o campo no array de campos
     this.fields[fieldIndex][property] = fieldValue;
 
+    // Dispara um evento sinalizando que os campos foram atualizados
     const fieldsUpdated = new CustomEvent("fields-updated", {
       detail: {
         fields: this.fields,
@@ -80,101 +70,101 @@ class CollectionStructure extends HTMLElement {
     this.dispatchEvent(fieldsUpdated);
   }
 
+  // Deleta um campo específico
   deleteField(e) {
-    console.log("okokoko");
-
+    // Pega o index do campo a ser deletado a partir do evento
     const fieldIndex = e.detail.fieldIndex;
 
+    // Remove o campo do array de campos
     this.fields.splice(fieldIndex, 1);
 
     this.collectionFieldsContainer.innerHTML = "";
 
     // Recreate the collection fields
+    //.Recria os campos da coleção
     this.fields.forEach((field, index) => {
-      // Create a dendem input element
+      // Cria um elemento dendem-collection-field
       const collectionField = `<dendem-collection-field shadow-id="collection-field-${index}" field-name="${field.name}" field-type="${field.type}" field-index="${index}"></dendem-collection-field>`;
-      console.log("collectionField", collectionField);
+
+      // Adiciona o elemento ao container de campos
       this.collectionFieldsContainer.innerHTML += collectionField;
     });
 
-    // Add it to the shadow DOM
+    // Busca o container de campos no shadow DOM
     const container = this.shadowRoot.getElementById(
       "collectionFieldsContainer"
     );
 
-    // Clean the container
+    // Limpao container de campos
     container.innerHTML = "";
 
+    // Adiciona o container de campos ao container principal
     container.innerHTML = this.collectionFieldsContainer.innerHTML;
   }
 
+  // Adiciona um novo campo à coleção
   addNewCollectionField() {
+    // Adiciona um novo campo ao array de campos
     this.fields.push({
       name: "",
       type: "text",
     });
 
-    console.log("this.fields", this.fields);
-
+    // Limpa o container de campos
     this.collectionFieldsContainer.innerHTML = "";
 
-    // Recreate the collection fields
+    // Recria na tela os campos definidos no array de campos
     this.fields.forEach((field, index) => {
-      // Create a dendem input element
+      // Cria um elemento dendem-collection-field
       const collectionField = `<dendem-collection-field shadow-id="collection-field-${index}" field-name="${field.name}" field-type="${field.type}" field-index="${index}"></dendem-collection-field>`;
-      console.log("collectionField", collectionField);
+
+      // Adiciona o elemento ao container de campos
       this.collectionFieldsContainer.innerHTML += collectionField;
     });
 
-    // Add it to the shadow DOM
+    // Adiciona o container de campos ao shadow DOM
     const container = this.shadowRoot.getElementById(
       "collectionFieldsContainer"
     );
 
-    // Clean the container
+    // Limpa o container de campos
     container.innerHTML = "";
 
+    // Adiciona o container de campos ao container principal
     container.innerHTML = this.collectionFieldsContainer.innerHTML;
-
-    // // Create a dendem input element
-    // const collectionField = `<dendem-collection-field></dendem-collection-field>`
-
-    // // Add the title element to the shadow DOM
-    // console.log(this.collectionFieldsContainer)
-    // this.collectionFieldsContainer.innerHTML += collectionField;
   }
 
-  // Handle changes to the element's attributes
-  connectedCallback() {
-    const button = this.shadowRoot.querySelector("button");
+  // Adiciona todos event listeners
+  addAllEventListeners() {
+    // Busca o botão de adicionar um novo campo
+    const addCollectionFieldButton = this.shadowRoot.querySelector(
+      "#addCollectionFieldButton"
+    );
 
-    button &&
-      button.addEventListener("click", () => {
-        console.log("clicked");
+    // Adiciona um event listener para identificar quando o botão de adicionar um novo campo for clicado
+    addCollectionFieldButton.addEventListener("click", () => {
+      this.addNewCollectionField();
     });
 
-    // Receive an event from dendem-collection-field this.dispatchEvent(new Event('field-name-changed'));
+    // Adiciona um event listener para identificar quando o nome de um campo foi alterado
     this.addEventListener("field-name-changed", (e) => {
       this.updateField(e, "name");
     });
 
-    // Receive an event from dendem-collection-field this.dispatchEvent(new Event('field-type-changed'));
+    // Adiciona um event listener para identificar quando o tipo de um campo foi alterado
     this.addEventListener("field-type-changed", (e) => {
       this.updateField(e, "type");
     });
 
-    // Receive an event from dendem-collection-field this.dispatchEvent(new Event('field-deleted'));
+    // Adiciona um event listener para identificar quando um campo deve ser deletado
     this.addEventListener("field-deleted", (e) => {
       this.deleteField(e);
     });
-
-    if (!this.shadowRoot.adoptedStyleSheets.length) {
-      this.shadowRoot.adoptedStyleSheets = [AppStyles, CollectionStructureStyles];
-    }
   }
 
+  // Carrega os scripts necessários para o componente
   loadScripts() {
-    // If GeneralInformation script is not loaded, load it
+    // Se o script de GeneralInformation não estiver carregado, carregue-o
     if (!this.shadowRoot.querySelector("script")) {
       const collectionFieldScript = document.createElement("script");
       collectionFieldScript.src =
@@ -184,7 +174,18 @@ class CollectionStructure extends HTMLElement {
       this.shadowRoot.appendChild(collectionFieldScript);
     }
   }
+
+  // Carrega os estilos do componente
+  loadStyles() {
+    // Adiciona os estilos do componente ao shadow root, se não existirem
+    if (!this.shadowRoot.adoptedStyleSheets.length) {
+      this.shadowRoot.adoptedStyleSheets = [
+        AppStyles,
+        CollectionStructureStyles,
+      ];
+    }
+  }
 }
 
-// Register the custom element with the browser
+// Define o custom element na DOM
 customElements.define("dendem-collection-structure", CollectionStructure);

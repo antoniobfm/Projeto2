@@ -34,7 +34,6 @@ coletorProtocoloRouter.post("/", (req, res) => {
     "', '" +
     req.body.protocolo_id +
     ")";
-  console.log(sql);
   db.run(sql, [], (err) => {
     if (err) {
       throw err;
@@ -55,7 +54,6 @@ coletorProtocoloRouter.delete("/", (req, res) => {
     "DELETE FROM COLETOR_PROTOCOLO WHERE coletor_protocolo_id ='" +
     req.query.coletor_protocolo_id +
     "'";
-  console.log(sql);
   var db = new sqlite3.Database(DBPATH); // Abre o banco
   db.run(sql, [], (err) => {
     if (err) {

@@ -1,100 +1,97 @@
 import ListaItemStyle from "./styles.js";
 
+// Função para lidar com o evento de click em um protocolo
+function handleOnClick(e) {
+
+  // Dispara um evento para notificar o componente pai que um protocolo foi clicado/selecionado
+  this.dispatchEvent(
+    new CustomEvent("protocolo-clicked", {
+      detail: {
+        protocolo: this.protocolo_id,
+      },
+      bubbles: true,
+      composed: true,
+    })
+  );
+}
+
 // Define a custom element called "Button"
 class ListaItem extends HTMLElement {
+  // Define quais atributos serão monitorados para alteração
+  static get observedAttributes() {
+    return ["name", "protocolo-id"];
+  }
+
+  // Variáveis
+  name = "";
+  protocolo_id = "";
+
   constructor() {
-    // Call the parent constructor
     super();
 
-    // Get nome from attributes
-    const name = this.getAttribute("name");
-    const protocolo_id = this.getAttribute("protocolo-id");
-
-    // Create a shadow root for the component
+    // Cria um shadow root para o componente
     if (!this.shadowRoot) this.shadow = this.attachShadow({ mode: "open" });
+  }
 
-    // Create a button element
+  // Executa assim que o elemento é inserido no DOM
+  connectedCallback() {
+    this.render();
+    this.addEventListenerToListaItem();
+    this.loadStyles();
+  }
+
+  // Executa quando o elemento é removido do DOM
+  disconnectedCallback() {
+    const listaItem = this.shadowRoot.querySelector("button");
+    
+    if (listaItem)
+      listaItem.removeEventListener("click", (e) => handleOnClick.bind(this)(e));
+  }
+
+  // Lida com mudanças nos atributos definidos em observedAttributes
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === "name") {
+      this.name = newValue;
+    }
+
+    if (name === "protocolo-id") {
+      this.protocolo_id = newValue;
+    }
+  }
+
+  // Renderiza o componente
+  render() {
+    // Cria um elemento button
     const button = document.createElement("button");
     button.classList.add("lista-item");
-    button.innerHTML = name;
+    button.innerHTML = this.name;
 
-    // Add the button element to the shadow DOM
+    // Limpa o shadow root
+    this.shadowRoot.innerHTML = "";
+
+    // Adiciona o botão ao shadow root
     this.shadowRoot.appendChild(button);
-
-    // Load the ListaItem component's CSS file
-    // const stylesListaItem = document.createElement('link');
-    // stylesListaItem.rel = 'stylesheet';
-    // stylesListaItem.href = "./routes/protocolos/Lista/ListaItem/styles.css";
-    // this.shadowRoot.appendChild(stylesListaItem);
-
-    this.addEventListenerToListaItem();
   }
 
-  // Define the attributes to observe
-  static get observedAttributes() {
-    return ["name"];
-  }
-
+  // Adiciona o event listener no item da lista de protocolos
   addEventListenerToListaItem() {
+    // Busca a lista de protocolos
     const listaItem = this.shadowRoot.querySelector("button");
 
     if (!!listaItem && !listaItem.onclick) {
-      // Dispatch an event to the host when the ListaItem is clicked
-      listaItem.addEventListener("click", (e) => {
-        console.log("clicked lista item", this.getAttribute("protocolo-id"));
-        this.dispatchEvent(
-          new CustomEvent("protocolo-clicked", {
-            detail: {
-              protocolo: this.getAttribute("protocolo-id"),
-            },
-            bubbles: true,
-            composed: true,
-          })
-        );
-      });
+      // Adiciona o event listener para o evento de click em um protocolo da lista de coletores
+      listaItem.addEventListener("click", (e) => handleOnClick.bind(this)(e));
     }
   }
 
-  // Handle changes to an attribute
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (name === "name") {
-      const button = this.shadowRoot.querySelector("button");
-      button.innerHTML = newValue;
-    }
-  }
-
-  // Handle changes to the element's attributes
-  connectedCallback() {
-    console.log(!this.shadowRoot.adoptedStyleSheets.length);
+  // Carrega os estilos do componente
+  loadStyles() {
+    // Adiciona os estilos do componente ao shadow root, se não existirem
     if (!this.shadowRoot.adoptedStyleSheets.length) {
       this.shadowRoot.adoptedStyleSheets = [ListaItemStyle];
     }
-
-    const button = this.shadowRoot.querySelector("button");
-    button &&
-      button.addEventListener("click", () => {
-        console.log("clicked");
-      });
-  }
-
-  // Handle changes to the element's attributes
-  disconnectedCallback() {
-    const button = this.shadowRoot.querySelector("button");
-    button &&
-      button.removeEventListener("click", () => {
-        console.log("clicked");
-      });
-  }
-
-  // Handle changes to the element's attributes
-  adoptedCallback() {
-    const button = this.shadowRoot.querySelector("button");
-    button &&
-      button.removeEventListener("click", () => {
-        console.log("clicked");
-      });
   }
 }
 
-// Register the custom element with the browser
+// Define o custom element na DOM
 customElements.define("dendem-lista-item", ListaItem);

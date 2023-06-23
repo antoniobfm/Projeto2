@@ -100,7 +100,6 @@ class CustomNav extends HTMLElement {
 
   // Handle changes to the element's attributes
   connectedCallback() {
-    console.log(!this.shadow.adoptedStyleSheets.length);
     if (!this.shadow.adoptedStyleSheets.length) {
       this.shadow.adoptedStyleSheets = [MenuStyle, AppStyles];
     }

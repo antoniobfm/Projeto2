@@ -3,7 +3,6 @@ import AppStyles from "../../styles.js";
 
 // Função para lidar com o evento de click em um coletor
 function handleColetorClicked(e) {
-  console.log("coletor-clicked event received");
   this.selectedColetor = e.detail.coletor;
 
   // Carrega o coletor selecionado
@@ -23,8 +22,6 @@ class Coletores extends HTMLElement {
 
   // Executa quando o elemento é inserido no DOM
   connectedCallback() {
-    console.log("connected dendem-coletores");
-
     this.render();
     this.loadScripts();
     this.loadStyles();
@@ -33,8 +30,6 @@ class Coletores extends HTMLElement {
 
   // Executa quando o elemento é removido do DOM
   disconnectedCallback() {
-    console.log("disconnected dendem-coletores");
-
     this.removeEventListener("coletor-clicked", (e) =>
       handleColetorClicked.bind(this)(e)
     );
@@ -42,7 +37,6 @@ class Coletores extends HTMLElement {
 
   // Renderiza o componente
   render() {
-    console.log("render protocolos");
     // Create a template element and append the div element to its content
     this.dashboard = document.createElement("div");
     this.dashboard.setAttribute("id", "dashboard");
@@ -130,15 +124,11 @@ class Coletores extends HTMLElement {
       scriptMenu.type = "module";
       this.appendChild(scriptMenu);
 
-      console.log("Menu script loaded");
-
       // Importa o script do componente Nav
       const scriptLista = document.createElement("script");
       scriptLista.src = "/routes/coletores/Lista/index.js";
       scriptLista.type = "module";
       this.appendChild(scriptLista);
-
-      console.log("CreateNew script loaded");
 
       // Importa o script do componente CreateNew
       const scriptCreateNew = document.createElement("script");
@@ -146,15 +136,11 @@ class Coletores extends HTMLElement {
       scriptCreateNew.type = "module";
       this.appendChild(scriptCreateNew);
 
-      console.log("Coletor script loaded");
-
       // Importa o script do componente Coletor
       const scriptColetor = document.createElement("script");
       scriptColetor.src = "/routes/coletores/Coletor/index.js";
       scriptColetor.type = "module";
       this.appendChild(scriptColetor);
-
-      console.log("Coletor Lista Protocolos script loaded");
 
       // Importa o script do componente Coletor Lista Protocolos
       const scriptColetorProtocolos = document.createElement("script");

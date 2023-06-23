@@ -18,7 +18,6 @@ app.use(express.static(PUBLIC_DIR, {
   extensions: ['html', 'css', 'js'],
   setHeaders: (res, path) => {
     const extname = path.split('.').pop();
-    console.log(getContentType('.' + extname))
     res.setHeader('Content-Type', getContentType('.' + extname));
   }
 }));

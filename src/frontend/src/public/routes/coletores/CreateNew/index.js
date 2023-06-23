@@ -2,7 +2,6 @@ import CreateNewColetorStyles from "./styles.js";
 import AppStyles from "../../../styles.js";
 
 function handleCreateColetorButtonClicked(e) {
-  console.log("create-coletor-button-clicked");
   const formSubmit = new CustomEvent("create-coletor-button-clicked", {
     bubbles: true,
     composed: true,
@@ -111,8 +110,6 @@ class CreateNewColetor extends HTMLElement {
       .then((response) => response.json())
       // Então, lida com os dados retornados da API
       .then((data) => {
-        console.log("Success:", data);
-
         // Dispara o evento de coletor criado
         this.getRootNode().dispatchEvent(
           new CustomEvent("coletor-created", { bubbles: true, composed: true })
@@ -133,7 +130,6 @@ class CreateNewColetor extends HTMLElement {
     // Adiciona um event listener para detectar mudanças no input de nome do coletor
     this.addEventListener("coletor-name-changed", (e) => {
       this.coletor = e.detail.generalInformation;
-      console.log(this.coletor);
     });
 
     // Adiciona um event listener para detectar mudanças no input de email do coletor
@@ -157,7 +153,6 @@ class CreateNewColetor extends HTMLElement {
 
     // Caso o botão de criar coletor exista
     if (!!createColetorAddStuff) {
-      console.log("createColetorAddStuff", createColetorAddStuff);
       // Adiciona um event listener para detectar quando o botão de criar coletor for clicado
       // E chama a função handleCreateColetorButtonClicked
       createColetorAddStuff.addEventListener("click", (e) =>

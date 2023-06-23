@@ -2,6 +2,11 @@ import MenuButtonStyle from "./styles.js";
 import AppStyle from "../../../styles.js";
 
 class MenuButton extends HTMLElement {
+  // Define quais atributos serão monitorados para alteração
+  static get observedAttributes() {
+    return ["active-page"];
+  }
+  
   constructor() {
     super();
     // Get the component's attributes
@@ -14,6 +19,25 @@ class MenuButton extends HTMLElement {
     this.render();
   }
 
+  // Executa assim que o elemento é inserido no DOM
+  connectedCallback() {
+    if (!this.shadow.adoptedStyleSheets.length) {
+      this.shadow.adoptedStyleSheets = [MenuButtonStyle, AppStyle];
+    }
+  }
+
+  // Lida com mudanças nos atributos do elemento
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === "active-page") {
+      if (newValue === this.getAttribute("page")) {
+        this.shadow.querySelector("button").classList.add("active");
+      } else {
+        this.shadow.querySelector("button").classList.remove("active");
+      }
+    }
+  }
+
+  // Renderiza o componente
   render() {
     // Create a button element
     const button = document.createElement("button");
@@ -71,10 +95,6 @@ class MenuButton extends HTMLElement {
 
   loadScripts() {}
 
-  static get observedAttributes() {
-    return ["active-page"];
-  }
-
   addNavigateTo(button) {
     const navigateToRoute = this.getAttribute("navigate-to");
     if (!!navigateToRoute) {
@@ -90,24 +110,6 @@ class MenuButton extends HTMLElement {
     }
   }
 
-  // Handle changes to the element's attributes
-  connectedCallback() {
-    console.log(!this.shadow.adoptedStyleSheets.length);
-    if (!this.shadow.adoptedStyleSheets.length) {
-      this.shadow.adoptedStyleSheets = [MenuButtonStyle, AppStyle];
-    }
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    console.log(name);
-    if (name === "active-page") {
-      if (newValue === this.getAttribute("page")) {
-        this.shadow.querySelector("button").classList.add("active");
-      } else {
-        this.shadow.querySelector("button").classList.remove("active");
-      }
-    }
-  }
 }
 
 // Define the custom element

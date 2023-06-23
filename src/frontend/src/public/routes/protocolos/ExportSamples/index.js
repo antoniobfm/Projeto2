@@ -1,105 +1,125 @@
 import ExportSamplesStyles from "./styles.js";
 import AppStyles from "../../../styles.js";
 
-// Define a new custom element called "ExportSamples"
 class ExportSamples extends HTMLElement {
+  // Define quais atributos serão monitorados para alteração
+  static get observedAttributes() {
+    return ["title", "protocolo-id"];
+  }
+
+  // Variaveis
+  title = '';
+  protocolo_id = '';
+
   constructor() {
     super();
 
-    const title = this.getAttribute("title");
-
-    // Create a shadow root for the component
+    // Cria um shadow root para o componente
     if (!this.shadowRoot) this.shadow = this.attachShadow({ mode: "open" });
+  }
 
+  // Executa assim que o elemento é inserido no DOM
+  connectedCallback() {
+    this.render();
+    this.loadStyles();
+  }
+
+  // Lida com mudanças nos atributos definidos em observedAttributes
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === "title") {
+      this.title = newValue;
+    }
+
+    if (name === "protocolo-id") {
+      this.protocolo_id = newValue;
+    }
+  }
+
+  render() {
+    // Cria uma section para ser o container, adiciona a classe
     const section = document.createElement("section");
     section.className = "container";
 
+    // Cria um h1 para o título, adiciona a classe e o conteudo, e adiciona ao container
     const h1 = document.createElement("h1");
-    h1.textContent = title;
+    h1.textContent = this.title;
     h1.classList.add("text-3xl");
     section.appendChild(h1);
 
-    // Create a div for the formats
+    // Cria um div para ser o container dos formatos, adiciona a classe e adiciona ao container
     const divFormatos = document.createElement("div");
     divFormatos.className = "formatos";
     section.appendChild(divFormatos);
 
-    // Create the formats title
+    // Cria um h2 para o título dos formatos, adiciona a classe e o conteudo, e adiciona ao container
     const h2 = document.createElement("h2");
     h2.textContent = "Formatos";
     h2.classList.add("text-lg");
     divFormatos.appendChild(h2);
 
-    // Create a div for the buttons
+    // Cria um div para ser o container dos botões, adiciona a classe e adiciona ao container
     const divBotoes = document.createElement("div");
     divFormatos.appendChild(divBotoes);
 
-    // Create the buttons
-    const botoes = [".XML", ".CSV", ".SQL"];
+    // Define os formatos
+    const botoes = [".XML", ".CSV"];
 
-    // For each button, create a div
+    // Para cada formato, cria um botão e adiciona ao container
     botoes.forEach((botao) => {
-      const divBotao = this.createButton(botao);
+      // Cria o botão
+      const divBotao = document.createElement("div");
+      divBotao.className = "botao";
+      divBotao.textContent = botao;
 
+      // Adiciona o evento de click ao botão
       divBotao.onclick = () => {
         this.download(botao);
       };
 
+      // Adiciona o botão ao container
       divBotoes.appendChild(divBotao);
     });
 
-    // Add the label and input elements to the container
+    // Adiciona o container ao shadow root
     this.shadowRoot.appendChild(section);
   }
 
+  // Faz o download do arquivo no formato especificado
   async download(type) {
+    // Faz o download em CSV
     if (type === ".CSV") {
-      var encodedUri = "data:text/csv;charset=utf-8," + encodeURIComponent("");
-      var link = document.createElement("a");
-      link.href = encodedUri;
-      link.download = "data.csv";
-      link.innerHTML = "Download CSV";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      return;
-      await fetch("http://localhost:3334/amostras/csv", {
+      await fetch("http://localhost:3334/amostras/csv/" + this.protocolo_id, {
         headers: {
           "Content-Type": "application/json",
         },
       })
         .then(async (response) => {
           const json = await response.json();
-          // ⚠️ Tem que transformar em blob? ⚠️
           return json;
         })
         .then((data) => {
-          var encodedUri =
-            "data:text/csv;charset=utf-8," + encodeURIComponent(csvContent);
+          // Configura o cabeçalho do arquivo
+          var encodedUri = "data:text/csv;charset=utf-8," + encodeURIComponent("");
+    
+          // Cria um link para o arquivo
           var link = document.createElement("a");
           link.href = encodedUri;
           link.download = "data.csv";
           link.innerHTML = "Download CSV";
+
+          // Adiciona o link ao body
           document.body.appendChild(link);
+          // Clica no link
           link.click();
+          // Remove o link do body
           document.body.removeChild(link);
         });
-    }
+      }
 
     if (type === ".XML") {
-      const blob = new Blob(["a"], {
-        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      });
-      const url = URL.createObjectURL(blob);
-      const linkEx = document.createElement("a");
-      linkEx.href = url;
-      linkEx.download = "excel.xlsx";
-      linkEx.innerHTML = "Download XLSX";
-      linkEx.click();
-      URL.revokeObjectURL(url);
-      return;
-      await fetch("dados/excel", {
+      // Faz o download em XML
+
+      await fetch("xlsx/" + this.protocolo_id, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -109,61 +129,42 @@ class ExportSamples extends HTMLElement {
           return json;
         })
         .then((data) => {
-          console.log(data.exc);
-          downloadFile(data.exc);
-        });
+          // Cria um blob com o conteudo do arquivo
+          const blob = new Blob(["a"], {
+            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          });
+          // Cria uma URL para o arquivo
+          const url = URL.createObjectURL(blob);
+          
+          // Cria um link para o arquivo
+          const linkEx = document.createElement("a");
+          linkEx.href = url;
+          linkEx.download = "excel.xlsx";
+          linkEx.innerHTML = "Download XLSX";
 
-      return;
-    }
+          // Adiciona o link ao body
+          document.body.appendChild(linkEx);
 
-    if (type === ".SQL") {
-      const blob = new Blob(["a"], { type: "text/plain" });
-      const url = URL.createObjectURL(blob);
-      const linksq = document.createElement("a");
-      linksq.href = url;
-      linksq.download = "data.sql";
-      linksq.style.display = "none";
-      document.body.appendChild(linksq);
-      linksq.click();
-      setTimeout(function () {
-        URL.revokeObjectURL(url);
-        document.body.removeChild(linksq);
-      }, 100);
-      return;
-      await fetch("dados/csql", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then(async (response) => {
-          const json = await response.json();
-          return json;
-        })
-        .then((data) => {
-          console.log("////////////////");
-          console.log(data.sql);
-          downloadSQL(data.sql);
+          // Clica no link
+          linkEx.click();
+
+          // Remove a URL
+          URL.revokeObjectURL(url);
+
+          // Remove o link do body
+          document.body.removeChild(linkEx);
         });
     }
   }
-
-  createButton(botao) {
-    const divBotao = document.createElement("div");
-    divBotao.onclick = () => {
-      console.log("Clicou no botão", botao);
-    };
-    divBotao.className = "botao";
-    divBotao.textContent = botao;
-    return divBotao;
-  }
-
-  // Handle changes to the element's attributes
-  connectedCallback() {
+  
+  // Carrega os estilos do componente
+  loadStyles() {
+    // Adiciona os estilos do componente ao shadow root, se não existirem
     if (!this.shadowRoot.adoptedStyleSheets.length) {
       this.shadowRoot.adoptedStyleSheets = [ExportSamplesStyles, AppStyles];
     }
   }
 }
 
-// Define the custom element
+// Define o custom element na DOM
 customElements.define("dendem-export-samples", ExportSamples);
