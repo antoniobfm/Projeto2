@@ -1,6 +1,4 @@
-import http from 'http';
 import path from 'path';
-import fs from 'fs';
 import express from 'express';
 
 // Configures an Express server to handle HTTP requests and serve static files from the public directory

@@ -2,8 +2,6 @@ import ListaItemStyle from "./styles.js";
 
 // Lida com o evento de click no item da lista
 function handleOnClick(e) {
-  console.log("clicked lista item", this.protocoloId);
-  
   // Dispara um evento para o host quando o item da lista é clicado
   this.dispatchEvent(
     new CustomEvent("coletor-protocolo-clicked", {

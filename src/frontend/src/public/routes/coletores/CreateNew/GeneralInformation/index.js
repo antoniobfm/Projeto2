@@ -56,7 +56,6 @@ class GeneralInformation extends HTMLElement {
 
     // Adiciona um event listener para quando a tecla é solta no input de nome
     dendemInputNameInput.addEventListener("keyup", (event) => {
-      console.log("coletor-name-changed");
       this.generalInformation.name = event.target.value;
       this.setAttribute("coletor-name", event.target.value);
 

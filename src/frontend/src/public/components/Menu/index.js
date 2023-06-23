@@ -3,25 +3,42 @@ import MenuStyle from "./styles.js";
 import AppStyles from "../../styles.js";
 
 class CustomNav extends HTMLElement {
+  // Define quais atributos serão monitorados para alteração
+  static get observedAttributes() {
+    return ["active-page"];
+  }
+
+  // Variaveis
+  activePage = null;
+
   constructor() {
     super();
 
-    // Get the active page from the 'active-page' attribute
-    this.activePage = this.getAttribute("active-page");
-
-    // Create a shadow root for the component
+    // Cria um shadow root para o componente
     if (!this.shadowRoot) this.shadow = this.attachShadow({ mode: "open" });
-
-    this.render();
-
-    // this.loadScripts();
   }
 
+  // Executa assim que o elemento é inserido no DOM
+  connectedCallback() {
+    this.render();
+    this.loadScripts();
+    this.loadStyles();
+  }
+
+  // Lida com mudanças nos atributos definidos em observedAttribute
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === "active-page") {
+      this.activePage = newValue;
+      this.render();
+    }
+  }
+
+  // Renderiza o componente
   render() {
     // Create a nav element
     const nav = document.createElement("nav");
 
-    // Copy the attributes from the original element
+    // Copia os atributos do elemento para o nav
     for (let i = 0; i < this.attributes.length; i++) {
       nav.setAttribute(this.attributes[i].name, this.attributes[i].value);
     }
@@ -66,10 +83,10 @@ class CustomNav extends HTMLElement {
     this.shadow.appendChild(nav);
   }
 
+  // Carrega os scripts
   loadScripts() {
-    // If ListaItem script is not loaded, load it
+    // Se ainda não tiver sido carregado, carrega os scripts dos componentes
     if (!this.shadow.querySelector("script")) {
-      // Load dendem-menu-button component
       const scriptMenuButton = document.createElement("script");
       scriptMenuButton.src = "/components/Menu/Button/index.js";
       scriptMenuButton.type = "module";
@@ -77,33 +94,14 @@ class CustomNav extends HTMLElement {
     }
   }
 
-  // Define the 'activePage' property
-  get activePage() {
-    return this.getAttribute("active-page");
-  }
-
-  set activePage(value) {
-    this.setAttribute("active-page", value);
-  }
-
-  static get observedAttributes() {
-    return ["active-page"];
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (name === "active-page" && oldValue !== newValue) {
-      // Update the active page in the menu button
-      const menuButton = this.shadow.querySelector("dendem-menu-button");
-      menuButton.setAttribute("active-page", newValue);
+  // Carrega os estilos do componente
+  loadStyles() {
+    // Adiciona os estilos do componente ao shadow root, se não existirem
+    if (!this.shadowRoot.adoptedStyleSheets.length) {
+      this.shadowRoot.adoptedStyleSheets = [MenuStyle, AppStyles];
     }
   }
-
-  // Handle changes to the element's attributes
-  connectedCallback() {
-    if (!this.shadow.adoptedStyleSheets.length) {
-      this.shadow.adoptedStyleSheets = [MenuStyle, AppStyles];
-    }
-  }
+  
 }
 
 // Define the custom element

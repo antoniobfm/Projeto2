@@ -4,36 +4,57 @@ import AppStyle from "../../../styles.js";
 class MenuButton extends HTMLElement {
   // Define quais atributos serão monitorados para alteração
   static get observedAttributes() {
-    return ["active-page"];
+    return ["active-page", "label", "icon", "navigate-to", "page"];
   }
+
+  // Variaveis
+  label = ''
+  icon = null
+  navigate_to = null
+  page = null
+  activePage = null
   
   constructor() {
     super();
-    // Get the component's attributes
-    this.label = this.getAttribute("label");
-    this.icon = this.getAttribute("icon");
 
-    // Create a shadow root for the component
+    // Cria um shadow root para o componente
     if (!this.shadowRoot) this.shadow = this.attachShadow({ mode: "open" });
-
-    this.render();
   }
 
   // Executa assim que o elemento é inserido no DOM
   connectedCallback() {
-    if (!this.shadow.adoptedStyleSheets.length) {
-      this.shadow.adoptedStyleSheets = [MenuButtonStyle, AppStyle];
-    }
+    this.render();
+    this.loadStyles();
   }
 
   // Lida com mudanças nos atributos do elemento
   attributeChangedCallback(name, oldValue, newValue) {
+    if (name === "label") {
+      this.label = newValue;
+
+      this.render();
+    }
+
+    if (name === "icon") {
+      this.icon = newValue;
+      
+      this.render();
+    }
+
+    if (name === "navigate-to") {
+      this.navigate_to = newValue;
+
+      this.render();
+    }
+
+    if (name === "page") {
+      this.page = newValue;
+
+      this.render();
+    }
+
     if (name === "active-page") {
-      if (newValue === this.getAttribute("page")) {
-        this.shadow.querySelector("button").classList.add("active");
-      } else {
-        this.shadow.querySelector("button").classList.remove("active");
-      }
+      this.activePage = newValue;
     }
   }
 
@@ -43,9 +64,15 @@ class MenuButton extends HTMLElement {
     const button = document.createElement("button");
     button.classList.add("text-base", "font-bold", "text-gray-900");
 
+    if (this.activePage === this.page) {
+      button.classList.add("active");
+    }
+
+    // Adiciona o evento de click no botão para navegar para a rota definida no atributo "navigate-to"
     this.addNavigateTo(button);
 
-    // Copy the attributes from the original button element
+    // Copia todos os atributos do elemento customizado para o botão
+    // Exceto os atributos "label" e "icon"
     const attributes = this.attributes;
     for (let i = 0; i < attributes.length; i++) {
       if (attributes[i].name !== "label" && attributes[i].name !== "icon") {
@@ -53,11 +80,11 @@ class MenuButton extends HTMLElement {
       }
     }
 
-    // Create a container for the button content
+    // Cria um container para o conteúdo do botão
     const container = document.createElement("div");
     container.classList.add("button-container");
 
-    // Create an SVG element for the icon
+    // Cria um elemento SVG para o ícone
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("width", "16");
     svg.setAttribute("height", "16");
@@ -71,37 +98,39 @@ class MenuButton extends HTMLElement {
 
     svg.appendChild(rect);
 
-    // Add the SVG to the container
+    // Adiciona o SVG ao container
     container.appendChild(svg);
 
-    // Create a span element for the label
+    // Cria um elemento span para o label
     const span = document.createElement("span");
     span.innerHTML = this.label;
 
-    // // Add the span to the container
+    // Adiciona o span ao container
     container.appendChild(span);
 
-    // // Move the button content into the container
+    // Move o conteúdo do botão para o container
     while (this.firstChild) {
       container.appendChild(this.firstChild);
     }
 
-    // // Add the container to the button
+    // Adiciona o container ao botão
     button.appendChild(container);
 
-    // Add the button to the shadow root
-    this.shadow.appendChild(button);
+    this.shadowRoot.innerHTML = "";
+
+    // Adiciona o botão ao shadow root
+    this.shadowRoot.appendChild(button);
   }
 
-  loadScripts() {}
-
+  // Adiciona o event listener para navegar para a rota definida no atributo "navigate-to"
   addNavigateTo(button) {
-    const navigateToRoute = this.getAttribute("navigate-to");
-    if (!!navigateToRoute) {
+    // Se o atributo "navigate-to" existir
+    if (!!this.navigate_to) {
+      // adiciona o evento de click no botão
       button.addEventListener("click", (e) => {
         document.querySelector("body").dispatchEvent(
           new CustomEvent("navigate-to", {
-            detail: navigateToRoute,
+            detail: this.navigate_to,
             bubbles: true,
             composed: true,
           })
@@ -110,6 +139,13 @@ class MenuButton extends HTMLElement {
     }
   }
 
+  // Carrega os estilos do componente
+  loadStyles() {
+    // Adiciona os estilos do componente ao shadow root, se não existirem
+    if (!this.shadowRoot.adoptedStyleSheets.length) {
+      this.shadowRoot.adoptedStyleSheets = [MenuButtonStyle, AppStyle];
+    }
+  }
 }
 
 // Define the custom element

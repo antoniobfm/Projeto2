@@ -43,7 +43,7 @@ class Coletores extends HTMLElement {
 
     const coletor = `<dendem-coletor coletor-id='${this.selectedColetor}'></dendem-coletor>`;
 
-    const navbar = "<dendem-nav></dendem-nav>";
+    const navbar = "<dendem-nav active-page='coletores'></dendem-nav>";
 
     const lista = "<dendem-coletor-lista></dendem-coletor-lista>";
 
@@ -152,6 +152,7 @@ class Coletores extends HTMLElement {
   }
 }
 
+// Define o custom element na DOM
 const element = customElements.define("dendem-coletores", Coletores);
 
 export default element;

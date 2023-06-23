@@ -23,10 +23,8 @@ class ColetorListaProtocolos extends HTMLElement {
     if (!this.shadowRoot) this.shadow = this.attachShadow({ mode: "open" });
   }
 
-  // Executado quando o elemento é inserido no DOM
+  // Executa assim que o elemento é inserido no DOM
   connectedCallback() {
-    console.log("connected ListaColetorProtocolos");
-
     this.render();
     this.loadScripts();
     this.addEventListenerForProtocoloToggle();
@@ -35,8 +33,6 @@ class ColetorListaProtocolos extends HTMLElement {
 
   // Executado quando o elemento é removido do DOM
   disconnectedCallback() {
-    console.log("disconnected ListaColetorProtocolos");
-
     const listaUlShadow = this.shadowRoot.querySelector(".lista");
 
     // Remove o event listener para o evento de click em um protocolo da lista de protocolos do coletor
@@ -171,16 +167,12 @@ class ColetorListaProtocolos extends HTMLElement {
       out: response.out,
     };
 
-    console.log(this.coletoresProtocolos);
-
     // Renderiza a lista de protocolos
     this.updateList();
   }
 
   // Atualiza os protocolos do coletor, adicionando ou removendo um protocolo dos quais ele faz partes
   async toggleProtocolo(protocolo_id, is_in) {
-    console.log("toggleProtocolo");
-
     // Se não houver um coletor selecionado, não faz nada
     if (!this.coletor_id) return;
 
@@ -206,8 +198,6 @@ class ColetorListaProtocolos extends HTMLElement {
 
   // adiciona um listener para o evento de click no protocolo
   addEventListenerForProtocoloToggle() {
-    console.log("addEventListenerForProtocoloToggle");
-
     // Busca a lista de protocolos
     const listaUlShadow = this.shadowRoot.querySelector(".lista");
 
