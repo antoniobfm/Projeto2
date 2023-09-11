@@ -33,6 +33,18 @@ const routes = [
     script: "/routes/login/script.js",
     styles: ["/routes/login/styles.css"],
   },
+  {
+    path: "/c",
+    page: "/routes/c/coletor/index.html",
+    script: "/routes/c/coletor/script.js",
+    styles: ["/routes/c/coletor/styles.css"],
+  },
+  {
+    path: "/c/protocolo",
+    page: "/routes/c/protocolo/index.html",
+    script: "/routes/c/protocolo/script.js",
+    styles: ["/routes/c/protocolo/styles.css"],
+  },
 ];
 
 function navigateTo(url) {
@@ -53,52 +65,21 @@ async function loadPage(path) {
   return content;
 }
 
-// Load and display the content of the page corresponding to the current route in the HTML element with the id "main"
+// Carrega e exibe o conteúdo da página correspondente à rota atual no elemento HTML com o id "main"
 async function router() {
   const main = document.getElementById("main");
 
   const currentPath = location.pathname;
 
-  const route = routes.find((r) => r.path === currentPath) || {
+  // Limpa o path para considerar parâmetros de URL
+  const currentPathWithoutParams = currentPath.split("?")[0];
+  console.log(currentPathWithoutParams)
+
+  const route = routes.find((r) => r.path === currentPathWithoutParams) || {
     page: "404.html",
   };
 
   const content = await loadPage(route.page);
-
-  // if (route.script) {
-  //   // Clean up previously loaded scripts
-  //   const oldScript =
-  //     document.body && document.body.querySelector("script[type=module]");
-  //   if (oldScript) {
-  //     document.body.remove(oldScript);
-  //   }
-
-  //   const script = document.createElement("script");
-  //   script.src = route.script;
-  //   script.type = "module";
-  //   script.addEventListener("load", () => {
-  //     // Wait for the script to finish loading before displaying the content
-  //     main.innerHTML = content;
-  //   });
-  //   document.body.appendChild(script);
-  // } else {
-  //   // Clean up previously loaded scripts
-  //   const oldScript = document.body.querySelector("script[type=module]");
-  //   if (oldScript) {
-  //     document.body.removeChild(oldScript);
-  //   }
-
-  //   // Clean up previously loaded stylesheets
-  //   const oldStylesheets = document.head.querySelectorAll(
-  //     "link[rel=stylesheet]"
-  //   );
-  //   oldStylesheets.forEach((stylesheet) => {
-  //     document.head.removeChild(stylesheet);
-  //   });
-  //   main.innerHTML = content;
-  // }
-
-  // Add the stylesheets for the new route
 
   main.innerHTML = content;
 
@@ -113,18 +94,19 @@ document.addEventListener("DOMContentLoaded", () => {
       navigateTo(event.target.href);
     }
   });
+
 // Handles the browser history change event
   window.addEventListener("popstate", router);
   router();
 });
 
-// if ('serviceWorker' in navigator) {
-//   window.addEventListener('load', () => {
-//     navigator.serviceWorker.register('/sw.js')
-//     .then(() => {
-//       console.log('Service Worker Registered');
-//     }).catch((err) => {
-//       console.log('Service Worker Failed to Register', err);
-//     });
-//   })
-// }
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+    .then(() => {
+      console.log('Service Worker Registered');
+    }).catch((err) => {
+      console.log('Service Worker Failed to Register', err);
+    });
+  })
+}

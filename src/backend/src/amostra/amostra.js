@@ -7,6 +7,7 @@ import updateAmostra from "./useCases/update.usecase.js";
 import getAmostrasAsCSV from "./useCases/getAmostrasAsCSV.usecase.js";
 import getAmostrasAsXLSX from "./useCases/getAmostrasAsXLSX.usecase.js";
 import getAmostrasAsSQL from "./useCases/getAmostrasAsSQL.usecase.js";
+import getAllAmostrasFromProtocolo from "./useCases/getAllAmostrarFromProtocolo.usecase.js";
 
 const amostrasRouter = Router();
 
@@ -16,7 +17,12 @@ amostrasRouter.post("/", async (req, res) => {
   res.statusCode = 200;
   res.setHeader("Access-Control-Allow-Origin", "*");
 
-  const result = await createAmostra(req.body);
+  const coletor_id = 3;
+
+  const result = await createAmostra({
+    ...req.body,
+    coletor_id: coletor_id,
+  });
 
   res.json(result[0]);
   res.end();
@@ -28,6 +34,17 @@ amostrasRouter.get("/:amostra_id", async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   const result = await getSpecificAmostra(req.params.amostra_id);
+
+  res.json(result);
+  res.end();
+});
+
+// Retorna todos registros (é o R do CRUD - Read)
+amostrasRouter.get("/protocolo/:protocolo_id", async (req, res) => {
+  res.statusCode = 200;
+  res.setHeader("Access-Control-Allow-Origin", "*");
+
+  const result = await getAllAmostrasFromProtocolo(req.params.protocolo_id);
 
   res.json(result);
   res.end();

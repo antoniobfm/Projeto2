@@ -58,7 +58,6 @@ h1 {
 .blocos {
     /* Auto layout */
     display: flex;
-    flex-direction: row;
     align-items: flex-start;
     padding: 0px;
     gap: 24px;
@@ -174,6 +173,20 @@ span {
     /* box-shadow: 0px 2px 4px rgba(227, 21, 21, 0.1); */
 }
 
+.amostra-container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    
+    overflow-x: scroll;
+
+}
+
+.amostra-container::-webkit-scrollbar {
+    display: none;
+}
+
 .botoes {
     width: 100%;
     padding: 0px;
@@ -203,6 +216,7 @@ h3 {
 
 .content {
     display: flex;
+    gap: 24px;
 
     flex-direction: column;
 }

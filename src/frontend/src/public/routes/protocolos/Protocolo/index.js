@@ -42,42 +42,6 @@ class Protocolo extends HTMLElement {
     }
   }
 
-  // Carrega o protocolo
-  async loadProtocolo() {
-    // Se não houver um protocolo_id, não faz nada
-    if (!this.protocolo_id) {
-      return;
-    }
-
-    // Busca o protocolo no servidor
-    const response = await fetch(
-      `http://localhost:3334/protocolos/${this.protocolo_id}/campos`
-    );
-
-    // Converte a resposta em JSON
-    const protocolo = await response.json();
-
-    // Se não houver um protocolo, não faz nada
-    if (!protocolo) {
-      return;
-    }
-
-    // Atualiza o protocolo
-    this.protocolo = {
-      id: protocolo.protocolo_id,
-      nome: protocolo.nome,
-      descricao: protocolo.descricao || "",
-      foto_url: protocolo.foto_url,
-      ativo: protocolo.ativo,
-      etapas: protocolo.etapas,
-    };
-
-    // Renderiza o protocolo se houver uma foto, o que significa que o protocolo foi carregado
-    if (this.protocolo.foto_url) {
-      this.render();
-    }
-  }
-
   // Renderiza o componente
   render() {
     // Cria um template para o componente
@@ -149,6 +113,125 @@ class Protocolo extends HTMLElement {
 
     // Adiciona o event listener para o botão de exportar
     this.addExportSamplesEventListener();
+
+    // Adiciona as amostras
+    this.loadAmostras();
+  }
+
+  // Carrega o protocolo
+  async loadProtocolo() {
+    // Se não houver um protocolo_id, não faz nada
+    if (!this.protocolo_id) {
+      return;
+    }
+
+    // Busca o protocolo no servidor
+    const response = await fetch(
+      `http://localhost:3334/protocolos/${this.protocolo_id}/campos`
+    );
+
+    // Converte a resposta em JSON
+    const protocolo = await response.json();
+
+    // Se não houver um protocolo, não faz nada
+    if (!protocolo) {
+      return;
+    }
+
+    // Atualiza o protocolo
+    this.protocolo = {
+      id: protocolo.protocolo_id,
+      nome: protocolo.nome,
+      descricao: protocolo.descricao || "",
+      foto_url: protocolo.foto_url,
+      ativo: protocolo.ativo,
+      etapas: protocolo.etapas,
+    };
+
+    // Renderiza o protocolo se houver uma foto, o que significa que o protocolo foi carregado
+    if (this.protocolo.foto_url) {
+      this.render();
+    }
+  }
+
+  // Adiciona as coletas do protocolo
+  async loadAmostras() {
+    const response = await fetch(
+      `http://localhost:3334/amostras/protocolo/${this.protocolo_id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((response) => response.json());
+
+
+    // Busca o container que contém as coletas
+    const collectionStructure = this.shadowRoot.querySelector(
+      "#itens .content"
+    );
+
+    collectionStructure.innerHTML = "";
+
+    // Unifica os campos em um array de campos para cada coleta, a partir da amostra_id
+    const amostras = response.reduce((acc, amostra) => {
+      // Busca o index da coleta atual
+      const index = acc.findIndex((amostraAcc) => {
+        return amostraAcc.amostra_id === amostra.amostra_id;
+      });
+
+      // Se a coleta não existir no array, adiciona ela
+      if (index === -1) {
+        acc.push({
+          amostra_id: amostra.amostra_id,
+          campos: [
+            {
+              ...amostra,
+              campo_id: amostra.campo_id,
+              nome: amostra.nome,
+              conteudo: amostra.conteudo,
+            },
+          ],
+        });
+      } else {
+        // Se a coleta já existir no array, adiciona o campo a ela
+        acc[index].campos.push({
+          ...amostra,
+          campo_id: amostra.campo_id,
+          nome: amostra.nome,
+          conteudo: amostra.conteudo,
+        });
+      }
+
+      return acc;
+    }, []);
+      
+    console.log(amostras)
+    // Para cada coleta
+    amostras.forEach((coleta) => {
+      // Define o container da coleta
+      const amostraContainer = document.createElement("div");
+      amostraContainer.classList.add("amostra-container");
+
+      coleta.campos.forEach((amostra) => {
+
+      // Define o elemento da coleta
+      const amostraElement = document.createElement("dendem-protocolo-sample");
+
+      // Define o atributo campo do elemento como o campo atual
+      amostraElement.setAttribute("campo", JSON.stringify({
+          campo_id: amostra.campo_id,
+          nome: amostra.nome,
+          categoria: amostra.conteudo
+      }));
+
+      // Adiciona o elemento ao container
+      amostraContainer.appendChild(amostraElement);
+    });
+
+    // Adiciona o elemento ao container
+    collectionStructure.appendChild(amostraContainer);
+    });
   }
 
   // Adiciona os campos da estrutura de coleta do protocolo
@@ -202,6 +285,11 @@ class Protocolo extends HTMLElement {
       script.type = "module";
       script.src = "./routes/protocolos/Protocolo/Structure/index.js";
       this.shadowRoot.appendChild(script);
+
+      const scriptSample = document.createElement("script");
+      scriptSample.type = "module";
+      scriptSample.src = "./routes/protocolos/Protocolo/Sample/index.js";
+      this.shadowRoot.appendChild(scriptSample);
     }
   }
 

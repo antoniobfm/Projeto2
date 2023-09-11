@@ -92,6 +92,21 @@ h1 {
     border-radius: 4px;
 }
 
+
+.bloco h2 {
+    /* 4xl/bold */
+
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 27px;
+    /* identical to box height, or 54px */
+
+
+    color: var(--color-gray-50);
+}
+
 #collection-structure {
     width: 100%;
 
@@ -124,20 +139,6 @@ h1 {
     background-color: #aaa;
     border-radius: 16px;
     border: 2px solid #aaa;
-}
-
-h2 {
-    /* 4xl/bold */
-
-    font-family: 'DM Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 27px;
-    /* identical to box height, or 54px */
-
-
-    color: #FFFFFF;
 }
 
 h5 {

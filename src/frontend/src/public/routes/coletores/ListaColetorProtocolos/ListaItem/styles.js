@@ -27,6 +27,11 @@ style.replaceSync(/*css*/`
     transition: 0.2s;
     cursor: pointer;
   }
+
+  .active {
+    background: var(--color-gray-900);
+    color: var(--color-gray-100);
+  }
 `);
 
 export default style;

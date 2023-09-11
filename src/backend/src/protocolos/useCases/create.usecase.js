@@ -22,7 +22,7 @@ const createProtocolo = async (data) => {
     "', '" +
     data.generalInformation.descricao +
     "', '" +
-    'teste' +
+    'teste.png' +
     "', " +
     1 +
     ") RETURNING *";

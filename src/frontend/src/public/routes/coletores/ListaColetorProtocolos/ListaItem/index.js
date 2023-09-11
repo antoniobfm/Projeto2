@@ -84,6 +84,7 @@ class ListaItem extends HTMLElement {
     // Cria um elemento button e define seu conteúdo
     const button = document.createElement("button");
     button.classList.add("lista-item");
+    this.isIn === "dentro" ? button.classList.add("active") : "";
     button.innerHTML = this.name;
     button.innerHTML += text;
 

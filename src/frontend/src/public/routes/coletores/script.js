@@ -37,7 +37,7 @@ class Coletores extends HTMLElement {
 
   // Renderiza o componente
   render() {
-    // Create a template element and append the div element to its content
+    // Cria um template e adiciona o conteúdo do componente
     this.dashboard = document.createElement("div");
     this.dashboard.setAttribute("id", "dashboard");
 

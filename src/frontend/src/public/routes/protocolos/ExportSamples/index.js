@@ -99,7 +99,24 @@ class ExportSamples extends HTMLElement {
         })
         .then((data) => {
           // Configura o cabeçalho do arquivo
-          var encodedUri = "data:text/csv;charset=utf-8," + encodeURIComponent("");
+  // {
+  //   amostra_id: 10,
+  //   coletor_id: 3,
+  //   protocolo_id: 65,
+  //   amostra_campo_id: 4,
+  //   campo_id: 57,
+  //   conteudo: '',
+  //   etapa_id: 56,
+  //   categoria: 'long-text',
+  //   nome: 'Como assim?'
+  // }
+          var encodedUri = "data:text/csv;charset=utf-8," + encodeURIComponent(
+            // Formata o cabeçalho com os nomes das colunas
+            `amostra_id,coletor_id,protocolo_id,amostra_campo_id,campo_id,conteudo,etapa_id,categoria,nome',
+            ${...data.map((item) => {
+              return (`
+              ``
+          );
     
           // Cria um link para o arquivo
           var link = document.createElement("a");

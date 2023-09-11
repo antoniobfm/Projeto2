@@ -1,12 +1,17 @@
 import express from "express";
+import path from "path";
 import routes from "./routes.js";
 
 const hostname = "localhost";
 const port = 3334;
 const app = express();
 
+const __dirname = path.resolve();
+
 /* Colocar toda a parte estática no frontend */
-app.use(express.static("../frontend/"));
+app.use(express.static(path.join(__dirname, "uploads")));
+
+console.log(path.join(__dirname, "uploads"));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
